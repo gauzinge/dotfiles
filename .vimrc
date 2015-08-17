@@ -160,7 +160,7 @@ if has('clipboard')
     endif
 endif
 
-autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 " Always switch to the current file directory
 
 
@@ -201,7 +201,7 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-autocmd FileType c,cpp,python,xml 
+"autocmd FileType c,cpp,python,xml 
 
 "autocmd BufWritePre <buffer> call TrailingWhitespace() 
 
