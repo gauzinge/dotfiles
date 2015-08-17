@@ -2,6 +2,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting & Brackets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+set nocp
 set shell=/bin/bash
 let g:cpp_class_scope_highlight = 1
 syntax enable
@@ -143,7 +144,7 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "if has('gui_running')
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 "endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
