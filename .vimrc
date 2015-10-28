@@ -1,8 +1,72 @@
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vundle Settings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+set nocompatible              " be iMproved, required
+filetype off                  " required
+setglobal fileencoding=utf-8
+
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" VUNDLE
+call vundle#begin() 
+
+Plugin 'VundleVim/Vundle.vim' 
+Plugin 'powerline/fonts'
+Plugin 'airblade/vim-gitgutter' 
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'nuclearsandwich/vim-latex'
+Plugin 'xolox/vim-colorscheme-switcher' 
+Plugin 'Plfilho/cosco.vi' 
+Plugin 'xolox/vim-misc' 
+Plugin 'luochen1990/rainbow' 
+Plugin 'Chiel92/vim-autoformat'
+Plugin 'Yggdroot/indentLine' 
+Plugin 'christoomey/vim-tmux-navigator' 
+Plugin 'mileszs/ack.vim' 
+Plugin 'scrooloose/nerdtree' 
+Plugin 'altercation/vim-colors-solarized' 
+Plugin 'tpope/vim-surround' 
+Plugin 'tpope/vim-repeat' 
+Plugin 'jiangmiao/auto-pairs' 
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky' 
+Plugin 'reedes/vim-litecorrect' 
+Plugin 'kana/vim-textobj-user' 
+Plugin 'reedes/vim-textobj-sentence' 
+Plugin 'reedes/vim-textobj-quote' 
+Plugin 'kana/vim-textobj-indent'
+"Plugin 'reedes/vim-wordy'
+Plugin 'bling/vim-airline' 
+Plugin 'Lokaltog/vim-easymotion' 
+Plugin 'jistr/vim-nerdtree-tabs' 
+Plugin 'mbbill/undotree' 
+Plugin 'gcmt/wildfire.vim'
+Plugin 'scrooloose/syntastic' 
+Plugin 'tpope/vim-fugitive' 
+Plugin 'octol/vim-cpp-enhanced-highlight' 
+Plugin 'scrooloose/nerdcommenter' 
+Plugin 'tpope/vim-commentary' 
+Plugin 'godlygeek/tabular'
+"Plugin 'Shougo/neocomplete.vim.git' 
+Plugin 'Shougo/neosnippet'
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'Shougo/neosnippet-snippets' 
+Plugin 'honza/vim-snippets'
+Bundle 'dyng/ctrlsf.vim' 
+
+call vundle#end() 
+
+filetype plugin indent on    " required
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting & Brackets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 set nocp
+set nocompatible
+set term=ansi
 set shell=/bin/bash
 let g:cpp_class_scope_highlight = 1
 syntax enable
@@ -40,65 +104,6 @@ let g:rainbow_conf = {
 let g:indentLine_char = '︙'
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle Settings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-set nocompatible              " be iMproved, required
-filetype off                  " required
-setglobal fileencoding=utf-8
-
-
-" set the runtime path to include Vundle and initialize
-set rtp+=/Users/schurl/.vim/bundle/Vundle.vim
-
-" VUNDLE
-call vundle#begin()
-Plugin 'vundle'
-Plugin 'powerline/fonts'
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'nuclearsandwich/vim-latex'
-Plugin 'xolox/vim-colorscheme-switcher'
-Plugin 'xolox/vim-misc'
-Plugin 'luochen1990/rainbow'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'Yggdroot/indentLine'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'mileszs/ack.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'reedes/vim-litecorrect'
-Plugin 'kana/vim-textobj-user'
-Plugin 'reedes/vim-textobj-sentence'
-Plugin 'reedes/vim-textobj-quote'
-Plugin 'kana/vim-textobj-indent'
-Plugin 'reedes/vim-wordy'
-Plugin 'bling/vim-airline'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'jistr/vim-nerdtree-tabs'
-Plugin 'mbbill/undotree'
-Plugin 'gcmt/wildfire.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'octol/vim-cpp-enhanced-highlight'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'tpope/vim-commentary'
-Plugin 'godlygeek/tabular'
-Plugin 'Shougo/neocomplete.vim.git'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'honza/vim-snippets'
-
-call vundle#end() 
-
-filetype plugin indent on    " required
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
@@ -107,6 +112,7 @@ set background=dark
 set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
+let g:solarized_contrast="high"
 if has('gui_running')
     set guioptions-=T
     set guioptions+=e
@@ -144,7 +150,7 @@ set autoread
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 "if has('gui_running')
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
+set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 "endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -267,6 +273,10 @@ let g:ctrlp_working_path_mode = 0
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> YouCompleteMe Config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ycm_confirm_extra_conf = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -406,8 +416,6 @@ if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
     elseif executable('ack')
         let s:ctrlp_fallback = 'ack %s --nocolor -f'
         " On Windows use "dir" as fallback command.
-    elseif WINDOWS()
-        let s:ctrlp_fallback = 'dir %s /-n /b /s /a-d'
     else
         let s:ctrlp_fallback = 'find %s -type f'
     endif
@@ -577,9 +585,9 @@ if isdirectory(expand("~/.vim/bundle/vim-airline/"))
 endif
 " }
 "ASTYLE formatter
-let g:formatdef_my_astyle_cpp = '"astyle --mode=c --style=allman -pcH".(&expandtab ? "s".&shiftwidth : "t")'
-au BufWrite * :Autoformat
-let g:formatters_cpp = ['my_astyle_cpp']
+"let g:formatdef_my_astyle_cpp = '"astyle --mode=c --style=allman -pcH".(&expandtab ? "s".&shiftwidth : "t")'
+"au BufWrite * :Autoformat
+"let g:formatters_cpp = ['my_astyle_cpp']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Functions  
