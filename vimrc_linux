@@ -75,11 +75,7 @@ syntax enable
 if exists("syntax_on")
     syntax reset
 endif
-set virtualedit=onemore
-"inoremap <Esc><Esc>`^
-set mouse=a
-set ttyfast
-set ttymouse=xterm2
+
 
 :let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
@@ -147,6 +143,10 @@ set nobackup
 set nowb
 set noswapfile
 
+set virtualedit=onemore
+"inoremap <Esc><Esc>`^
+set ttyfast
+set ttymouse=xterm2
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 set autoread
