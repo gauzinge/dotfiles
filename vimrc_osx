@@ -4,6 +4,7 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 setglobal fileencoding=utf-8
+set encoding=utf-8
 
 
 " set the runtime path to include Vundle and initialize
@@ -50,7 +51,7 @@ Plugin 'scrooloose/nerdcommenter'
 Plugin 'tpope/vim-commentary' 
 Plugin 'godlygeek/tabular'
 "Plugin 'Shougo/neocomplete.vim.git' 
-Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet'
 Plugin 'Valloric/YouCompleteMe'
 "Plugin 'Shougo/neosnippet-snippets' 
 Plugin 'honza/vim-snippets'

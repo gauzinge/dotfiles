@@ -23,7 +23,7 @@ Plugin 'Plfilho/cosco.vi'
 Plugin 'xolox/vim-misc' 
 Plugin 'luochen1990/rainbow' 
 "Plugin 'Chiel92/vim-autoformat'
-Plugin 'Yggdroot/indentLine' 
+"Plugin 'Yggdroot/indentLine' 
 Plugin 'christoomey/vim-tmux-navigator' 
 Plugin 'mileszs/ack.vim' 
 Plugin 'scrooloose/nerdtree' 
@@ -76,6 +76,7 @@ if exists("syntax_on")
     syntax reset
 endif
 
+let g:indentLine_noConcealCursor=1
 
 :let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
 
@@ -142,7 +143,7 @@ let s:back = "NONE"
 set nobackup
 set nowb
 set noswapfile
-
+set nospell
 set virtualedit=onemore
 "inoremap <Esc><Esc>`^
 set ttyfast
@@ -165,13 +166,15 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 
 scriptencoding utf-8
 
-if has('clipboard')
-    if has('unnamedplus')  " When possible use + register for copy-paste
-        set clipboard=unnamed,unnamedplus
-    else         " On mac and Windows, use * register for copy-paste
-        set clipboard=unnamed
-    endif
-endif
+"if has('clipboard')
+"if has('unnamedplus')  " When possible use + register for copy-paste
+"set clipboard=unnamed,unnamedplus
+"else         " On mac and Windows, use * register for copy-paste
+"set clipboard=unnamed
+"endif
+"endif
+
+set clipboard=unnamed
 
 "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 " Always switch to the current file directory
@@ -258,6 +261,7 @@ set tm=500
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
