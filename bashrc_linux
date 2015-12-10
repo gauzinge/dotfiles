@@ -1,0 +1,99 @@
+# .bashrc
+
+# If not running interactively, don't do anyting
+[ -z "$PS1" ] && return
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+export LC_ALL="C"
+#Colorful Terminal
+export LS_OPTIONS='--color=auto'
+export CLICOLOR='Yes'
+export LSCOLORS=''
+export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
+
+#Textmate as GIT Editor
+# export EDITOR="/afs/cern.ch/user/g/gauzinge/bin/mate"
+# export GIT_EDITOR="rmate --name 'Git Commit Message' -w -l 1"
+
+#For my personal sanity
+# LXPLUS
+stty sane
+echo '* ********************************************************************'
+echo '* Some aliases:'
+echo '* work directory: work'
+echo '* mounting eos on afs: mounteos'
+echo '* initialize ilcsoft: init'
+echo '* CMSSW: cmssw'
+echo '* ********************************************************************'
+
+# User specific aliases and functions
+alias work='cd /afs/cern.ch/work/g/gauzinge/public/'
+#alias root='root -l'
+alias ls='ls -G'
+alias mounteos='eosumount /afs/cern.ch/work/g/gauzinge/public/eos;eosmount /afs/cern.ch/work/g/gauzinge/public/eos'
+alias tracking='cd /afs/cern.ch/work/g/gauzinge/public/Tracking/'
+alias init='source /afs/cern.ch/work/g/gauzinge/public/ilcsoft/v01-17-03/init_ilcsoft.sh'
+alias cmssw='cd /afs/cern.ch/user/g/gauzinge/scratch/CMSSW_6_2_0/src && cmsenv'
+alias ma='rmate'
+alias mate='rmate'
+alias subl='rsub'
+alias ccat='pygmentize -O style=monokai -f console256 -g'
+
+
+export PLATFORM=x86_64-slc6
+export GCC_VERSION=4.7
+export GCC_VERSION_SHORT=47
+export PYTHON_VERSION=2.7.3
+export ROOT_VERSION=5.34.17
+export PATH="~/vim/bin:$PATH"
+
+# # Fish Shell
+# export PATH="/afs/cern.ch/user/g/gauzinge/.fish/bin:$PATH"
+echo "Hostname is "$(hostname)
+
+if [[ $(hostname -s) = cmsuptracker* ]]; then
+	# CMSUPTRACKER003
+	source ~/.cmsuptracker003.sh
+	# export PATH="~/bin:$PATH"
+	# /usr/bin/fish
+elif [[ $(hostname) = "gauzinge" ]]; then
+	# GAUZINGE
+	export PATH="~/bin:$PATH"
+	# fish
+else
+	# LXPLUS
+	# Fish Shell
+	alias fish='/afs/cern.ch/user/g/gauzinge/.fish/bin/fish'
+	# export PATH="/afs/cern.ch/user/g/gauzinge/.fish/bin:$PATH"
+	
+	#GCC
+	source /afs/cern.ch/sw/lcg/contrib/gcc/$GCC_VERSION/$PLATFORM-gcc$GCC_VERSION_SHORT-opt/setup.sh
+	# export LD_LIBRARY_PATH=/afs/cern.ch/sw/lcg/contrib/gcc/$GCC_VERSION/$PLATFORM-gcc$GCC_VERSION_SHORT-opt/lib64:${LD_LIBRARY_PATH}
+
+	### Python
+	export PYTHONSYS="/afs/cern.ch/sw/lcg/external/Python/$PYTHON_VERSION/$PLATFORM-gcc$GCC_VERSION_SHORT-opt"
+	export PATH="$PYTHONSYS/bin:$PATH"
+	export LD_LIBRARY_PATH="$PYTHONSYS/lib:$LD_LIBRARY_PATH"
+export PATH="/afs/cern.ch/sw/lcg/contrib/CMake/3.0.0/Linux-i386/bin/:$PATH"
+	#ROOT
+	export ROOTSYS="/afs/cern.ch/sw/lcg/app/releases/ROOT/$ROOT_VERSION/$PLATFORM-gcc$GCC_VERSION_SHORT-opt/root"
+	# source $ROOTSYS/$ROOT_VERSION/$PLATFORM-gcc$GCC_VERSION_SHORT-opt/root/bin/thisroot.sh
+	export PATH="$ROOTSYS/bin:$PATH"
+	export LD_LIBRARY_PATH="$ROOTSYS/lib:$LD_LIBRARY_PATH"
+	export PYTHONPATH="$ROOTSYS/lib:$PYTHONPATH"
+	export MANPATH="`dirname $ROOTSYS/man/man1`:$MANPATH"
+
+	#Some working directories etc...
+	export PYTHONPATH="/afs/cern.ch/user/g/gauzinge/scratch/CMSSW_6_2_0/src/analysis/python:$PYTHONPATH"
+	export PATH="~/bin:$PATH"
+	export PYTHONPATH="usr/lib:$PYTHONPATH"
+	
+	#EOS
+	source /afs/cern.ch/project/eos/installation/cms/etc/setup.sh
+	# fish
+fi
+
+
