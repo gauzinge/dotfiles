@@ -82,7 +82,7 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/dsa_id"
+#export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -117,7 +117,7 @@ alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
 #alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 #alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
-
+#alias meld="/Applications/Meld.app/Contents/MacOS/Meld-bin"
 function zle-line-init zle-keymap-select {
 RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
 RPS2=$RPS1
