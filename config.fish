@@ -30,8 +30,8 @@ Plugin "brew"
 #Plugin "powerline"
 Plugin "theme"
 
-set fish_key_bindings fish_vi_key_bindings
-set fish_bind_mode insert
+#set fish_key_bindings fish_vi_key_bindings
+#set fish_bind_mode insert
 
 #LOCAL
 set homebrew "/usr/local/bin"
@@ -49,7 +49,6 @@ set -gx ROOTSYS /Users/schurl/root
 set -gx PATH $ROOTSYS/bin $PATH
 set -gx PYTHONPATH $ROOTSYS/lib $PYTHONPATH
 set -gx LD_LIBRARY_PATH $ROOTSYS/lib $PYTHONDIR/lib $LD_LIBRARY_PATH
-set -gx DYLD_LIBRARY_PATH $ROOTSYS/lib $DYLD_LIBRARY_PATH
 
 
 #local commands
@@ -63,11 +62,8 @@ alias code='cd /Users/schurl/Code'
 alias rsub='subl'
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
-alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
+#alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 #alias mvim="/Applications/MacVim.app/Contents/MacOS/MacVim"
-alias dirs='dirs -v'
-alias p='pushd'
-alias o='popd'
 alias cat='vimcat'
 alias ccat='pygmentize -O style=monokai -f console256 -g'
 

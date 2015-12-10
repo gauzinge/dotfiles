@@ -116,15 +116,15 @@ set t_Co=256
 let g:solarized_termcolors=256
 colorscheme solarized
 let g:solarized_contrast="high"
-if has('gui_running')
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+"if has('gui_running')
+"set guioptions-=T
+"set guioptions+=e
+"set t_Co=256
+"set guitablabel=%M\ %t
 
-    "else
-    "   colorscheme solarized 
-end
+"else
+"   colorscheme solarized 
+"end
 
 if &background == "dark"     
     let s:base03 = "NONE"     
