@@ -49,7 +49,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew python sudo web-search z vi-mode zsh-syntax-highlighting)
+plugins=(git brew python sudo web-search z vi-mode history-substring-search zsh-syntax-highlighting)
 export KEYTIMEOUT=1
 
 # User configuration
