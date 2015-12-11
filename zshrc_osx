@@ -50,8 +50,11 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew python sudo web-search z vi-mode history-substring-search zsh-syntax-highlighting)
-export KEYTIMEOUT=1
 
+export KEYTIMEOUT=1
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey "^R" history-incremental-search-backward
 
 # User configuration
 

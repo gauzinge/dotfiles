@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/afs/cern.ch/user/g/gauzinge/.oh-my-zsh
+export ZSH=/afs/cern.ch/user/g/gauzinge/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -50,11 +50,15 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git brew python sudo web-search z vi-mode history-substring-search zsh-syntax-highlighting)
+
 export KEYTIMEOUT=1
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey "^R" history-incremental-search-backward
 
 # User configuration
 
-  export PATH="/afs/cern.ch/sw/lcg/contrib/CMake/3.0.0/Linux-i386/bin/:/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc47-opt/bin:~/vim/bin:/afs/cern.ch/group/zh/bin:/afs/cern.ch/user/g/gauzinge/scripts:/afs/cern.ch/cms/caf/scripts:/cvmfs/cms.cern.ch/common:/cvmfs/cms.cern.ch/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/afs/cern.ch/user/g/gauzinge/bin"
+export PATH="/afs/cern.ch/sw/lcg/contrib/CMake/3.0.0/Linux-i386/bin/:/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc47-opt/bin:~/vim/bin:/afs/cern.ch/group/zh/bin:/afs/cern.ch/user/g/gauzinge/scripts:/afs/cern.ch/cms/caf/scripts:/cvmfs/cms.cern.ch/common:/cvmfs/cms.cern.ch/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/afs/cern.ch/user/g/gauzinge/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 #colorful terminal
@@ -74,9 +78,9 @@ export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+    export EDITOR='vim'
 else
-   export EDITOR='gvim'
+    export EDITOR='gvim'
 fi
 
 # Compilation flags
