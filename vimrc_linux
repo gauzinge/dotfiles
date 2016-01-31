@@ -1,7 +1,10 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-set nocompatible              " be iMproved, required
+if !has('nvim')
+    set nocompatible              " be iMproved, required
+endif
+
 filetype off                  " required
 setglobal fileencoding=utf-8
 set encoding=utf-8
@@ -14,64 +17,78 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin() 
 
 Plugin 'VundleVim/Vundle.vim' 
+"Looks
 Plugin 'powerline/fonts'
+Plugin 'altercation/vim-colors-solarized' 
+Plugin 'bling/vim-airline' 
+"git
 Plugin 'airblade/vim-gitgutter' 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'xolox/vim-colorscheme-switcher' 
-Plugin 'xolox/vim-misc' 
+Plugin 'tpope/vim-fugitive' 
+"rainbow brackets
 Plugin 'luochen1990/rainbow' 
+"autoformatting!
 Plugin 'Chiel92/vim-autoformat'
-Plugin 'christoomey/vim-tmux-navigator' 
+"Plugin 'christoomey/vim-tmux-navigator' 
+"searching and file browser
 Plugin 'mileszs/ack.vim' 
 Plugin 'scrooloose/nerdtree' 
-Plugin 'altercation/vim-colors-solarized' 
+Plugin 'jistr/vim-nerdtree-tabs' 
+Plugin 'scrooloose/nerdcommenter' 
+"very important - text objects
 Plugin 'tpope/vim-surround' 
 Plugin 'tpope/vim-repeat' 
+"autopairs!
 Plugin 'jiangmiao/auto-pairs' 
+"fuzzy search engine for files & methods
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tacahiroy/ctrlp-funky' 
+"as the name suggests fixes light typos automatically
 Plugin 'reedes/vim-litecorrect' 
-Plugin 'kana/vim-textobj-user' 
-Plugin 'reedes/vim-textobj-sentence' 
+"textobjects
+Plugin 'kana/vim-textobj-user'
 Plugin 'reedes/vim-textobj-quote' 
 Plugin 'kana/vim-textobj-indent'
-Plugin 'bling/vim-airline' 
+Plugin 'michaeljsmith/vim-indent-object'
 Plugin 'Lokaltog/vim-easymotion' 
-Plugin 'jistr/vim-nerdtree-tabs' 
-Plugin 'mbbill/undotree' 
+"select closest text object with ENTER
 Plugin 'gcmt/wildfire.vim'
+"syntax checker
 Plugin 'scrooloose/syntastic' 
-Plugin 'tpope/vim-fugitive' 
+"CPP
 Plugin 'octol/vim-cpp-enhanced-highlight' 
-Plugin 'scrooloose/nerdcommenter' 
-Plugin 'tpope/vim-commentary' 
-Plugin 'godlygeek/tabular'
+"autocompleteion
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'honza/vim-snippets'
-Plugin 'dyng/ctrlsf.vim' 
-Plugin 'mhinz/vim-startify'
 Plugin 'jeaye/color_coded'
 Plugin 'rdnetto/YCM-Generator'
+"search using ag and edit in place
+Plugin 'dyng/ctrlsf.vim' 
+"self explanatory
+Plugin 'mhinz/vim-startify'
 Plugin 'terryma/vim-smooth-scroll'
-
+Plugin 'LaTeX-Box-Team/LaTeX-Box'
+Plugin 'terryma/vim-multiple-cursors'
 call vundle#end() 
 
 filetype plugin indent on    " required
+filetype plugin on    " required
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting & Brackets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 set nocp
-set nocompatible
-set term=ansi
-set shell=/bin/bash
+if !has('nvim')
+    set nocompatible
+endif
+"set term=ansi
+set shell=/bin/zsh
 let g:cpp_class_scope_highlight = 1
 syntax enable
 
-if exists("syntax_on")
-    syntax reset
-endif
+"if exists("syntax_on")
+"syntax reset
+"endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -79,24 +96,17 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set background=dark
 set t_Co=256
-let g:solarized_termcolors=256
+"let g:solarized_termcolors=256
 "colorscheme solarized
-let g:solarized_contrast="high"
-if has('gui_running')
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+"let g:solarized_contrast="high"
 
-    "else
-    "   colorscheme solarized 
-end
+"if &background == "dark"     
+"let s:base03 = "NONE"     
+"let s:base02 = "NONE"     
+"let s:solarized_contrast = "high" 
+"endif
 
-if &background == "dark"     
-    let s:base03 = "NONE"     
-    let s:base02 = "NONE"     
-    let s:solarized_contrast = "high" 
-endif
+"let s:back = "NONE"
 
 colorscheme brogrammer
 
@@ -111,7 +121,9 @@ set nospell
 set virtualedit=onemore
 "inoremap <Esc><Esc>`^
 set ttyfast
-set ttymouse=xterm2
+if !has('nvim')
+    set ttymouse=xterm2
+endif 
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 set autoread
@@ -129,22 +141,11 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 12
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 scriptencoding utf-8
-
-"if has('clipboard')
-"if has('unnamedplus')  " When possible use + register for copy-paste
-"set clipboard=unnamed,unnamedplus
-"else         " On mac and Windows, use * register for copy-paste
-"set clipboard=unnamed
-"endif
-"endif
-
 set clipboard=unnamed
 
 "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 " Always switch to the current file directory
 
-
-"set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
@@ -220,6 +221,10 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
+
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -245,25 +250,37 @@ noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Latex Box
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"if s:extfname ==? "tex"
+"let g:LatexBox_split_type="new"
+"endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Ctrl P
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " CtrlP settings
-let g:ctrlp_match_window = 'bottom,order:ttb'
+let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 "let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap <Leader>f :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_matchtype = 'path'
+if executable('ag')
+    let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_confirm_extra_conf = 0
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -282,6 +299,18 @@ let g:airline_symbols.space = "\ua0"
 let g:airline#extensions#tabline#fnamemod = ':t'
 set laststatus=2
 set ttimeoutlen=50
+
+
+" See `:echo g:airline_theme_map` for some more choices
+" Default in terminal vim is 'dark'
+if isdirectory(expand("~/.vim/bundle/vim-airline/"))
+    if !exists('g:airline_powerline_fonts')
+        " Use the default set of separators with a few customizations
+        let g:airline_left_sep='›'  " Slightly fancier than '>'
+        let g:airline_right_sep='‹' " Slightly fancier than '<'
+    endif
+endif
+" }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -367,65 +396,6 @@ if isdirectory(expand("~/.vim/bundle/nerdtree"))
     let g:nerdtree_tabs_open_on_gui_startup=0
 endif
 " }
-" Tabularize {
-if isdirectory(expand("~/.vim/bundle/tabular"))
-    nmap <Leader>a& :Tabularize /&<CR>
-    vmap <Leader>a& :Tabularize /&<CR>
-    nmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-    vmap <Leader>a= :Tabularize /^[^=]*\zs=<CR>
-    nmap <Leader>a=> :Tabularize /=><CR>
-    vmap <Leader>a=> :Tabularize /=><CR>
-    nmap <Leader>a: :Tabularize /:<CR>
-    vmap <Leader>a: :Tabularize /:<CR>
-    nmap <Leader>a:: :Tabularize /:\zs<CR>
-    vmap <Leader>a:: :Tabularize /:\zs<CR>
-    nmap <Leader>a, :Tabularize /,<CR>
-    vmap <Leader>a, :Tabularize /,<CR>
-    nmap <Leader>a,, :Tabularize /,\zs<CR>
-    vmap <Leader>a,, :Tabularize /,\zs<CR>
-    nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-    vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-endif
-" }
-" ctrlp {
-if isdirectory(expand("~/.vim/bundle/ctrlp.vim/"))
-    let g:ctrlp_working_path_mode = 'ra'
-    nnoremap <silent> <D-t> :CtrlP<CR>
-    nnoremap <silent> <D-r> :CtrlPMRU<CR>
-    let g:ctrlp_custom_ignore = {
-                \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-                \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-
-    if executable('ag')
-        let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-    elseif executable('ack-grep')
-        let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-    elseif executable('ack')
-        let s:ctrlp_fallback = 'ack %s --nocolor -f'
-        " On Windows use "dir" as fallback command.
-    else
-        let s:ctrlp_fallback = 'find %s -type f'
-    endif
-    if exists("g:ctrlp_user_command")
-        unlet g:ctrlp_user_command
-    endif
-    let g:ctrlp_user_command = {
-                \ 'types': {
-                \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-                \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-                \ },
-                \ 'fallback': s:ctrlp_fallback
-                \ }
-
-    if isdirectory(expand("~/.vim/bundle/ctrlp-funky/"))
-        " CtrlP extensions
-        let g:ctrlp_extensions = ['funky']
-
-        "funky
-        nnoremap <Leader>fu :CtrlPFunky<Cr>
-    endif
-endif
-"}
 "" Fugitive {
 if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
     nnoremap <silent> <leader>gs :Gstatus<CR>
@@ -442,147 +412,14 @@ if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
     nnoremap <silent> <leader>gg :SignifyToggle<CR>
 endif
 "}
-" neocomplete {
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 1
-let g:neocomplete#enable_auto_delimiter = 1
-let g:neocomplete#max_list = 15
-let g:neocomplete#force_overwrite_completefunc = 1
 
 
-" Define dictionary.
-let g:neocomplete#sources#dictionary#dictionaries = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
-
-" Define keyword.
-if !exists('g:neocomplete#keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
-endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-" Plugin key-mappings {
-" These two lines conflict with the default digraph mapping of <C-K>
-imap <C-k> <Plug>(neosnippet_expand_or_jump)
-smap <C-k> <Plug>(neosnippet_expand_or_jump)
-inoremap <CR> <CR>
-" <ESC> takes you out of insert mode
-inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-" <CR> accepts first, then sends the <CR>
-inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-" <Down> and <Up> cycle like <Tab> and <S-Tab>
-inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
-inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
-" Jump up and down the list
-inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-" <C-k> Complete Snippet
-" <C-k> Jump to next snippet point
-imap <silent><expr><C-k> neosnippet#expandable() ?
-            \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-            \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
-smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
-
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-"inoremap <expr><CR> neocomplete#complete_common_string()
-
-" <CR>: close popup
-" <s-CR>: close popup and save indent.
-inoremap <expr><s-CR> pumvisible() ? neocomplete#smart_close_popup()."\<CR>" : "\<CR>"
-
-function! CleverCr()
-    if pumvisible()
-        if neosnippet#expandable()
-            let exp = "\<Plug>(neosnippet_expand)"
-            return exp . neocomplete#smart_close_popup()
-        else
-            return neocomplete#smart_close_popup()
-        endif
-    else
-        return "\<CR>"
-    endif
-endfunction
-
-" <CR> close popup and save indent or expand snippet
-imap <expr> <CR> CleverCr()
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y> neocomplete#smart_close_popup()
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-" Courtesy of Matteo Cavalleri
-
-function! CleverTab()
-    if pumvisible()
-        return "\<C-n>"
-    endif
-    let substr = strpart(getline('.'), 0, col('.') - 1)
-    let substr = matchstr(substr, '[^ \t]*$')
-    if strlen(substr) == 0
-        " nothing to match on empty string
-        return "\<Tab>"
-    else
-        " existing text matching
-        if neosnippet#expandable_or_jumpable()
-            return "\<Plug>(neosnippet_expand_or_jump)"
-        else
-            return neocomplete#start_manual_complete()
-        endif
-    endif
-endfunction
-
-imap <expr> <Tab> CleverTab()
-" }
-
-" Enable heavy omni completion.
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
-endif
-let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
-let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
-" }
-" vim-airline {
-" Set configuration options for the statusline plugin vim-airline.
-" Use the powerline theme and optionally enable powerline symbols.
-" To use the symbols , , , , , , and .in the statusline
-" segments add the following to your .vimrc.before.local file:
-let g:airline_powerline_fonts=1
-" If the previous symbols do not render for you then install a
-" powerline enabled font.
-
-" See `:echo g:airline_theme_map` for some more choices
-" Default in terminal vim is 'dark'
-if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-    "if !exists('g:airline_theme')
-    "let g:airline_theme = 'solarized'
-    "endif
-    if !exists('g:airline_powerline_fonts')
-        " Use the default set of separators with a few customizations
-        let g:airline_left_sep='›'  " Slightly fancier than '>'
-        let g:airline_right_sep='‹' " Slightly fancier than '<'
-    endif
-endif
-" }
 "ASTYLE formatter
 "let g:formatdef_my_astyle_cpp = '"astyle --mode=c --style=allman -pcH".(&expandtab ? "s".&shiftwidth : "t")'
 "au BufWrite * :Autoformat
 "let g:formatters_cpp = ['my_astyle_cpp']
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Functions  
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"if has('persistent_undo')
-"    let dir_list['undo'] = 'undodir'
-"endif
 " Initialize NERDTree as needed {
 function! NERDTreeInitAsNeeded()
     redir => bufoutput
@@ -596,25 +433,7 @@ function! NERDTreeInitAsNeeded()
     endif
 endfunction
 
-" Shell command {
-function! s:RunShellCommand(cmdline)
-    botright new
 
-    setlocal buftype=nofile
-    setlocal bufhidden=delete
-    setlocal nobuflisted
-    setlocal noswapfile
-    setlocal nowrap
-    setlocal filetype=shell
-    setlocal syntax=shell
-
-    call setline(1, a:cmdline)
-    call setline(2, substitute(a:cmdline, '.', '=', 'g'))
-    execute 'silent $read !' . escape(a:cmdline, '%#')
-    setlocal nomodifiable
-    1
-endfunction
-command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -649,11 +468,3 @@ let g:rainbow_conf = {
 
 
 let g:indentLine_char = '︙'
-"set autochdir
-
-
-
-
-
-
-
