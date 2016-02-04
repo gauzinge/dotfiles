@@ -54,6 +54,7 @@ plugins=(git brew python sudo web-search z vi-mode history-substring-search zsh-
 export KEYTIMEOUT=1
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
+#bindkey "^R" history-incremental-search-backward
 bindkey "^R" history-incremental-search-backward
 
 # User configuration
@@ -95,6 +96,14 @@ export ARCHFLAGS="-arch x86_64"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
+alias la='ls -aG'
+alias ls='ls -G'
+alias ll='ls -hl'
+alias cd..='cd ..'
+alias ls='ls -Gh'
+alias root='root -l'
+alias ccat='pygmentize -O style=monokai -f console256 -g'
 
 #remote hosts
 alias lxplus='ssh -XYR 52698:localhost:52698 gauzinge@lxplus.cern.ch'

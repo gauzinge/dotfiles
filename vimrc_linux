@@ -21,12 +21,13 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'powerline/fonts'
 Plugin 'altercation/vim-colors-solarized' 
 Plugin 'bling/vim-airline' 
+Plugin 'vim-airline/vim-airline-themes'
 "git
 Plugin 'airblade/vim-gitgutter' 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'tpope/vim-fugitive' 
 "rainbow brackets
-Plugin 'luochen1990/rainbow' 
+Plugin 'oblitum/rainbow' 
 "autoformatting!
 Plugin 'Chiel92/vim-autoformat'
 "Plugin 'christoomey/vim-tmux-navigator' 
@@ -50,7 +51,10 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'reedes/vim-textobj-quote' 
 Plugin 'kana/vim-textobj-indent'
 Plugin 'michaeljsmith/vim-indent-object'
-Plugin 'Lokaltog/vim-easymotion' 
+"easymotion
+Plugin 'easymotion/vim-easymotion' 
+Plugin 'haya14busa/incsearch.vim'
+Plugin 'haya14busa/incsearch-fuzzy.vim'
 "select closest text object with ENTER
 Plugin 'gcmt/wildfire.vim'
 "syntax checker
@@ -59,10 +63,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'octol/vim-cpp-enhanced-highlight' 
 "autocompleteion
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'jeaye/color_coded'
+"Plugin 'jeaye/color_coded'
 Plugin 'rdnetto/YCM-Generator'
-"search using ag and edit in place
-Plugin 'dyng/ctrlsf.vim' 
 "self explanatory
 Plugin 'mhinz/vim-startify'
 Plugin 'terryma/vim-smooth-scroll'
@@ -127,6 +129,7 @@ endif
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 set autoread
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fonts
@@ -273,7 +276,7 @@ let g:ctrlp_funky_matchtype = 'path'
 if executable('ag')
     let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
 endif
-
+noremap <C-a> :CtrlP ~<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -287,29 +290,29 @@ let g:ycm_confirm_extra_conf = 0
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'dark'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+"if !exists('g:airline_symbols')
+"let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.space = "\ua0"
+"" Show just the filename
+"let g:airline#extensions#tabline#fnamemod = ':t'
 set laststatus=2
 set ttimeoutlen=50
 
 
 " See `:echo g:airline_theme_map` for some more choices
 " Default in terminal vim is 'dark'
-if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-    if !exists('g:airline_powerline_fonts')
-        " Use the default set of separators with a few customizations
-        let g:airline_left_sep='›'  " Slightly fancier than '>'
-        let g:airline_right_sep='‹' " Slightly fancier than '<'
-    endif
-endif
+"if isdirectory(expand("~/.vim/bundle/vim-airline/"))
+"if !exists('g:airline_powerline_fonts')
+"" Use the default set of separators with a few customizations
+"let g:airline_left_sep='›'  " Slightly fancier than '>'
+"let g:airline_right_sep='‹' " Slightly fancier than '<'
+"endif
+"endif
 " }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings 
@@ -437,34 +440,65 @@ endfunction
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> EASYMOTION
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+
+" Jump to anywhere you want with minimal keystrokes, with just one key binding.
+" `s{char}{label}`
+"nmap <Leader>s <Plug>(easymotion-overwin-f)
+" or
+" `s{char}{char}{label}`
+" Need one more keystroke, but on average, it may be more comfortable.
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+map  <Leader>f <Plug>(easymotion-bd-f)
+"map  <Leader>w <Plug>(easymotion-bd-w)
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> INCSEARCH
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+map z/ <Plug>(incsearch-fuzzy-/)
+map z? <Plug>(incsearch-fuzzy-?)
+map zg/ <Plug>(incsearch-fuzzy-stay)
+
+function! s:config_fuzzyall(...) abort
+    return extend(copy({
+                \   'converters': [
+                \     incsearch#config#fuzzy#converter(),
+                \     incsearch#config#fuzzyspell#converter()
+                \   ],
+                \ }), get(a:, 1, {}))
+endfunction
+
+noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
+noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Rainbow for Parentheses  
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_noConcealCursor=1
 
 :let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let g:rainbow_load_separately = [
+            \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+            \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
+            \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
+            \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
+            \ ]
 
-let g:rainbow_conf = {
-            \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
-            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-            \   'operators': '_,_',
-            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-            \   'separately': {
-            \       '*': {},
-            \       'tex': {
-            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-            \       },
-            \       'lisp': {
-            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \       },
-            \       'vim': {
-            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-            \       },
-            \       'html': {
-            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-            \       },
-            \       'css': 0,
-            \   }
-            \}
-
+let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 let g:indentLine_char = '︙'
