@@ -1,0 +1,15 @@
+# this line is a comment
+--style=allman      # this is a line-end comment
+--mode=c
+--attach-namespaces
+--indent-namespaces 
+--indent-modifiers
+--indent-switches
+--indent-col1-comments
+--break-blocks
+--pad-oper
+--pad-paren-out
+--pad-header
+--align-pointer=type
+--remove-brackets
+-t -p

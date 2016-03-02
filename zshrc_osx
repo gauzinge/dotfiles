@@ -124,6 +124,7 @@ alias cmsuptracker003='ssh -XYR 52698:localhost:52698 gauzinge@cmsuptracker003.c
 alias cmsuptracker006='ssh -XYR 52698:localhost:52698 gauzinge@cmsuptracker006.cern.ch'
 alias gauzinge='ssh -XYR 52698:localhost:52698 gauzinge@gauzinge.cern.ch'
 alias cmsuppixpc001='ssh -XY fectest@cmsuppixpc001.cern.ch'
+alias fectest='ssh -XY fectest@cmsuppixpc001.cern.ch'
 alias cmsuppixpcgau='ssh -XY gauzinge@cmsuppixpc001.cern.ch'
 alias cmsuppixch='ssh -XY xtaldaq@cmsuppixch.cern.ch'
 alias cmsusr='ssh -XY gauzinge@cmsusr.cern.ch'
