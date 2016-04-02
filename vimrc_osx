@@ -32,7 +32,7 @@ Plugin 'oblitum/rainbow'
 Plugin 'Chiel92/vim-autoformat'
 "Plugin 'christoomey/vim-tmux-navigator' 
 "searching and file browser
-Plugin 'mileszs/ack.vim' 
+Plugin 'rking/ag.vim'
 Plugin 'scrooloose/nerdtree' 
 Plugin 'jistr/vim-nerdtree-tabs' 
 Plugin 'scrooloose/nerdcommenter' 
@@ -63,8 +63,9 @@ Plugin 'scrooloose/syntastic'
 Plugin 'octol/vim-cpp-enhanced-highlight' 
 "autocompleteion
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'majutsushi/tagbar'
 "Plugin 'jeaye/color_coded'
-Plugin 'rdnetto/YCM-Generator'
+"Plugin 'rdnetto/YCM-Generator'
 "self explanatory
 Plugin 'mhinz/vim-startify'
 Plugin 'terryma/vim-smooth-scroll'
@@ -284,8 +285,13 @@ noremap <C-a> :CtrlP ~<CR>
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_confirm_extra_conf = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+"set tags+=~/.vim/tags/testtags
 
-
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Tagbar
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
@@ -434,14 +440,19 @@ endif
 
 "ASTYLE formatter
 let g:formatterpath = ['/usr/local/bin', '/usr/bin/tidy']
-let g:autoformat_autoindent = 0
+let g:autoformat_autoindent = 1
+"let g:autoformat_verbosemode=1
 
 "cpp 
 "let g:formatdef_my_astyle_cpp = '"astyle --mode=c --style=allman -pcH".(&expandtab ? "s".&shiftwidth : "t")'
-let g:formatdef_my_astyle_cpp = '"astyle --options=~/.astylerc".(&expandtab ? "s".&shiftwidth : "t")'
+"let g:formatdef_my_astyle_cpp = '"astyle --options=.astylerc ".(&expandtab ? "s".&shiftwidth : "t")'
+let g:formatdef_my_astyle_cpp = '"astyle --style=allman --mode=c --attach-namespaces --indent-namespaces --indent-modifiers --indent-switches --indent-col1-comments --break-blocks --pad-oper --pad-paren-out --pad-header --align-pointer=type --remove-brackets -pcH".(&expandtab ? "s".&shiftwidth : "t")'
 let g:formatters_cpp = ['my_astyle_cpp']
+let g:formatters_c = ['my_astyle_cpp']
+let g:formatters_cc = ['my_astyle_cpp']
 
-au BufWrite * :Autoformat
+noremap <F3> :Autoformat<CR>
+"au BufWrite * :Autoformat
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

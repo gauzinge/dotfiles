@@ -12,4 +12,4 @@
 --pad-header
 --align-pointer=type
 --remove-brackets
--t -p
+#-t -p
