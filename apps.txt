@@ -1,0 +1,74 @@
+1Password.app
+Alfred 2.app
+App Store.app
+Automator.app
+Bartender 2.app
+Bartender.app
+BetterSnapTool.app
+Caffeine.app
+Calculator.app
+Calendar.app
+Chess.app
+ChitChat.app
+CleanMyMac 2.app
+Contacts.app
+DVD Player.app
+Dashboard.app
+Dictionary.app
+Dropbox.app
+FaceTime.app
+Fantastical 2.app
+Flux.app
+Font Book.app
+Game Center.app
+GoPro
+GoPro Studio.app
+Google Chrome.app
+Google Drive.app
+IDLE.app
+Image Capture.app
+Karabiner.app
+Keynote.app
+Knock.app
+Launchpad.app
+MacVim.app
+Mail.app
+Maps.app
+Messages.app
+Mission Control.app
+Neovim.app
+Notes.app
+Numbers.app
+Pages.app
+Photo Booth.app
+Photos.app
+Preview.app
+Python Launcher.app
+QuickTime Player.app
+RDM.app
+Reminders.app
+Safari.app
+Skype.app
+Slack.app
+Sonos.app
+Spotify Bluetooth Headset Listener.app
+Spotify.app
+Stickies.app
+Sublime Text.app
+System Center 2012 Endpoint Protection.app
+System Preferences.app
+TeX
+TextEdit.app
+Time Machine.app
+TotalFinder.app
+Transmission.app
+Twitter.app
+Unclutter.app
+Utilities
+VLC.app
+Vidyo
+Xcode.app
+cernbox.app
+iBooks.app
+iTerm.app
+iTunes.app
