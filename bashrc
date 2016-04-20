@@ -44,12 +44,13 @@ export TERM=xterm-color
 
 
 #PATH
-export PYTHONDIR=/usr/local/bin/python
-export ROOTSYS=/Users/schurl/root
-export PATH=$ROOTSYS/bin:$PATH
-export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
-
+#export PYTHONDIR=/usr/local/bin/python
+#export ROOTSYS=/Users/schurl/root
+#export PATH=$ROOTSYS/bin:$PATH
+#export LD_LIBRARY_PATH=$ROOTSYS/lib:$LD_LIBRARY_PATH
+#export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
+#ROOT
+. $(brew --prefix root6)/libexec/thisroot.sh
 export PATH=/Users/schurl/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 
