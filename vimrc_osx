@@ -22,6 +22,8 @@ Plugin 'powerline/fonts'
 Plugin 'altercation/vim-colors-solarized' 
 Plugin 'bling/vim-airline' 
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plugin 'freeo/vim-kalisi'
 "git
 Plugin 'airblade/vim-gitgutter' 
 Plugin 'Xuyuanp/nerdtree-git-plugin'
@@ -60,12 +62,11 @@ Plugin 'gcmt/wildfire.vim'
 "syntax checker
 Plugin 'scrooloose/syntastic' 
 "CPP
-Plugin 'octol/vim-cpp-enhanced-highlight' 
+"Plugin 'octol/vim-cpp-enhanced-highlight' 
 "autocompleteion
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-"Plugin 'jeaye/color_coded'
-"Plugin 'rdnetto/YCM-Generator'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 "self explanatory
 Plugin 'mhinz/vim-startify'
 Plugin 'terryma/vim-smooth-scroll'
@@ -84,22 +85,29 @@ filetype plugin on    " required
 " => Syntax Highlighting & Brackets
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 set nocp
-if !has('nvim')
-    set nocompatible
-endif
+"if !has('nvim')
+    "set nocompatible
+"endif
 "set term=ansi
 set shell=/bin/zsh
-let g:cpp_class_scope_highlight = 1
 syntax enable
+"syntax on
 
 "if exists("syntax_on")
 "syntax reset
 "endif
-
+filetype on
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax Highlighting octol/enhanced cpp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+colorscheme kalisi
+"colorscheme brogrammer
 set background=dark
 set t_Co=256
 "let g:solarized_termcolors=256
@@ -114,7 +122,6 @@ set t_Co=256
 
 "let s:back = "NONE"
 
-colorscheme brogrammer
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -285,8 +292,33 @@ noremap <C-a> :CtrlP ~<CR>
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:ycm_confirm_extra_conf = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-"set tags+=~/.vim/tags/testtags
+"let g:ycm_collect_identifiers_from_tags_files = 1
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_key_invoke_completion = '<C-Space>'
+let g:ycm_complete_in_comments = 0
+let g:ycm_complete_in_strings = 1
+"let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
+"set tags+=~/.vim/tags/tes
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> UltiSnips
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<c-b>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-z>let g:UltiSnipsExpandTrigger = "<nop>"
+"let g:ulti_expand_or_jump_res = 0
+"function ExpandSnippetOrCarriageReturn()
+    "let snippet = UltiSnips#ExpandSnippetOrJump()
+    "if g:ulti_expand_or_jump_res > 0
+        "return snippet
+    "else
+        "return "\<CR>"
+    "endif
+"endfunction
+""inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>""ttags
+"inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Tagbar
