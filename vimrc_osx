@@ -61,7 +61,8 @@ Plugin 'haya14busa/incsearch-fuzzy.vim'
 Plugin 'gcmt/wildfire.vim'
 "syntax checker
 Plugin 'scrooloose/syntastic' 
-"CPP
+Plugin 'vim-scripts/a.vim'
+"CPP'
 "Plugin 'octol/vim-cpp-enhanced-highlight' 
 "autocompleteion
 Plugin 'Valloric/YouCompleteMe'
@@ -324,6 +325,13 @@ let g:ycm_complete_in_strings = 1
 "=> Tagbar
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => MultipleCursor Config
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+
+"g:multi_cursor_insert_maps={'!':1, '@':1, '=':1, 'q':1, 'r':1, 't':1, 'T':1, 'y':1, '[':1, ']':1, '\':1, 'd':1, 'f':1, 'F':1, 'g':1, '"':1, 'z':1, 'c':1, 'm':1, '<':1, '>':1}
+"g:multi_cursor_visual_maps={'i':1, 'a':1, 'f':1, 'F':1, 't':1, 'T':1}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline

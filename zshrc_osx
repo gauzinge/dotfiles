@@ -88,7 +88,7 @@ export TERM=xterm-color
 #export PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH
 #ROOT
 pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
-
+fpath=(/usr/local/share/zsh-completions $fpath)
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -139,6 +139,11 @@ alias cmsuppixch='ssh -XY xtaldaq@cmsuppixch.cern.ch'
 alias cmsusr='ssh -XY gauzinge@cmsusr.cern.ch'
 alias cmspixp1='ssh -XY cmspixp1@pixp1daq.cern.ch'
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
+
+#mounts via sshfs
+alias mountcmsuppixpc='sshfs fectest@cmsuppixpc001.cern.ch:/home/fectest/FED_testing/ /Users/schurl/remote'
+alias mountcmsuptracker008='sshfs xtaldaq@cmsuptracker008.cern.ch:/home/xtaldaq /Users/schurl/remote'
+alias umountcmsup='umount /Users/schurl/remote'
 
 function zle-line-init zle-keymap-select {
 RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
