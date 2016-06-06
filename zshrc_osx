@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 export TERM=xterm-256color
+export XTERM=xterm-256color
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -79,6 +80,9 @@ export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 export GREP_OPTIONS='--color=auto'
 export TERM=xterm-color
 
+#VIM
+#export VIM=/usr/local/Cellar/neovim/HEAD/share/nvim nvim
+#export VIMRUNTIME=/usr/local/Cellar/neovim/HEAD/share/nvim/runtime
 
 #PATH
 #export PYTHONDIR=/usr/bin/python

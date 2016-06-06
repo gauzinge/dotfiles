@@ -92,7 +92,7 @@ set nocp
 "set term=ansi
 set shell=/bin/zsh
 syntax enable
-"syntax on
+syntax on
 
 "if exists("syntax_on")
 "syntax reset
@@ -107,6 +107,7 @@ let g:cpp_experimental_template_highlight = 1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set termguicolors
 colorscheme kalisi
 "colorscheme brogrammer
 set background=dark
