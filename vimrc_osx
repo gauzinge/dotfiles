@@ -1,86 +1,89 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Vundle Settings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-if !has('nvim')
-    set nocompatible              " be iMproved, required
-endif
+set nocompatible              " be iMproved, required
 
 filetype off                  " required
 setglobal fileencoding=utf-8
 set encoding=utf-8
 
+call plug#begin('~/.vim/plugged')
+"call plug#begin('~/.config/nvim/plugged')
+
+"Looks
+Plug 'powerline/fonts'
+Plug 'altercation/vim-colors-solarized' 
+Plug 'bling/vim-airline' 
+Plug 'vim-airline/vim-airline-themes'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
+Plug 'freeo/vim-kalisi'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
+"git
+Plug 'airblade/vim-gitgutter' 
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive' 
+"rainbow brackets
+Plug 'oblitum/rainbow' 
+"autoformatting!
+Plug 'Chiel92/vim-autoformat'
+Plug 'christoomey/vim-tmux-navigator' 
+Plug 'jszakmeister/vim-togglecursor'
+"searching and file browser
+Plug 'rking/ag.vim'
+Plug 'scrooloose/nerdtree' 
+Plug 'jistr/vim-nerdtree-tabs' 
+Plug 'scrooloose/nerdcommenter' 
+"very important - text objects
+Plug 'tpope/vim-surround' 
+Plug 'tpope/vim-repeat' 
+"autopairs!
+Plug 'jiangmiao/auto-pairs' 
+"fuzzy search engine for files & methods
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky' 
+"as the name suggests fixes light typos automatically
+Plug 'reedes/vim-litecorrect' 
+"textobjects
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote' 
+Plug 'kana/vim-textobj-indent'
+Plug 'michaeljsmith/vim-indent-object'
+"easymotion
+Plug 'easymotion/vim-easymotion' 
+Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/incsearch-fuzzy.vim'
+"select closest text object with ENTER
+Plug 'gcmt/wildfire.vim'
+"syntax checker
+Plug 'scrooloose/syntastic' 
+Plug 'vim-scripts/a.vim'
+"CPP'
+Plug 'octol/vim-cpp-enhanced-highlight' 
+"autocompleteion
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+"self explanatory
+Plug 'mhinz/vim-startify'
+Plug 'terryma/vim-smooth-scroll'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'terryma/vim-multiple-cursors'
+"yankring
+Plug 'maxbrunsfeld/vim-yankstack'
+" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
+Plug 'junegunn/vim-easy-align'
+" Group dependencies, vim-snippets depends on ultisnips
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+" Add plugins to &runtimepath
+call plug#end()
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
+"set rtp+=~/.vim/bundle/Vundle.vim
 
-" VUNDLE
-call vundle#begin() 
 
-Plugin 'VundleVim/Vundle.vim' 
-"Looks
-Plugin 'powerline/fonts'
-Plugin 'altercation/vim-colors-solarized' 
-Plugin 'bling/vim-airline' 
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'zenorocha/dracula-theme', {'rtp': 'vim/'}
-Plugin 'freeo/vim-kalisi'
-"git
-Plugin 'airblade/vim-gitgutter' 
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive' 
-"rainbow brackets
-Plugin 'oblitum/rainbow' 
-"autoformatting!
-Plugin 'Chiel92/vim-autoformat'
-"Plugin 'christoomey/vim-tmux-navigator' 
-"searching and file browser
-Plugin 'rking/ag.vim'
-Plugin 'scrooloose/nerdtree' 
-Plugin 'jistr/vim-nerdtree-tabs' 
-Plugin 'scrooloose/nerdcommenter' 
-"very important - text objects
-Plugin 'tpope/vim-surround' 
-Plugin 'tpope/vim-repeat' 
-"autopairs!
-Plugin 'jiangmiao/auto-pairs' 
-"fuzzy search engine for files & methods
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky' 
-"as the name suggests fixes light typos automatically
-Plugin 'reedes/vim-litecorrect' 
-"textobjects
-Plugin 'kana/vim-textobj-user'
-Plugin 'reedes/vim-textobj-quote' 
-Plugin 'kana/vim-textobj-indent'
-Plugin 'michaeljsmith/vim-indent-object'
-"easymotion
-Plugin 'easymotion/vim-easymotion' 
-Plugin 'haya14busa/incsearch.vim'
-Plugin 'haya14busa/incsearch-fuzzy.vim'
-"select closest text object with ENTER
-Plugin 'gcmt/wildfire.vim'
-"syntax checker
-Plugin 'scrooloose/syntastic' 
-Plugin 'vim-scripts/a.vim'
-"CPP'
-"Plugin 'octol/vim-cpp-enhanced-highlight' 
-"autocompleteion
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-"self explanatory
-Plugin 'mhinz/vim-startify'
-Plugin 'terryma/vim-smooth-scroll'
-Plugin 'LaTeX-Box-Team/LaTeX-Box'
-Plugin 'terryma/vim-multiple-cursors'
-"remote Editing
-Plugin 'zenbro/mirror.vim'
-"yankring
-Plugin 'maxbrunsfeld/vim-yankstack'
-call vundle#end() 
-
-filetype plugin indent on    " required
-filetype plugin on    " required
+"filetype plugin indent on    " required
+"filetype plugin on    " required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting & Brackets
@@ -110,20 +113,12 @@ let g:cpp_experimental_template_highlight = 1
 "set termguicolors
 colorscheme kalisi
 "colorscheme brogrammer
-set background=dark
 set t_Co=256
-"let g:solarized_termcolors=256
-"colorscheme solarized
-"let g:solarized_contrast="high"
-
-"if &background == "dark"     
-"let s:base03 = "NONE"     
-"let s:base02 = "NONE"     
-"let s:solarized_contrast = "high" 
-"endif
-
-"let s:back = "NONE"
-
+set background=dark
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Tmux
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_ut=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo

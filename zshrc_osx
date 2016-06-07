@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
-export TERM=xterm-256color
-export XTERM=xterm-256color
+#export TERM=xterm-256color
+#export XTERM=xterm-256color
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -149,6 +149,7 @@ alias mountcmsuppixpc='sshfs fectest@cmsuppixpc001.cern.ch:/home/fectest/FED_tes
 alias mountcmsuptracker008='sshfs xtaldaq@cmsuptracker008.cern.ch:/home/xtaldaq /Users/schurl/remote'
 alias umountcmsup='umount /Users/schurl/remote'
 
+alias tmux='tmux -2'
 function zle-line-init zle-keymap-select {
 RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
 RPS2=$RPS1

@@ -8,6 +8,8 @@ Plug 'bling/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'freeo/vim-kalisi'
+Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 "git
 Plug 'airblade/vim-gitgutter' 
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -16,7 +18,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'oblitum/rainbow' 
 "autoformatting!
 Plug 'Chiel92/vim-autoformat'
-"Plug 'christoomey/vim-tmux-navigator' 
+Plug 'christoomey/vim-tmux-navigator' 
 "searching and file browser
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree' 
@@ -65,6 +67,9 @@ Plug 'junegunn/vim-easy-align'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Add plugins to &runtimepath
 call plug#end()
+
+
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -90,6 +95,11 @@ set t_Co=256
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
 set background=dark
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => tmux configuration
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
