@@ -4,16 +4,14 @@ call plug#begin('~/.config/nvim/plugged')
 "Looks
 Plug 'powerline/fonts'
 Plug 'altercation/vim-colors-solarized' 
-Plug 'bling/vim-airline' 
+Plug 'vim-airline/vim-airline' 
 Plug 'vim-airline/vim-airline-themes'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'freeo/vim-kalisi'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 "git
 Plug 'airblade/vim-gitgutter' 
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive' 
 "rainbow brackets
 Plug 'oblitum/rainbow' 
 "autoformatting!
@@ -22,7 +20,7 @@ Plug 'christoomey/vim-tmux-navigator'
 "searching and file browser
 Plug 'rking/ag.vim'
 Plug 'scrooloose/nerdtree' 
-Plug 'jistr/vim-nerdtree-tabs' 
+"Plug 'jistr/vim-nerdtree-tabs' 
 Plug 'scrooloose/nerdcommenter' 
 "very important - text objects
 Plug 'tpope/vim-surround' 
@@ -32,6 +30,7 @@ Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky' 
+"Plug 'wincent/command-t' 
 "as the name suggests fixes light typos automatically
 Plug 'reedes/vim-litecorrect' 
 "textobjects
@@ -50,10 +49,11 @@ Plug 'scrooloose/syntastic'
 Plug 'vim-scripts/a.vim'
 "CPP'
 Plug 'octol/vim-cpp-enhanced-highlight' 
+Plug 'parnmatt/vim-root'
 "autocompleteion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips'
+"Plug 'honza/vim-snippets'
 "self explanatory
 Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-smooth-scroll'
@@ -62,9 +62,9 @@ Plug 'terryma/vim-multiple-cursors'
 "yankring
 Plug 'maxbrunsfeld/vim-yankstack'
 " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+"Plug 'junegunn/vim-easy-align'
 " Group dependencies, vim-snippets depends on ultisnips
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Add plugins to &runtimepath
 call plug#end()
 
@@ -73,12 +73,15 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-filetype off                  " required
+"filetype off                  " required
 setglobal fileencoding=utf-8
-set encoding=utf-8
+"set encoding=utf-8
 set shell=/bin/zsh
-syntax enable
+"syntax enable
+syntax on
 filetype on
+"set filetype+=.root
+"se ft+=.root
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting octol/enhanced cpp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
@@ -89,7 +92,7 @@ let g:cpp_experimental_template_highlight = 1
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set termguicolors
-colorscheme kalisi
+colorscheme gruvbox
 "colorscheme brogrammer
 set t_Co=256
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -128,7 +131,7 @@ set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 " => General Behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-scriptencoding utf-8
+"scriptencoding utf-8
 set clipboard=unnamed
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
@@ -178,6 +181,16 @@ set cursorline          " highlight current line
 set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
 
+set scrolloff=3
+set showmode
+set showcmd
+set hidden
+set cursorline
+set ttyfast
+set ruler
+set laststatus=2
+set relativenumber
+set undofile
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
@@ -201,8 +214,11 @@ set ignorecase
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
-"set t_vb=
+set t_vb=
 set tm=500
+
+
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

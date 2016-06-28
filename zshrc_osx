@@ -78,7 +78,7 @@ export LSCOLORS=''
 export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
-export TERM=xterm-color
+export TERM=xterm-256color-italic
 
 #VIM
 #export VIM=/usr/local/Cellar/neovim/HEAD/share/nvim nvim
@@ -136,12 +136,12 @@ alias cmsuptracker002='ssh -XY gauzinge@cmsuptracker002.cern.ch'
 alias cmsuptracker003='ssh -XY gauzinge@cmsuptracker003.cern.ch'
 alias cmsuptracker006='ssh -XY gauzinge@cmsuptracker006.cern.ch'
 alias gauzinge='ssh -XY gauzinge@gauzinge.cern.ch'
-alias cmsuppixpc001='ssh -XY fectest@cmsuppixpc001.cern.ch'
+alias cmsuppixpc001='ssh -R 52699:localhost:52699 fectest@cmsuppixpc001.cern.ch'
 alias fectest='ssh -XY fectest@cmsuppixpc001.cern.ch'
 alias cmsuppixpcgau='ssh -XY gauzinge@cmsuppixpc001.cern.ch'
-alias cmsuppixch='ssh -XY xtaldaq@cmsuppixch.cern.ch'
+alias cmsuppixch='ssh -XYR 52699:localhost:52699 xtaldaq@cmsuppixch.cern.ch'
 alias cmsusr='ssh -XY gauzinge@cmsusr.cern.ch'
-alias cmspixp1='ssh -XY cmspixp1@pixp1daq.cern.ch'
+alias cmspixp1='ssh -XYR 52699:localhost:52699 cmspixp1@pixp1daq.cern.ch'
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
 #mounts via sshfs

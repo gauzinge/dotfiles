@@ -1,150 +1,131 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Vundle Settings
+" => vim plug
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-set nocompatible              " be iMproved, required
-
-filetype off                  " required
-setglobal fileencoding=utf-8
-set encoding=utf-8
-
-call plug#begin('~/.vim/plugged')
-"call plug#begin('~/.config/nvim/plugged')
+if !has('nvim')
+    call plug#begin('~/.vim/plugged')
+else
+    call plug#begin('~/.config/nvim/plugged')
+endif
 
 "Looks
 Plug 'powerline/fonts'
-Plug 'altercation/vim-colors-solarized' 
-Plug 'bling/vim-airline' 
+Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim/'}
 Plug 'freeo/vim-kalisi'
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'gioele/vim-autoswap'
 "git
-Plug 'airblade/vim-gitgutter' 
+Plug 'airblade/vim-gitgutter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive' 
 "rainbow brackets
-Plug 'oblitum/rainbow' 
+Plug 'oblitum/rainbow'
 "autoformatting!
 Plug 'Chiel92/vim-autoformat'
-Plug 'christoomey/vim-tmux-navigator' 
+"tmux
+Plug 'christoomey/vim-tmux-navigator'
+"sane cursor in cmd line vim
 Plug 'jszakmeister/vim-togglecursor'
 "searching and file browser
 Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdtree' 
-Plug 'jistr/vim-nerdtree-tabs' 
-Plug 'scrooloose/nerdcommenter' 
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 "very important - text objects
-Plug 'tpope/vim-surround' 
-Plug 'tpope/vim-repeat' 
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 "autopairs!
-Plug 'jiangmiao/auto-pairs' 
+Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky' 
+Plug 'tacahiroy/ctrlp-funky'
 "as the name suggests fixes light typos automatically
-Plug 'reedes/vim-litecorrect' 
+"Plug 'reedes/vim-litecorrect'
 "textobjects
 Plug 'kana/vim-textobj-user'
-Plug 'reedes/vim-textobj-quote' 
+Plug 'reedes/vim-textobj-quote'
 Plug 'kana/vim-textobj-indent'
 Plug 'michaeljsmith/vim-indent-object'
 "easymotion
-Plug 'easymotion/vim-easymotion' 
+Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 "select closest text object with ENTER
 Plug 'gcmt/wildfire.vim'
 "syntax checker
-Plug 'scrooloose/syntastic' 
+"Plug 'scrooloose/syntastic'
+"to jump from src to header and vv
 Plug 'vim-scripts/a.vim'
-"CPP'
-Plug 'octol/vim-cpp-enhanced-highlight' 
+"CPP & root
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'parnmatt/vim-root'
 "autocompleteion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
 "self explanatory
-Plug 'mhinz/vim-startify'
 Plug 'terryma/vim-smooth-scroll'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'terryma/vim-multiple-cursors'
 "yankring
 Plug 'maxbrunsfeld/vim-yankstack'
-" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-Plug 'junegunn/vim-easy-align'
+"rmate equivalent
+Plug 'wannesm/rmvim.vim'
 " Group dependencies, vim-snippets depends on ultisnips
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Add plugins to &runtimepath
 call plug#end()
 
-" set the runtime path to include Vundle and initialize
-"set rtp+=~/.vim/bundle/Vundle.vim
 
-
-"filetype plugin indent on    " required
-"filetype plugin on    " required
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntax Highlighting & Brackets
+" => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+if !has('nvim')
+    set nocompatible
+endif
+
 set nocp
-"if !has('nvim')
-    "set nocompatible
-"endif
-"set term=ansi
 set shell=/bin/zsh
 syntax enable
 syntax on
-
-"if exists("syntax_on")
-"syntax reset
-"endif
 filetype on
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntax Highlighting octol/enhanced cpp
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_template_highlight = 1
+":set filetype+=.root
+":se ft+=.root
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set termguicolors
-colorscheme kalisi
+colorscheme gruvbox
 "colorscheme brogrammer
 set t_Co=256
 set background=dark
+
+"nvim
+if has('nvim')
+    set t_Co=256
+    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+    let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
+    set background=dark
+endif
+highlight Comment cterm=italic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tmux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_ut=
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Files, backups and undo
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Turn backup off, since most stuff is in SVN, git et.c anyway...
-set nobackup
-set nowb
-set noswapfile
-"set nospell
-set virtualedit=onemore
-"inoremap <Esc><Esc>`^
-set ttyfast
-if !has('nvim')
-    set ttymouse=xterm2
-endif 
-set mouse=a                 " Automatically enable mouse usage
-set mousehide               " Hide the mouse cursor while typing
-set autoread
-
+"nvim
+if has('nvim')
+    nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-"if has('gui_running')
 set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+"if has("gui_running")
+"let s:uname = system("uname")
+"if s:uname == "Darwin\n"
+"set guifont=Inconsolata\ for\ Powerline:h15
+"endif
 "endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -162,7 +143,6 @@ set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 
-"au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
 
 function! ResCur()
     if line("'\"") <= line("$")
@@ -176,16 +156,34 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Files, backups, Undo and Mouse
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn backup off, since most stuff is in SVN, git et.c anyway...
+set nobackup
+set nowb
+set noswapfile
+set virtualedit=onemore
+set ttyfast
+"set ttymouse=xterm2
+set mouse=a                 " Automatically enable mouse usage
+set mousehide               " Hide the mouse cursor while typing
+set autoread
+"vim
+if !has('nvim')
+    set ttymouse=xterm2
+endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs & Indentations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set list
 set listchars=tab:\|\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
-
 set autoindent                  " Indent at the same level of the previous line
 set shiftwidth=4                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=4                   " An indentation every four columns
+set colorcolumn=81
 set softtabstop=4               " Let backspace delete indent
 set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
 set splitright                  " Puts new vsplit windows to the right of the current
@@ -193,9 +191,15 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-"autocmd FileType c,cpp,python,xml 
+"autocmd FileType c,cpp,python,xml
+"set encoding=utf-8
+"autocmd BufWritePre <buffer> silent call TrailingWhitespace()
 
-"autocmd BufWritePre <buffer> call TrailingWhitespace() 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax Highlighting octol/enhanced cpp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+"let g:cpp_class_scope_highlight = 1
+"let g:cpp_experimental_template_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Appearance
@@ -207,10 +211,19 @@ set cursorline          " highlight current line
 set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
 
+set scrolloff=3
+set showmode
+set showcmd
+set hidden
+set cursorline
+set ttyfast
+set ruler
+set laststatus=2
+"set undofile
 set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
-"set relativenumber 
+"set relativenumber
 set showmatch                   " Show matching brackets/parenthesis
 set incsearch                   " Find as you type search
 set hlsearch                    " Highlight search terms
@@ -244,14 +257,17 @@ set hlsearch            " highlight matches
 let g:ackprg = 'ag --nogroup --nocolor --column'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> search and replace fix: use cs to replace first match, esc, n.n. to do the next ones
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
+            \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
+omap s :normal vs<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let mapleader=" "       " leader is comma
-nnoremap <leader>ev :vsp $MYVIMRC<CR>
-nnoremap <leader>sv :source $MYVIMRC<CR>
-nnoremap <leader>s :mksession<CR>
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Smooth Scrolling
@@ -273,18 +289,35 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " CtrlP settings
+nnoremap <Leader>o :CtrlP<CR>
+nnoremap <Leader>f :CtrlPFunky<Cr>
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-nnoremap <Leader>f :CtrlPFunky<Cr>
+let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
 " narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+"nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_matchtype = 'path'
 if executable('ag')
-    let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+    let s:ctrlp_fallback = 'ag %s -l -g ""'
 endif
-noremap <C-a> :CtrlP ~<CR>
+"noremap <C-a> :CtrlP ~<CR>
+
+"to make it faster in git repos
+let g:ctrlp_use_caching = 0
+if executable('ag')
+    set grepprg=ag\ --nogroup\ --nocolor
+
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+else
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+    let g:ctrlp_prompt_mappings = {
+                \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
+                \
+    }
+endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -296,38 +329,6 @@ let g:ycm_key_invoke_completion = '<C-Space>'
 let g:ycm_complete_in_comments = 0
 let g:ycm_complete_in_strings = 1
 "let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
-"set tags+=~/.vim/tags/tes
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> UltiSnips
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<c-b>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-z>let g:UltiSnipsExpandTrigger = "<nop>"
-"let g:ulti_expand_or_jump_res = 0
-"function ExpandSnippetOrCarriageReturn()
-    "let snippet = UltiSnips#ExpandSnippetOrJump()
-    "if g:ulti_expand_or_jump_res > 0
-        "return snippet
-    "else
-        "return "\<CR>"
-    "endif
-"endfunction
-""inoremap <expr> <CR> pumvisible() ? "<C-R>=ExpandSnippetOrCarriageReturn()<CR>" : "\<CR>""ttags
-"inoremap <expr> <CR> pumvisible() ? "\<C-R>=ExpandSnippetOrCarriageReturn()\<CR>" : "\<CR>"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Tagbar
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => MultipleCursor Config
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-
-"g:multi_cursor_insert_maps={'!':1, '@':1, '=':1, 'q':1, 'r':1, 't':1, 'T':1, 'y':1, '[':1, ']':1, '\':1, 'd':1, 'f':1, 'F':1, 'g':1, '"':1, 'z':1, 'c':1, 'm':1, '<':1, '>':1}
-"g:multi_cursor_visual_maps={'i':1, 'a':1, 'f':1, 'F':1, 't':1, 'T':1}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
@@ -339,30 +340,17 @@ let g:airline_theme = 'dark'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
 
-"if !exists('g:airline_symbols')
-"let g:airline_symbols = {}
-"endif
-"let g:airline_symbols.space = "\ua0"
-"" Show just the filename
-"let g:airline#extensions#tabline#fnamemod = ':t'
 set laststatus=2
 set ttimeoutlen=50
 
 
-" See `:echo g:airline_theme_map` for some more choices
-" Default in terminal vim is 'dark'
-"if isdirectory(expand("~/.vim/bundle/vim-airline/"))
-"if !exists('g:airline_powerline_fonts')
-"" Use the default set of separators with a few customizations
-"let g:airline_left_sep='›'  " Slightly fancier than '>'
-"let g:airline_right_sep='‹' " Slightly fancier than '<'
-"endif
-"endif
-" }
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Keymappings 
+"=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-:set macmeta
+if !has('nvim')
+    :set macmeta
+endif
+
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 nmap <leader>w :w!<cr>
@@ -396,11 +384,11 @@ nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
 
-" Easier split navigation                                                                                                                               
+" Easier split navigation
 " Use ctrl-[hjkl] to select the active split!
-nmap <silent> <c-k> :wincmd k<CR>                                       
-nmap <silent> <c-j> :wincmd j<CR>                                       
-nmap <silent> <c-h> :wincmd h<CR>                                       
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
 
 noremap j gj
@@ -428,47 +416,16 @@ nnoremap <silent> <leader>q gwip
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Yankring config 
+"=> Yankstack config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
+"nmap <c p> <Plug>yankstack_substitute_older_paste
+"nmap <c P> <Plug>yankstack_substitute_newer_paste
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Plugin Settings 
+"=> Plugin Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NerdTree {
-if isdirectory(expand("~/.vim/bundle/nerdtree"))
-    map <C-e> <plug>NERDTreeTabsToggle<CR>
-    map <leader>e :NERDTreeFind<CR>
-    nmap <leader>nt :NERDTreeFind<CR>
-
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeMouseMode=2
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-    let g:nerdtree_tabs_open_on_gui_startup=0
-endif
-" }
-"" Fugitive {
-if isdirectory(expand("~/.vim/bundle/vim-fugitive/"))
-    nnoremap <silent> <leader>gs :Gstatus<CR>
-    nnoremap <silent> <leader>gd :Gdiff<CR>
-    nnoremap <silent> <leader>gc :Gcommit<CR>
-    nnoremap <silent> <leader>gb :Gblame<CR>
-    nnoremap <silent> <leader>gl :Glog<CR>
-    nnoremap <silent> <leader>gp :Git push<CR>
-    nnoremap <silent> <leader>gr :Gread<CR>
-    nnoremap <silent> <leader>gw :Gwrite<CR>
-    nnoremap <silent> <leader>ge :Gedit<CR>
-    " Mnemonic _i_nteractive
-    nnoremap <silent> <leader>gi :Git add -p %<CR>
-    nnoremap <silent> <leader>gg :SignifyToggle<CR>
-endif
-"}
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> ASTYLE Formatter
@@ -479,9 +436,7 @@ let g:formatterpath = ['/usr/local/bin', '/usr/bin/tidy']
 let g:autoformat_autoindent = 1
 "let g:autoformat_verbosemode=1
 
-"cpp 
-"let g:formatdef_my_astyle_cpp = '"astyle --mode=c --style=allman -pcH".(&expandtab ? "s".&shiftwidth : "t")'
-"let g:formatdef_my_astyle_cpp = '"astyle --options=.astylerc ".(&expandtab ? "s".&shiftwidth : "t")'
+"cpp
 let g:formatdef_my_astyle_cpp = '"astyle --style=allman --mode=c --attach-namespaces --indent-namespaces --indent-modifiers --indent-switches --indent-col1-comments --break-blocks --pad-oper --pad-paren-out --pad-header --align-pointer=type --remove-brackets -pcH".(&expandtab ? "s".&shiftwidth : "t")'
 let g:formatters_cpp = ['my_astyle_cpp']
 let g:formatters_c = ['my_astyle_cpp']
@@ -489,7 +444,7 @@ let g:formatters_cc = ['my_astyle_cpp']
 
 noremap <F3> :Autoformat<CR>
 "au BufWrite * :Autoformat
-
+au BufWrite *.{cc,cpp,cxx,h,hh,hxx,py} silent :Autoformat
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> NERDTree
@@ -507,8 +462,21 @@ function! NERDTreeInitAsNeeded()
     endif
 endfunction
 
+if isdirectory(expand("~/.vim/bundle/nerdtree"))
+    map <C-e> <plug>NERDTreeTabsToggle<CR>
+    map <leader>e :NERDTreeFind<CR>
+    nmap <leader>nt :NERDTreeFind<CR>
 
-
+    let NERDTreeShowBookmarks=1
+    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+    let NERDTreeChDirMode=0
+    let NERDTreeQuitOnOpen=1
+    let NERDTreeMouseMode=2
+    let NERDTreeShowHidden=1
+    let NERDTreeKeepTreeInNewTab=1
+    let g:nerdtree_tabs_open_on_gui_startup=0
+endif
+" }
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> EASYMOTION
@@ -534,6 +502,10 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 "map  <Leader>w <Plug>(easymotion-bd-w)
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> autoswap plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:autoswap_detect_tmux = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> INCSEARCH
@@ -559,7 +531,7 @@ noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
 noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
 noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Rainbow for Parentheses  
+"=> Rainbow for Parentheses
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:indentLine_noConcealCursor=1
 
