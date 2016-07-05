@@ -11,13 +11,13 @@ endif
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'freeo/vim-kalisi'
-Plug 'tomasr/molokai'
+"Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
 Plug 'gioele/vim-autoswap'
+"Intelligent linenumbers
+Plug 'myusuf3/numbers.vim'
 "git
 Plug 'airblade/vim-gitgutter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 "rainbow brackets
 Plug 'oblitum/rainbow'
 "autoformatting!
@@ -28,7 +28,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'jszakmeister/vim-togglecursor'
 "searching and file browser
 Plug 'rking/ag.vim'
-Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/nerdcommenter'
 "very important - text objects
 Plug 'tpope/vim-surround'
@@ -48,7 +47,9 @@ Plug 'michaeljsmith/vim-indent-object'
 "easymotion
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
+"Plug 'haya14busa/incsearch-fuzzy.vim'
+"for easy search and replace: <leader>vr replaces occurrences of current workd
+Plug 'dkprice/vim-easygrep'
 "select closest text object with ENTER
 Plug 'gcmt/wildfire.vim'
 "syntax checker
@@ -57,9 +58,10 @@ Plug 'gcmt/wildfire.vim'
 Plug 'vim-scripts/a.vim'
 "CPP & root
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'parnmatt/vim-root'
+"Plug 'parnmatt/vim-root'
 "autocompleteion
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'neomake/neomake'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
@@ -67,9 +69,9 @@ Plug 'terryma/vim-multiple-cursors'
 "yankring
 Plug 'maxbrunsfeld/vim-yankstack'
 "rmate equivalent
-Plug 'wannesm/rmvim.vim'
 " Group dependencies, vim-snippets depends on ultisnips
 " Add plugins to &runtimepath
+Plug 'takac/vim-hardtime'
 call plug#end()
 
 
@@ -93,6 +95,7 @@ filetype on
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "set termguicolors
+let g:gruvbox_italic=1
 colorscheme gruvbox
 "colorscheme brogrammer
 set t_Co=256
@@ -109,7 +112,7 @@ highlight Comment cterm=italic
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tmux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_ut=
+"set t_ut=
 
 "nvim
 if has('nvim')
@@ -144,17 +147,17 @@ set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 
 
-function! ResCur()
-    if line("'\"") <= line("$")
-        normal! g`"
-        return 1
-    endif
-endfunction
+"function! ResCur()
+    "if line("'\"") <= line("$")
+        "normal! g`"
+        "return 1
+    "endif
+"endfunction
 
-augroup resCur
-    autocmd!
-    autocmd BufWinEnter * call ResCur()
-augroup END
+"augroup resCur
+    "autocmd!
+    "autocmd BufWinEnter * call ResCur()
+"augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
@@ -165,7 +168,6 @@ set nowb
 set noswapfile
 set virtualedit=onemore
 set ttyfast
-"set ttymouse=xterm2
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 set autoread
@@ -191,9 +193,6 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-"autocmd FileType c,cpp,python,xml
-"set encoding=utf-8
-"autocmd BufWritePre <buffer> silent call TrailingWhitespace()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting octol/enhanced cpp
@@ -205,18 +204,13 @@ set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 " => Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set invlist
+set invlist             " invisible text is shown"
 set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
 set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
 
-set scrolloff=3
 set showmode
-set showcmd
-set hidden
-set cursorline
-set ttyfast
 set ruler
 set laststatus=2
 "set undofile
@@ -224,11 +218,7 @@ set backspace=indent,eol,start  " Backspace for dummies
 set linespace=0                 " No extra spaces between rows
 set number                      " Line numbers on
 "set relativenumber
-set showmatch                   " Show matching brackets/parenthesis
-set incsearch                   " Find as you type search
-set hlsearch                    " Highlight search terms
-set winminheight=0              " Windows can be 0 line high
-set ignorecase                  " Case insensitive search
+"set ignorecase                  " Case insensitive search
 set smartcase                   " Case sensitive when uc present
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
@@ -236,17 +226,12 @@ set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
-set so=7
 set wildignore=*.o,*~,*.pyc
 set cmdheight=2
 set ignorecase
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
-set t_vb=
-set tm=500
-
-
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -291,19 +276,16 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 " CtrlP settings
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>f :CtrlPFunky<Cr>
-let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
-" narrow the list down with a word under cursor
-"nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 let g:ctrlp_funky_matchtype = 'path'
 if executable('ag')
     let s:ctrlp_fallback = 'ag %s -l -g ""'
 endif
-"noremap <C-a> :CtrlP ~<CR>
 
 "to make it faster in git repos
 let g:ctrlp_use_caching = 0
@@ -321,7 +303,7 @@ endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:ycm_confirm_extra_conf = 1
+"let g:ycm_confirm_extra_conf = 1
 "let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
 let g:ycm_seed_identifiers_with_syntax = 1
@@ -330,6 +312,14 @@ let g:ycm_complete_in_comments = 0
 let g:ycm_complete_in_strings = 1
 "let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> neomake
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:neomake_cpp_enable_makers = ['clang']
+let g:neomake_cpp_clang_maker = {
+\ 'exe' : 'clang'
+\ }
+autocmd! BufWritePost * Neomake
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -341,7 +331,7 @@ let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
 
 set laststatus=2
-set ttimeoutlen=50
+"set ttimeoutlen=50
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -447,38 +437,6 @@ noremap <F3> :Autoformat<CR>
 au BufWrite *.{cc,cpp,cxx,h,hh,hxx,py} silent :Autoformat
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> NERDTree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Initialize NERDTree as needed {
-function! NERDTreeInitAsNeeded()
-    redir => bufoutput
-    buffers!
-    redir END
-    let idx = stridx(bufoutput, "NERD_tree")
-    if idx > -1
-        NERDTreeMirror
-        NERDTreeFind
-        wincmd l
-    endif
-endfunction
-
-if isdirectory(expand("~/.vim/bundle/nerdtree"))
-    map <C-e> <plug>NERDTreeTabsToggle<CR>
-    map <leader>e :NERDTreeFind<CR>
-    nmap <leader>nt :NERDTreeFind<CR>
-
-    let NERDTreeShowBookmarks=1
-    let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
-    let NERDTreeChDirMode=0
-    let NERDTreeQuitOnOpen=1
-    let NERDTreeMouseMode=2
-    let NERDTreeShowHidden=1
-    let NERDTreeKeepTreeInNewTab=1
-    let g:nerdtree_tabs_open_on_gui_startup=0
-endif
-" }
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> EASYMOTION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
@@ -514,22 +472,6 @@ map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
-map z/ <Plug>(incsearch-fuzzy-/)
-map z? <Plug>(incsearch-fuzzy-?)
-map zg/ <Plug>(incsearch-fuzzy-stay)
-
-function! s:config_fuzzyall(...) abort
-    return extend(copy({
-                \   'converters': [
-                \     incsearch#config#fuzzy#converter(),
-                \     incsearch#config#fuzzyspell#converter()
-                \   ],
-                \ }), get(a:, 1, {}))
-endfunction
-
-noremap <silent><expr> z/ incsearch#go(<SID>config_fuzzyall())
-noremap <silent><expr> z? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
-noremap <silent><expr> zg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1}))
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Rainbow for Parentheses
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -547,3 +489,8 @@ let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
 let g:indentLine_char = '︙'
+
+"HARDTIME
+let g:hardtime_showmsg = 1
+"let g:hardtime_default_on = 1
+let g:hardtime_timeout = 1000

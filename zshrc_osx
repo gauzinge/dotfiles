@@ -80,6 +80,7 @@ export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 export GREP_OPTIONS='--color=auto'
 export TERM=xterm-256color-italic
 
+export ONEPASSWORD_KEYCHAIN=~/Dropbox/1Password/1Password.agilekeychain
 #VIM
 #export VIM=/usr/local/Cellar/neovim/HEAD/share/nvim nvim
 #export VIMRUNTIME=/usr/local/Cellar/neovim/HEAD/share/nvim/runtime
@@ -117,6 +118,8 @@ export ARCHFLAGS="-arch x86_64"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+alias vim='nvim'
+alias connect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 alias la='ls -aG'
 alias ls='ls -G'
@@ -128,6 +131,15 @@ alias code='cd /Users/schurl/Code'
 alias rsub='subl'
 alias cat='vimcat'
 alias ccat='pygmentize -O style=monokai -f console256 -g'
+
+#grc aliases
+alias ping='grc ping'
+alias traceroute='grc traceroute'
+alias gcc='grc gcc'
+alias make='grc make -j7'
+alias netstat='grc netstat'
+alias diff='grc diff'
+
 
 #remote hosts
 alias lxplus='ssh -XY gauzinge@lxplus.cern.ch'
