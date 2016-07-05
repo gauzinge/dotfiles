@@ -1,0 +1,88 @@
+source "~/.mutt/sidebar.muttrc"
+#-------~---~----------~----------~----
+# Colors
+#-------~---~----------~----------~----
+source "~/.mutt/colors/gruvbox-256"
+
+#ACCOUNT CONFIG
+macro index <f2>  '<sync-mailbox><enter-command>source ~/.mutt/cern.muttrc<enter><change-folder>!<enter>'
+macro index <f3>  '<sync-mailbox><enter-command>source ~/.mutt/gmail.muttrc<enter><change-folder>!<enter>'
+
+#account-hook . 'unset imap_user; unset imap_pass; unset tunnel
+#account-hook cern.ch "set imap_user=gauzinge imap_pass=`1pass 'cern'`"
+#account-hook gmail.com "set imap_user=georg.auzinger@gmail.com imap_pass=`1pass 'google'`"
+
+folder-hook cern.ch 'source ~/.mutt/cern.muttrc'
+folder-hook gmail.com 'source ~/.mutt/gmail.muttrc'
+
+#SIDEBAR
+# Move the highlight to the previous mailbox
+#bind index,pager <up> sidebar-prev
+bind index,pager \Cp sidebar-prev
+# Move the highlight to the next mailbox
+bind index,pager \Cn sidebar-next
+# Open the highlighted mailbox
+bind index,pager \Co sidebar-open
+#-------~---~----------~----------~----
+# Browsing / Composing
+#-------~---~----------~----------~----
+set sort = reverse-threads
+set sort_browser = reverse-date
+set sort_aux = last-date-received
+set strict_threads  = "yes"
+set text_flowed     = "yes"
+unset collapse_unread
+
+bind index - collapse-thread
+bind index _ collapse-all
+set markers=no # removes the "+" sign from the beginning of wrapped lines
+set pager_index_lines= 10
+
+#COLOR SETTINGS
+#color status cyan default  # while instead of black
+
+#MACROS
+macro index D "<save-message>+Trash<enter>" "move message to the trash"
+macro index S "<save-message>+Spam<enter>" "mark message as spam"
+macro index,pager I   "<change-folder>+INBOX<enter>"   "go to Inbox"
+macro index,pager O   "<change-folder>+archive<enter>"   "go to Inbox"
+
+#EDITOR and some other settings
+set editor=vim
+set autoedit
+set edit_headers
+set copy = yes
+
+set header_cache=~/.mutt/muttcache
+
+set   wait_key   = no      # shut up, mutt
+set sleep_time=0
+set mail_check=60
+set   markers    = no      # no + sign for wrapped lines
+set move                 # gmail does that
+set   delete               # don't ask, just do
+unset confirmappend        # don't ask, just do
+set   quit                 # don't ask, just do
+unset mark_old             # read/new is good enough
+set   beep_new             # bell on new mails
+set   pipe_decode          # strip headers and eval
+set   thorough_search      # also when searching
+
+#KEYBINDINGS
+bind index gg first-entry  # cursor to first a la vim
+bind index G  last-entry   # cursor to last a la vim
+
+#SIDEBAR SETTINGS
+#macro index,pager <up> "<sidebar-prev>" "previous folder in sidebar"
+#macro index,pager <down> "<sidebar-next>" "next folder in sidebar"
+#macro index,pager <right> "<sidebar-open>" "open folder in sidebar"
+#color sidebar_new color221 color233
+#set status_chars  = " *%A"
+#set status_format = "───────────────────[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
+
+ #sidebar_whitelist '/home/user/mailbox1'
+ #sidebar_whitelist '/home/user/mailbox2'
+
+
+# switch to default account on startup
+source ~/.mutt/cern.muttrc
