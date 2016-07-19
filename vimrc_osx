@@ -7,6 +7,10 @@ else
     call plug#begin('~/.config/nvim/plugged')
 endif
 
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
+
 "Looks
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
@@ -37,8 +41,8 @@ Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
-"as the name suggests fixes light typos automatically
-"Plug 'reedes/vim-litecorrect'
+"file system navigation
+Plug 'tpope/vim-vinegar'
 "textobjects
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
@@ -48,28 +52,33 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 "Plug 'haya14busa/incsearch-fuzzy.vim'
-"for easy search and replace: <leader>vr replaces occurrences of current workd
-Plug 'dkprice/vim-easygrep'
 "select closest text object with ENTER
 Plug 'gcmt/wildfire.vim'
+Plug 'terryma/vim-expand-region'
 "syntax checker
-"Plug 'scrooloose/syntastic'
-"to jump from src to header and vv
+Plug 'neomake/neomake'
+"to jump from src to header and vv with :A
 Plug 'vim-scripts/a.vim'
 "CPP & root
 Plug 'octol/vim-cpp-enhanced-highlight'
 "Plug 'parnmatt/vim-root'
 "autocompleteion
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'neomake/neomake'
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+else
+    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+endif
+"snippets
+Plug 'Shougo/neosnippet'
+Plug 'Shougo/neosnippet-snippets'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'terryma/vim-multiple-cursors'
+"for easy search and replace: <leader>vr replaces occurrences of current workd
+Plug 'dkprice/vim-easygrep'
 "yankring
 Plug 'maxbrunsfeld/vim-yankstack'
-"rmate equivalent
-" Group dependencies, vim-snippets depends on ultisnips
 " Add plugins to &runtimepath
 Plug 'takac/vim-hardtime'
 call plug#end()
@@ -313,6 +322,27 @@ let g:ycm_complete_in_strings = 1
 "let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Deoplete (Neocomplete) config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> NeoSnippet config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Plugin key-mappings.
+"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-k>     <Plug>(neosnippet_expand_target)
+
+" SuperTab like snippets behavior.
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+"if has('conceal')
+  "set conceallevel=2 concealcursor=niv
+"endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> neomake
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:neomake_cpp_enable_makers = ['clang']
@@ -341,7 +371,6 @@ if !has('nvim')
     :set macmeta
 endif
 
-nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>w :w<CR>
 nmap <leader>w :w!<cr>
 
@@ -352,6 +381,7 @@ nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+nnoremap <Leader>c :bd<CR>
 " To open a new empty buffer
 nmap <leader>T :enew<cr>
 
@@ -397,9 +427,6 @@ command! -bang Qa qa<bang>
 nnoremap Y y$
 vnoremap . :normal .<CR>
 cmap w!! w !sudo tee % >/dev/null
-" Map <Leader>ff to display all lines with keyword under cursor
-" and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 map zl zL
 map zh zH
 nnoremap <silent> <leader>q gwip
@@ -414,8 +441,10 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 "nmap <c P> <Plug>yankstack_substitute_newer_paste
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Plugin Settings
+"=> Expand region config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> ASTYLE Formatter

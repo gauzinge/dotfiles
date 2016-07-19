@@ -86,3 +86,43 @@ bind index G  last-entry   # cursor to last a la vim
 
 # switch to default account on startup
 source ~/.mutt/cern.muttrc
+
+
+#GMAIL CONFIG
+#GMAIL
+color status cyan default
+set from = "test me <test.me@gmail.com>"
+set hostname="gmail.com"
+set imap_user = 'test me'
+set imap_pass = "`1pass 'google'`"
+
+set spoolfile = imaps://imap.gmail.com/INBOX
+set folder = imaps://imap.gmail.com/
+set record="imaps://imap.gmail.com/[Gmail]/Sent Mail"
+#set record=""
+set postponed="imaps://imap.gmail.com/[Gmail]/Drafts"
+set mbox="imaps://imap.gmail.com/[Gmail]/All Mail"
+set trash="imaps://imap.gmail.com/[Gmail]/Trash"
+
+unmailboxes *
+mailboxes =INBOX =Drafts =Sent =Trash =Verena =Eltern =Buchungen =Altlemuren =Newsletters =OnlineShopping =Social =CERN\ Ski\ club
+
+#CERN config
+
+#CERN INBOX IMAP
+color status green default
+set from = "test me <test.me@cern.ch>"
+set hostname="cern.ch"
+set folder=imaps://testm@imap.cern.ch
+set spoolfile=+INBOX
+set postponed = +Drafts
+set record = +Sent
+set trash= +Trash
+#set imap_pass = "`1pass 'cern'`"
+
+#CERN OUTBOX SMTP
+set smtp_url = "smtp://testm@smtp.cern.ch:587/"
+set smtp_pass = ""
+
+unmailboxes *
+mailboxes =INBOX =Drafts =Sent =Trash =Ph2\ DAQ =Ph1\ DAQ =EDH =CERN\ Misc =CERN\ Orga =CMS =CMX =EGroups = Friends =Hypernews =ICHEP =Imperial =Ph1\ ELOG =Ph2\ Beamtest =Students =Travel =TODO =Suppliers
