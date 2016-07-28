@@ -15,27 +15,24 @@ endfunction
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"Plug 'tomasr/molokai'
+"Colorschemes
 Plug 'morhetz/gruvbox'
+"To manaage swap files
 Plug 'gioele/vim-autoswap'
 "Intelligent linenumbers
 Plug 'myusuf3/numbers.vim'
 "git
 Plug 'airblade/vim-gitgutter'
 "rainbow brackets
-Plug 'oblitum/rainbow'
+Plug 'luochen1990/rainbow'
 "autoformatting!
 Plug 'Chiel92/vim-autoformat'
 "tmux
 Plug 'christoomey/vim-tmux-navigator'
 "sane cursor in cmd line vim
 Plug 'jszakmeister/vim-togglecursor'
-"searching and file browser
-Plug 'rking/ag.vim'
+"commenter
 Plug 'scrooloose/nerdcommenter'
-"very important - text objects
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-repeat'
 "autopairs!
 Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
@@ -43,7 +40,11 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
 "file system navigation
 Plug 'tpope/vim-vinegar'
+"searching and file browser
+Plug 'rking/ag.vim'
 "textobjects
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'kana/vim-textobj-indent'
@@ -65,21 +66,23 @@ Plug 'octol/vim-cpp-enhanced-highlight'
 "autocompleteion
 if has('nvim')
     Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
+    "snippets
+    Plug 'Shougo/neosnippet'
+    Plug 'Shougo/neosnippet-snippets'
 else
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 endif
-"snippets
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
+"LATEX Support
 Plug 'LaTeX-Box-Team/LaTeX-Box'
+"SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
 "for easy search and replace: <leader>vr replaces occurrences of current workd
 Plug 'dkprice/vim-easygrep'
 "yankring
 Plug 'maxbrunsfeld/vim-yankstack'
-" Add plugins to &runtimepath
+"to finally learn it
 Plug 'takac/vim-hardtime'
 call plug#end()
 
@@ -132,7 +135,11 @@ endif
 " => Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
+"set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
+
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:11
+
 "if has("gui_running")
 "let s:uname = system("uname")
 "if s:uname == "Darwin\n"
@@ -206,7 +213,7 @@ set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting octol/enhanced cpp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-"let g:cpp_class_scope_highlight = 1
+let g:cpp_class_scope_highlight = 1
 "let g:cpp_experimental_template_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -248,7 +255,7 @@ set novisualbell
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-let g:ackprg = 'ag --nogroup --nocolor --column'
+let g:ackprg = 'ag --nogroup --column'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> search and replace fix: use cs to replace first match, esc, n.n. to do the next ones
@@ -290,7 +297,7 @@ let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_match_window = 'top,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor --hidden -g ""'
+let g:ctrlp_user_command = 'ag %s -l --hidden -g ""'
 let g:ctrlp_funky_matchtype = 'path'
 if executable('ag')
     let s:ctrlp_fallback = 'ag %s -l -g ""'
@@ -299,9 +306,9 @@ endif
 "to make it faster in git repos
 let g:ctrlp_use_caching = 0
 if executable('ag')
-    set grepprg=ag\ --nogroup\ --nocolor
+    set grepprg=ag\ --nogroup 
 
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+    let g:ctrlp_user_command = 'ag %s -l -g ""'
 else
     let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
     let g:ctrlp_prompt_mappings = {
@@ -329,9 +336,9 @@ let g:deoplete#enable_at_startup = 1
 "=> NeoSnippet config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin key-mappings.
-"imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-k>     <Plug>(neosnippet_expand_target)
+imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-e>     <Plug>(neosnippet_expand_target)
 
 " SuperTab like snippets behavior.
 imap <expr><TAB>
@@ -356,10 +363,11 @@ autocmd! BufWritePost * Neomake
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline_theme = 'dark'
+let g:airline_theme = 'gruvbox'
 let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
-
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
 set laststatus=2
 "set ttimeoutlen=50
 
@@ -504,22 +512,33 @@ map g/ <Plug>(incsearch-stay)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Rainbow for Parentheses
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:indentLine_noConcealCursor=1
-
 :let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
-let g:rainbow_load_separately = [
-            \ [ '*' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-            \ [ '*.tex' , [['(', ')'], ['\[', '\]']] ],
-            \ [ '*.cpp' , [['(', ')'], ['\[', '\]'], ['{', '}']] ],
-            \ [ '*.{html,htm}' , [['(', ')'], ['\[', '\]'], ['{', '}'], ['<\a[^>]*>', '</[^>]*>']] ],
-            \ ]
+let g:rainbow_conf = {
+    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
 
-let g:rainbow_guifgs = ['RoyalBlue3', 'DarkOrange3', 'DarkOrchid3', 'FireBrick']
-let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
-
-let g:indentLine_char = '︙'
-
-"HARDTIME
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> HardTime
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:hardtime_showmsg = 1
 "let g:hardtime_default_on = 1
 let g:hardtime_timeout = 1000
