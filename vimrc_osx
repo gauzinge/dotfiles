@@ -14,7 +14,7 @@ endfunction
 "Looks
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+"Plug 'vim-airline/vim-airline-themes'
 "Colorschemes
 Plug 'morhetz/gruvbox'
 "To manaage swap files
@@ -23,6 +23,7 @@ Plug 'gioele/vim-autoswap'
 Plug 'myusuf3/numbers.vim'
 "git
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 "rainbow brackets
 Plug 'luochen1990/rainbow'
 "autoformatting!
