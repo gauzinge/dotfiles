@@ -96,6 +96,8 @@ pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
 fpath=(/usr/local/share/zsh-completions $fpath)
 source $ZSH/oh-my-zsh.sh
 
+export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
+
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -173,3 +175,5 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

@@ -12,9 +12,13 @@ function! DoRemote(arg)
 endfunction
 
 "Looks
+Plug 'ryanoasis/vim-devicons'
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
 "Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify'
+"sane defaults
+Plug 'topoe/vim-sensible'
 "Colorschemes
 Plug 'morhetz/gruvbox'
 "To manaage swap files
@@ -39,6 +43,7 @@ Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'tacahiroy/ctrlp-funky'
+Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 "file system navigation
 Plug 'tpope/vim-vinegar'
 "searching and file browser
@@ -139,7 +144,7 @@ endif
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
 
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Plus\ Nerd\ File\ Types:11
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:12
 
 "if has("gui_running")
 "let s:uname = system("uname")
@@ -162,19 +167,6 @@ set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
-
-
-"function! ResCur()
-    "if line("'\"") <= line("$")
-        "normal! g`"
-        "return 1
-    "endif
-"endfunction
-
-"augroup resCur
-    "autocmd!
-    "autocmd BufWinEnter * call ResCur()
-"augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
@@ -282,9 +274,13 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Latex Box
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"if s:extfname ==? "tex"
+"if s:extfname ==? ".tex"
 "let g:LatexBox_split_type="new"
 "endif
+"let g:LatexBox_latexmk_async = 0
+"let g:LatexBox_latexmk_preview_continuously = 0
+"nnoremap <Leader>ll :Latexmk<CR>
+"nnoremap <Leader>lt :LatexTOCToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Ctrl P
@@ -294,15 +290,21 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 nnoremap <Leader>o :CtrlP<CR>
 nnoremap <Leader>f :CtrlPFunky<Cr>
 "let g:ctrlp_map = '<c-p>'
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_match_window = 'top,order:ttb'
+let g:ctrlp_match_window = 'bottom,order:ttb'
 let g:ctrlp_switch_buffer = 0
 let g:ctrlp_working_path_mode = 0
-let g:ctrlp_user_command = 'ag %s -l --hidden -g ""'
 let g:ctrlp_funky_matchtype = 'path'
-if executable('ag')
-    let s:ctrlp_fallback = 'ag %s -l -g ""'
-endif
+
+"ignore all the useless stuff
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+"let g:ctrlp_custom_ignore = {
+  "\ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  "\ 'file': '\v\.(exe|so|dll)$',
+  "\ 'link': 'some_bad_symbolic_links',
+  "\ }
 
 "to make it faster in git repos
 let g:ctrlp_use_caching = 0
@@ -311,12 +313,68 @@ if executable('ag')
 
     let g:ctrlp_user_command = 'ag %s -l -g ""'
 else
-    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard', 'find %s -type f']
+    let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
     let g:ctrlp_prompt_mappings = {
                 \ 'AcceptSelection("e")': ['<space>', '<cr>', '<2-LeftMouse>'],
                 \
     }
 endif
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> FZF config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Don't load ctrlp
+let g:loaded_ctrlp = 1
+" Fuzzy-find with fzf
+map <Leader>o :Files<cr>
+nmap <Leader>o :Files<cr>
+map <Leader>f :Tags<cr>
+nmap <Leader>f :Tags<cr>
+
+let g:fzf_layout = {'down':'~25%'}
+" In Neovim, you can set up fzf window using a Vim command
+let g:fzf_layout = { 'window': 'enew' }
+let g:fzf_layout = { 'window': '-tabnew' }
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
+" View commits in fzf
+"nmap <Leader>c :Commits<cr>
+" Complete from open tmux panes (from @junegunn)
+inoremap <expr> <C-x><C-t> fzf#complete( 'tmuxwords.rb -all-but-current --scroll 499 --min 5' )
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+" Advanced customization using autoload functions
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -333,6 +391,13 @@ let g:ycm_complete_in_strings = 1
 "=> Deoplete (Neocomplete) config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+" deoplete tab-complete
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+" Movement within 'ins-completion-menu'
+imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
+imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> NeoSnippet config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -369,6 +434,8 @@ let g:airline#extensions#hunks#enabled=0
 let g:airline#extensions#branch#enabled=1
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '\uE0B4'
 set laststatus=2
 "set ttimeoutlen=50
 
@@ -453,7 +520,7 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 "=> Expand region config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
+"vmap <C-v> <Plug>(expand_region_shrink)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> ASTYLE Formatter
