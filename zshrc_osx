@@ -160,7 +160,7 @@ alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
 #mounts via sshfs
 alias mountcmsuppixpc='sshfs fedtest@cmsuppixpc001.cern.ch:/home/fedtest/TriDAS/ /Users/schurl/remote'
-#alias mountcmsuppixpc='sshfs fedtest@cmsuppixpc001.cern.ch:/home/fedtest/TriDAS/ /Users/schurl/remote'
+#alias mountcmsuppixpc='sshfs fectest@cmsuppixpc001.cern.ch:/home/fectest/FED_testing/ /Users/schurl/remote'
 alias mountcmsuptracker008='sshfs xtaldaq@cmsuptracker008.cern.ch:/home/xtaldaq /Users/schurl/remote'
 alias umountcmsup='umount /Users/schurl/remote'
 

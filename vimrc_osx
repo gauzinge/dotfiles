@@ -15,12 +15,15 @@ endfunction
 Plug 'ryanoasis/vim-devicons'
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
-"Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
 "sane defaults
-Plug 'topoe/vim-sensible'
+"Plug 'topoe/vim-sensible'
 "Colorschemes
 Plug 'morhetz/gruvbox'
+Plug 'trusktr/seti.vim'
+Plug 'roosta/srcery'
+Plug 'rakr/vim-one'
 "To manaage swap files
 Plug 'gioele/vim-autoswap'
 "Intelligent linenumbers
@@ -55,6 +58,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'kana/vim-textobj-indent'
 Plug 'michaeljsmith/vim-indent-object'
+"Plug 'vim-scripts/argtextobj.vim'
 "easymotion
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -112,21 +116,24 @@ filetype on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set termguicolors
-let g:gruvbox_italic=1
-colorscheme gruvbox
-"colorscheme brogrammer
-set t_Co=256
 set background=dark
-
-"nvim
 if has('nvim')
-    set t_Co=256
     let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
     let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
+    set termguicolors
     set background=dark
 endif
 highlight Comment cterm=italic
+"set termguicolors
+"colorscheme gruvbox
+"let g:gruvbox_italic=1
+"let g:airline_theme = 'gruvbox'
+
+colorscheme srcery
+let g:srcery_italic=1
+let g:srcery_bold=1
+let g:airline_theme = 'badwolf'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tmux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -429,13 +436,13 @@ autocmd! BufWritePost * Neomake
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-let g:airline_theme = 'gruvbox'
-let g:airline#extensions#hunks#enabled=0
+"let g:airline_theme = 'gruvbox'
+let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '\uE0B4'
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '\uE0B4'
 set laststatus=2
 "set ttimeoutlen=50
 
@@ -544,14 +551,6 @@ au BufWrite *.{cc,cpp,cxx,h,hh,hxx,py} silent :Autoformat
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> EASYMOTION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-
-" Jump to anywhere you want with minimal keystrokes, with just one key binding.
-" `s{char}{label}`
-"nmap <Leader>s <Plug>(easymotion-overwin-f)
-" or
-" `s{char}{char}{label}`
-" Need one more keystroke, but on average, it may be more comfortable.
 nmap s <Plug>(easymotion-s2)
 nmap f <Plug>(easymotion-bd-f)
 nmap t <Plug>(easymotion-bd-t2)
