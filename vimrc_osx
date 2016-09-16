@@ -82,6 +82,7 @@ if has('nvim')
 else
     Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 endif
+Plug 'wellle/tmux-complete.vim'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
 "LATEX Support
@@ -151,7 +152,7 @@ endif
 "set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
 "set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
 
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:12
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:11
 
 "if has("gui_running")
 "let s:uname = system("uname")
