@@ -58,7 +58,7 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git osx brew sudo z vi-mode history-substring-search zsh-syntax-highlighting)
+plugins=(git osx brew sudo vi-mode history-substring-search zsh-syntax-highlighting)
 
 export KEYTIMEOUT=1
 bindkey '^[[A' history-substring-search-up
@@ -123,13 +123,13 @@ export ARCHFLAGS="-arch x86_64"
 alias vim='nvim'
 alias connect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
-#alias la='ls -aG'
-#alias ls='ls -G'
-#alias ll='ls -hl'
-#alias ls='ls -Gh'
-alias la='exa -a'
-alias ls='exa'
-alias ll='exa --long --header --git'
+alias la='ls -aG'
+alias ls='ls -G'
+alias ll='ls -hl'
+alias ls='ls -Gh'
+#alias la='exa -a'
+#alias ls='exa'
+#alias ll='exa --long --header --git'
 alias cd..='cd ..'
 alias root='root -l'
 alias cat='vimcat'
@@ -157,7 +157,7 @@ alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/cmstracker'
 alias mountcmsuptracker008='sshfs xtaldaq@cmsuptracker008.cern.ch:/home/xtaldaq /Users/schurl/remote'
 #alias umountcmsup='umount /Users/schurl/remote'
-alias umountcmsup='umount /Users/schurl/remote'
+alias umountcmsup='umount /Users/schurl/cmstracker'
 
 alias tmux='tmux -2'
 function zle-line-init zle-keymap-select {
