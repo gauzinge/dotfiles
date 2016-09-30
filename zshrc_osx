@@ -153,6 +153,7 @@ alias gauzinge='ssh -XY gauzinge@gauzinge.cern.ch'
 alias cmsusr='ssh -XY gauzinge@cmsusr.cern.ch'
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
+alias testsystem='ssh -XY gauzinge@137.138.10.170'
 #mounts via sshfs
 alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/cmstracker'
 alias mountcmsuptracker008='sshfs xtaldaq@cmsuptracker008.cern.ch:/home/xtaldaq /Users/schurl/remote'

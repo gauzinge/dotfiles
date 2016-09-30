@@ -22,7 +22,7 @@ source "/usr/local/opt/fzf/shell/key-bindings.zsh"
 #ag --path-to-agignore ~/.agignore --hidden -g "" | fzf
 
 # Setting ag as the default source for fzf
-export FZF_DEFAULT_COMMAND='ag --path-to-agignore ~/.agignore -g ""'
+export FZF_DEFAULT_COMMAND='ag -g ""'
 
 # Now fzf (w/o pipe) will use ag instead of find
 #fzf
