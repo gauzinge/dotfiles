@@ -44,8 +44,8 @@ Plug 'scrooloose/nerdcommenter'
 "autopairs!
 Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'tacahiroy/ctrlp-funky'
+"Plug 'ctrlpvim/ctrlp.vim'
+"Plug 'tacahiroy/ctrlp-funky'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 "file system navigation
 Plug 'tpope/vim-vinegar'
@@ -57,7 +57,8 @@ Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'kana/vim-textobj-indent'
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'b4winckler/vim-angry'
+"Plug 'michaeljsmith/vim-indent-object'
 "Plug 'vim-scripts/argtextobj.vim'
 "easymotion
 Plug 'easymotion/vim-easymotion'
@@ -65,7 +66,7 @@ Plug 'haya14busa/incsearch.vim'
 "Plug 'haya14busa/incsearch-fuzzy.vim'
 "select closest text object with ENTER
 Plug 'gcmt/wildfire.vim'
-Plug 'terryma/vim-expand-region'
+"Plug 'terryma/vim-expand-region'
 "syntax checker
 Plug 'neomake/neomake'
 "to jump from src to header and vv with :A
@@ -89,12 +90,8 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 "SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
-"for easy search and replace: <leader>vr replaces occurrences of current workd
-Plug 'dkprice/vim-easygrep'
 "yankring
 Plug 'maxbrunsfeld/vim-yankstack'
-"to finally learn it
-Plug 'takac/vim-hardtime'
 call plug#end()
 
 

@@ -1,5 +1,4 @@
 # .bashrc
-
 # If not running interactively, don't do anyting
 [ -z "$PS1" ] && return
 
@@ -32,3 +31,7 @@ echo '* ********************************************************************'
 echo "* Hostname is "$(hostname)
 echo '* reminder, vimrc and sshrc are sourced from my local machine'
 echo '* ********************************************************************'
+
+
+ #source my sane vimrc on remote
+ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
