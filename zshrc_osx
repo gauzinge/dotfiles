@@ -140,7 +140,7 @@ open_dash()
 }
 alias dash=open_dash
 myssh(){
-    ssh -XY $1
+    sshrc -XY $1
 }
 alias ssh=myssh
 
@@ -154,19 +154,18 @@ alias diff='grc diff'
 
 
 #remote hosts
-alias lxplus='ssh -XY gauzinge@lxplus.cern.ch'
-alias ph2daq='ssh -XY gauzinge@ph2daqdev.cern.ch'
-alias cmsuptracker002='ssh -XY gauzinge@cmsuptracker002.cern.ch'
-alias cmsuptracker003='ssh -XY gauzinge@cmsuptracker003.cern.ch'
-alias cmsuptracker006='ssh -XY gauzinge@cmsuptracker006.cern.ch'
-alias gauzinge='ssh -XY gauzinge@gauzinge.cern.ch'
-alias cmsusr='ssh -XY gauzinge@cmsusr.cern.ch'
+alias lxplus='sshrc -XY gauzinge@lxplus.cern.ch'
+alias ph2daq='sshrc -XY gauzinge@ph2daqdev.cern.ch'
+alias cmsuptracker002='sshrc -XY gauzinge@cmsuptracker002.cern.ch'
+alias cmsuptracker003='sshrc -XY gauzinge@cmsuptracker003.cern.ch'
+alias cmsuptracker006='sshrc -XY gauzinge@cmsuptracker006.cern.ch'
+alias gauzinge='sshrc -XY gauzinge@gauzinge.cern.ch'
+alias cmsusr='sshrc -XY gauzinge@cmsusr.cern.ch'
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
-alias testsystem='ssh -XY gauzinge@137.138.10.170'
+alias testsystem='sshrc -XY gauzinge@testsystem2.cern.ch'
 #mounts via sshfs
 alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/cmstracker'
-alias mountcmsuptracker008='sshfs xtaldaq@cmsuptracker008.cern.ch:/home/xtaldaq /Users/schurl/remote'
 #alias umountcmsup='umount /Users/schurl/remote'
 alias umountcmsup='umount /Users/schurl/cmstracker'
 

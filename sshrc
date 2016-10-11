@@ -34,4 +34,4 @@ echo '* ********************************************************************'
 
 
  #source my sane vimrc on remote
- export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+ export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vim/.vimrc' | source \$MYVIMRC"
