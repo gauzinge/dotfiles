@@ -82,7 +82,7 @@ export TERM=xterm-256color-italic
 
 export ONEPASSWORD_KEYCHAIN=~/Dropbox/1Password/1Password.agilekeychain
 #VIM
-#export VIM=/usr/local/Cellar/neovim/HEAD/share/nvim nvim
+#export VIM=/usr/local/Cellar/neovim/HEAD/share/nvim 
 #export VIMRUNTIME=/usr/local/Cellar/neovim/HEAD/share/nvim/runtime
 
 #PATH
@@ -167,7 +167,7 @@ alias testsystem='sshrc -XY gauzinge@testsystem2.cern.ch'
 #mounts via sshfs
 alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/cmstracker'
 #alias umountcmsup='umount /Users/schurl/remote'
-alias umountcmsup='umount /Users/schurl/cmstracker'
+alias umountcmsup='fusermount -u /Users/schurl/cmstracker'
 
 alias tmux='tmux -2'
 function zle-line-init zle-keymap-select {
