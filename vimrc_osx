@@ -136,18 +136,6 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 scriptencoding utf-8
 set cb=unnamedplus
-function! ClipboardYank()
-  call system('pbcopy', @@)
-endfunction
-function! ClipboardPaste()
-  let @@ = system('pbpaste')
-endfunction
-" sane copy paste on osx
-vnoremap <silent> y y:call ClipboardYank()<cr>
-vnoremap <silent> d d:call ClipboardYank()<cr>
-nnoremap <silent> p :call ClipboardPaste()<cr>p
-onoremap <silent> y y:call ClipboardYank()<cr>
-onoremap <silent> d d:call ClipboardYank()<cr>
 "autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
 " Always switch to the current file directory
 set hidden                          " Allow buffer switching without saving
@@ -163,8 +151,8 @@ set nowb
 set noswapfile
 set virtualedit=onemore
 set ttyfast
-"set mouse=a                 " Automatically enable mouse usage
-set mouse=                 " Automatically enable mouse usage
+set mouse=a                 " Automatically enable mouse usage
+"set mouse=                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 set autoread
 "vim
