@@ -20,6 +20,7 @@ export TERM='xterm-256color'
 
 # User specific aliases and functions
 alias work='cd /afs/cern.ch/work/g/gauzinge/public/'
+alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.8.1/x86_64-slc6/setup.sh'
 alias root='root -l'
 alias ls='ls -G'
 alias ll='ls -lG'
@@ -34,10 +35,18 @@ echo '* ********************************************************************'
 echo '# ####################################################################'
 echo '# Hostname is '$(hostname)
 echo '# logged in as '$(whoami)
+
+if [ $(whoami) = "gauzinge" ]; then
+	echo '# Using gcc 4.8.1 from /afs installation'
+	source /afs/cern.ch/sw/lcg/releases/gcc/4.8.1/x86_64-slc6/setup.sh	
+else
+	echo '# Using local gcc as no /afs access avaialble'
+fi
+
 echo '# reminder: vimrc and sshrc are sourced from my local machine (located in .sshrc.d/)'
 echo '# ####################################################################'
 echo '* ********************************************************************'
 
 
  #source my sane vimrc on remote
- export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vim/.vimrc' | source \$MYVIMRC"
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vim/.vimrc' | source \$MYVIMRC"

@@ -164,6 +164,7 @@ alias cmsusr='sshrc -XY gauzinge@cmsusr.cern.ch'
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
 alias testsystem='sshrc -XY gauzinge@testsystem2.cern.ch'
+alias hwtest='sshrc -XY gauzinge@greg-ttl.cern.ch'
 #mounts via sshfs
 alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/cmstracker'
 #alias umountcmsup='umount /Users/schurl/remote'
