@@ -1,0 +1,152 @@
+# .ssh/config - Andrew Melo
+#
+# Note when customizing: SSH will choose the first option it sees
+
+#
+# Configure bastion (or gateway) hosts. These special hosts are globally
+#     visible and can be used to access hosts behind firewalls
+Host lxplus
+    user gauzinge
+    hostname lxplus.cern.ch
+    ProxyCommand none
+    #GSSAPIClientIdentity gauzinge@CERN.CH
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    #GSSAPIKeyExchange no
+    #GSSAPITrustDNS yes
+    Protocol 2
+    ServerAliveInterval 60
+    ServerAliveCountMax 6
+    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    PubkeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
+
+Host cmsuptracker002 gauzinge ph2daqdev greg-ttl
+    user gauzinge
+    ProxyCommand none
+    #GSSAPIClientIdentity gauzinge@CERN.CH
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials yes
+    #GSSAPIKeyExchange no
+    #GSSAPITrustDNS yes
+    Protocol 2
+    ServerAliveInterval 60
+    ServerAliveCountMax 6
+    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    PubkeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
+
+Host cmsuptracker008 cmsuptracker007
+    user xtaldaq
+    ProxyCommand none
+    Protocol 2
+    ServerAliveInterval 60
+    ServerAliveCountMax 6
+    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    PubkeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
+
+Host cmstracker001 cmstracker002 cmstracker003 cmstracker004 cmstracker005 cmstracker300
+    user xtaldaq
+    ProxyCommand none
+    Protocol 2
+    ServerAliveInterval 60
+    ServerAliveCountMax 6
+    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    ForwardAgent yes
+    ForwardX11 yes
+    ForwardX11Trusted yes
+    PubkeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
+
+Host lxplus.cern.ch 
+    ProxyCommand none
+    user gauzinge
+    hostname lxplus.cern.ch
+
+#Host forwarding*
+    #ProxyCommand none
+
+Host cmsusr
+    user gauzinge
+    ProxyCommand none
+    hostname cmsusr.cern.ch
+
+#
+# These stanzas tell SSH how to connect to hosts hidden behind firewalls
+#
+Host *.cern.ch
+    ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
+
+
+#
+# Set up authentication
+#
+# Configure port forwarding. You can use any SOCKS-enabled application as if
+#   it were running on the remote host. (Good for seeing CERN-only pages)
+#
+# To use, SSH to one of the following alias and configure your application to
+#   use the ports as a SOCKS5 proxy
+#
+# Use a fake host alias so we still match the domain filecards
+#Host forwarding.cern.ch
+    #Hostname lxplus.cern.ch
+    #DynamicForward 1080
+
+
+#
+# Defaults
+#
+#Host *cern.ch
+    ##GSSAPIClientIdentity gauzinge@CERN.CH
+    #Protocol 2
+    #ServerAliveInterval 60
+    #ServerAliveCountMax 6
+    #GSSAPIDelegateCredentials yes
+    ##GSSAPITrustDNS yes
+    #PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    #ForwardAgent yes
+    #ForwardX11 yes
+    #ForwardX11Trusted yes
+    #PubkeyAuthentication yes
+    #GSSAPIAuthentication yes
+    #ControlPersist 15
+    ##ControlPath ~/.ssh/link-%r@%h.%p
+    #ControlPath ~/.ssh/%h.%p.%r
+    #ControlMaster auto
+    ##ForwardAgent no
+    ##ForwardX11 no
+    ##ForwardX11Trusted no
+
+    ## Work around a bug in OSX:
+    ## http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    #ForwardX11Timeout 576h

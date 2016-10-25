@@ -1,5 +1,7 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/afs/cern.ch/user/g/gauzinge/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
+#export TERM=xterm-256color
+#export XTERM=xterm-256color
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -35,7 +37,7 @@ COMPLETION_WAITING_DOTS="true"
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+ DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -44,88 +46,134 @@ COMPLETION_WAITING_DOTS="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
+
+export HISTSIZE=32768;
+export HISTFILESIZE=$HISTSIZE;
+export HISTCONTROL=ignoredups;
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew python sudo web-search z vi-mode history-substring-search zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting)
 
 export KEYTIMEOUT=1
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-#bindkey "^R" history-incremental-search-backward
 bindkey "^R" history-incremental-search-backward
 
 # User configuration
-
-export PATH="/afs/cern.ch/sw/lcg/contrib/CMake/3.0.0/Linux-i386/bin/:/afs/cern.ch/sw/lcg/external/Python/2.7.3/x86_64-slc6-gcc47-opt/bin:~/vim/bin:/afs/cern.ch/group/zh/bin:/afs/cern.ch/user/g/gauzinge/scripts:/afs/cern.ch/cms/caf/scripts:/cvmfs/cms.cern.ch/common:/cvmfs/cms.cern.ch/bin:/usr/kerberos/sbin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin:/afs/cern.ch/user/g/gauzinge/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
+export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:"
+export MANPATH="/usr/local/man:$MANPATH"
 
 #colorful terminal
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
 export LSCOLORS=''
 export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
+
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
-export TERM=xterm-color
 
+###########################################################################
+# Environment
+###########################################################################
 
-source $ZSH/oh-my-zsh.sh
-
+# italic fonts
+export TERM=xterm-256color-italic
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
+export ONEPASSWORD_KEYCHAIN=~/Dropbox/1Password/1Password.agilekeychain
+
+#ROOT
+pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+source $ZSH/oh-my-zsh.sh
+
+export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
+
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
+    export EDITOR='nvim'
 else
-    export EDITOR='gvim'
+    export EDITOR='nvim'
 fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+#export SSH_KEY_PATH="~/.ssh/dsa_id"
 
+###########################################################################
+# Functions
+###########################################################################
+open_dash()
+{
+    open dash://$1
+}
+myssh(){
+    sshrc -XY $1
+}
+
+###########################################################################
+# Aliases
+###########################################################################
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Example aliases
-alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
-alias la='ls -aG'
-alias ls='ls -G'
-alias ll='ls -hl'
-alias cd..='cd ..'
-alias ls='ls -Gh'
-alias root='root -l'
-alias ccat='pygmentize -O style=monokai -f console256 -g'
 
-#remote hosts
-alias lxplus='ssh -XYR 52698:localhost:52698 gauzinge@lxplus.cern.ch'
-alias cmsuptracker002='ssh -XYR 52698:localhost:52698 gauzinge@cmsuptracker002.cern.ch'
-alias cmsuptracker003='ssh -XYR 52698:localhost:52698 gauzinge@cmsuptracker003.cern.ch'
-alias cmsuptracker006='ssh -XYR 52698:localhost:52698 gauzinge@cmsuptracker006.cern.ch'
-alias gauzinge='ssh -XYR 52698:localhost:52698 gauzinge@gauzinge.cern.ch'
-alias cmsuppixpc001='ssh -XY fectest@cmsuppixpc001.cern.ch'
-alias cmsuppixpcgau='ssh -XY gauzinge@cmsuppixpc001.cern.ch'
-alias cmsuppixch='ssh -XY xtaldaq@cmsuppixch.cern.ch'
-alias cmsusr='ssh -XY gauzinge@cmsusr.cern.ch'
-alias cmspixp1='ssh -XYR 52698:localhost:52698 cmspixp1@pixp1daq.cern.ch'
+# Example aliases
+alias vim='nvim'
+alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
+#alias la='ls -aG'
+#alias ls='ls -G'
+#alias ll='ls -hl'
+#alias ls='ls -Gh'
+alias la='exa -a'
+alias ls='exa'
+alias lt='exa -T -L 3'
+alias ll='exa --long --header --git'
+alias cd..='cd ..'
+alias root='root -l'
+alias cat='vimcat'
+alias dash=open_dash
+alias ssh=myssh
+
+#grc aliases
+alias ping='grc ping'
+alias traceroute='grc traceroute'
+alias gcc='grc gcc'
+alias make='grc make -j7'
+alias netstat='grc netstat'
+alias diff='grc diff'
+
+
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
+#mounts via sshfs
+alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/remote'
+alias umountcmsup='fusermount -u /Users/schurl/remote'
+
+alias tmux='tmux -2'
 function zle-line-init zle-keymap-select {
 RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
 RPS2=$RPS1
 zle reset-prompt
-
 }
 
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+#ENHANCD
+source ~/.enhancd/enhancd/init.sh
+export ENHANCD_FILTER="/usr/local/bin/fzf:non-existing-filter"
