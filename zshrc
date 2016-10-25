@@ -162,11 +162,11 @@ alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetG
 alias umountcmsup='fusermount -u /Users/schurl/remote'
 
 alias tmux='tmux -2'
-function zle-line-init zle-keymap-select {
-RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-RPS2=$RPS1
-zle reset-prompt
-}
+#function zle-line-init zle-keymap-select {
+#RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+#RPS2=$RPS1
+#zle reset-prompt
+#}
 
 zle -N zle-line-init
 zle -N zle-keymap-select
