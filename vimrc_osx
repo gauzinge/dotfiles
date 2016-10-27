@@ -364,6 +364,11 @@ set laststatus=2
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use either jk/kj or ii or ` as escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap ii <Esc>
+inoremap ` <Esc>
 nnoremap <Leader>w :w<CR>
 nmap <leader>w :w!<cr>
 nmap <leader>w :w!<cr>

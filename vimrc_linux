@@ -157,7 +157,11 @@ let mapleader=" "       " leader is comma
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <Leader>o :CtrlP<CR>
+" use either jk/kj or ii or ` as escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap ii <Esc>
+inoremap ` <Esc>
 nnoremap <Leader>w :w<CR>
 nmap <leader>w :w!<cr>
 

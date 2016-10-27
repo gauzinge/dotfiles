@@ -1,0 +1,29 @@
+{
+	"terminal": "iTerm",
+    "iTerm_version": "stable",
+	"launch_at_login": false,
+	"show_ssh_config_hosts": true,
+    "editor": nvim,
+	"hosts": [
+		{
+			"name": "Test escaping characters",
+			"cmd": "echo \"Hello\"; echo 'world'; "
+		},
+		{
+			"name": "Test opening URL",
+			"cmd": "http://fitztrev.github.io/shuttle"
+		},
+		{
+			"gauzinge": [
+				 {
+					 "name": "lxplus",
+					 "cmd": "ssh lxplus"
+				 },
+				 {
+					 "name": "cmsusr",
+					 "cmd": "ssh cmsusr"
+				 }
+			 ]
+		}
+    ]
+}
