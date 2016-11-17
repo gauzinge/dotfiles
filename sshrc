@@ -9,10 +9,9 @@ fi
 #Colorful Terminal
 export LS_OPTIONS='--color=auto'
 export CLICOLOR='Yes'
-export LSCOLORS=''
 export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 export EDITOR='vim'
-
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 #For my personal sanity
 stty sane
 export LC_ALL="C"
@@ -20,9 +19,9 @@ export TERM='xterm-256color'
 
 # User specific aliases and functions
 alias work='cd /afs/cern.ch/work/g/gauzinge/public/'
-alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.8.1/x86_64-slc6/setup.sh'
+alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh'
 alias root='root -l'
-alias ls='ls -G'
+alias ls='ls -G --color=auto'
 alias ll='ls -lG'
 alias la='ls -lGa'
 
@@ -37,8 +36,9 @@ echo '# Hostname is '$(hostname)
 echo '# logged in as '$(whoami)
 
 if [ $(whoami) = "gauzinge" ]; then
-	echo '# Using gcc 4.8.1 from /afs installation'
-	source /afs/cern.ch/sw/lcg/releases/gcc/4.8.1/x86_64-slc6/setup.sh	
+	echo '# Using gcc 4.9.2 from /afs installation'
+	#echo '# Using gcc 4.8.1 from /afs installation'
+	source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh	
 else
 	echo '# Using local gcc as no /afs access avaialble'
 fi

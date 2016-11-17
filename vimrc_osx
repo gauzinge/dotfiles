@@ -20,8 +20,6 @@ Plug 'roosta/srcery'
 Plug 'rakr/vim-one'
 "To manaage swap files
 Plug 'gioele/vim-autoswap'
-"Intelligent linenumbers
-"Plug 'myusuf3/numbers.vim'
 "git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
@@ -47,14 +45,12 @@ Plug 'tpope/vim-repeat'
 Plug 'kana/vim-textobj-user'
 Plug 'reedes/vim-textobj-quote'
 Plug 'kana/vim-textobj-indent'
-"Plug 'b4winckler/vim-angry'
 Plug 'wellle/targets.vim'
 "easymotion
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 "select closest text object with ENTER
 "Plug 'gcmt/wildfire.vim'
-"Plug 'terryma/vim-expand-region'
 "syntax checker
 Plug 'neomake/neomake'
 "to jump from src to header and vv with :A
@@ -63,14 +59,13 @@ Plug 'vim-scripts/a.vim'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'parnmatt/vim-root'
 "autocompleteion
-"if has('nvim')
-    "Plug 'Shougo/deoplete.nvim', { 'do': function('DoRemote') }
-    ""snippets
-    "Plug 'Shougo/neosnippet'
-    "Plug 'Shougo/neosnippet-snippets'
-"else
-    Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-"endif
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'zchee/deoplete-clang'
+Plug 'ervandew/supertab'
+"snippets
+"Plug 'Shougo/neosnippet'
+"Plug 'Shougo/neosnippet-snippets'
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'wellle/tmux-complete.vim'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
@@ -78,8 +73,10 @@ Plug 'terryma/vim-smooth-scroll'
 Plug 'LaTeX-Box-Team/LaTeX-Box'
 "SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
-"yankring
+"yankstack
 Plug 'maxbrunsfeld/vim-yankstack'
+"undotree
+Plug 'sjl/gundo.vim'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,11 +86,11 @@ if !has('nvim')
     set nocompatible
 endif
 set nocp
-set shell=/bin/zsh
+set shell=/usr/local/bin/zsh
 syntax enable
 syntax on
-filetype on
-":set syntax+=.root
+filetype plugin indent on
+:set syntax+=.root
 ":se syn+=.root
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
@@ -118,8 +115,6 @@ let g:airline_theme = 'badwolf'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tmux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set t_ut=
-
 "nvim
 if has('nvim')
     nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
@@ -127,17 +122,12 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h12
-"set guifont=Droid\ Sans\ Mono\ for\ Powerline:h12
-
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:11
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 scriptencoding utf-8
 set cb=unnamedplus
-"autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
-" Always switch to the current file directory
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
@@ -152,7 +142,6 @@ set noswapfile
 set virtualedit=onemore
 set ttyfast
 set mouse=a                 " Automatically enable mouse usage
-"set mouse=                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 set autoread
 "vim
@@ -176,11 +165,6 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Syntax Highlighting octol/enhanced cpp
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_template_highlight = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -218,6 +202,14 @@ set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 let g:ackprg = 'ag --nogroup --column'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ag.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>a :Ag
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Gundotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>u :GundoToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> search and replace fix: use cs to replace first match, esc, n.n. to do the next ones
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
@@ -234,6 +226,11 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax Highlighting octol/enhanced cpp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_experimental_template_highlight = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Latex Box
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -247,8 +244,6 @@ noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> FZF config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Don't load ctrlp
-let g:loaded_ctrlp = 1
 " Fuzzy-find with fzf
 map <Leader>o :Files<cr>
 nmap <Leader>o :Files<cr>
@@ -273,8 +268,6 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
-" View commits in fzf
-"nmap <Leader>c :Commits<cr>
 " Complete from open tmux panes (from @junegunn)
 inoremap <expr> <C-x><C-t> fzf#complete( 'tmuxwords.rb -all-but-current --scroll 499 --min 5' )
 
@@ -302,42 +295,37 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 "=> YouCompleteMe Config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "let g:ycm_confirm_extra_conf = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_seed_identifiers_with_syntax = 1
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"let g:ycm_collect_identifiers_from_comments_and_strings = 1
+"let g:ycm_seed_identifiers_with_syntax = 1
 "let g:ycm_key_invoke_completion = '<C-Space>'
-let g:ycm_complete_in_comments = 0
-let g:ycm_complete_in_strings = 1
+"let g:ycm_complete_in_comments = 0
+"let g:ycm_complete_in_strings = 1
 "let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Deoplete (Neocomplete) config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
-"let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" Movement within 'ins-completion-menu'
-imap <expr><C-j>   pumvisible() ? "\<C-n>" : "\<C-j>"
-imap <expr><C-k>   pumvisible() ? "\<C-p>" : "\<C-k>"
+" Deoplete-clang
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.9.0/lib/libclang.dylib' 
+let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.9.0/include/clang/'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Supertab
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "context"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> NeoSnippet config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Plugin key-mappings.
-imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-e>     <Plug>(neosnippet_expand_target)
+"imap <C-e>     <Plug>(neosnippet_expand_or_jump)
+"smap <C-e>     <Plug>(neosnippet_expand_or_jump)
+"xmap <C-e>     <Plug>(neosnippet_expand_target)
 
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-"if has('conceal')
-  "set conceallevel=2 concealcursor=niv
-"endif
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> neomake
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -352,15 +340,13 @@ autocmd! BufWritePost * Neomake
 " Enable the list of buffers
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts=1
-"let g:airline_theme = 'gruvbox'
+let g:airline_skip_empty_sections = 1
 let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
-"let g:airline#extensions#tabline#left_sep = ' '
-"let g:airline#extensions#tabline#left_alt_sep = '\uE0B4'
 set laststatus=2
-"set ttimeoutlen=50
+set timeoutlen=200 ttimeoutlen=200
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -369,6 +355,8 @@ inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap ii <Esc>
 inoremap ` <Esc>
+"temporary to re-train jk,kj 
+inoremap <esc> <nop>
 nnoremap <Leader>w :w<CR>
 nmap <leader>w :w!<cr>
 nmap <leader>w :w!<cr>
