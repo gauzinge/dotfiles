@@ -91,6 +91,7 @@ Host cmstracker001 cmstracker002 cmstracker003 cmstracker004 cmstracker005 cmstr
 Host lxplus.cern.ch 
     ProxyCommand none
     user gauzinge
+    TCPKeepAlive yes
     hostname lxplus.cern.ch
 
 #Host forwarding*
@@ -100,12 +101,20 @@ Host cmsusr
     user gauzinge
     ProxyCommand none
     hostname cmsusr.cern.ch
+    TCPKeepAlive yes
+
+#Host cmsusr.cern.ch
+    #user trackerpro
+    #hostname cmsusr.cern.ch
+    #ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch trackerpro@cmsusr.cern.ch
+    #DynamicForward 1031
 
 #
 # These stanzas tell SSH how to connect to hosts hidden behind firewalls
 #
 Host *.cern.ch
     ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
+    TCPKeepAlive yes
 
 
 #

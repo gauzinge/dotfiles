@@ -120,6 +120,14 @@ open_dash()
 myssh(){
     sshrc -XY $1
 }
+mytunnel()
+{
+    ssh -N -D 1031 $1
+}
+normalssh()
+{
+    ssh $1
+}
 
 ###########################################################################
 # Aliases
@@ -145,6 +153,8 @@ alias root='root -l'
 alias cat='vimcat'
 alias dash=open_dash
 alias ssh=myssh
+alias tunnel=mytunnel
+alias normalssh=normalssh
 
 #grc aliases
 alias ping='grc ping'
@@ -162,18 +172,22 @@ alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetG
 alias umountcmsup='fusermount -u /Users/schurl/remote'
 
 alias tmux='tmux -2'
-#function zle-line-init zle-keymap-select {
-#RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
-#RPS2=$RPS1
-#zle reset-prompt
-#}
+alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
 
 zle -N zle-line-init
 zle -N zle-keymap-select
 
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+#export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 
 #ENHANCD
 source ~/.enhancd/enhancd/init.sh
 export ENHANCD_FILTER="/usr/local/bin/fzf:non-existing-filter"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
