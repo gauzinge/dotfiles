@@ -1,6 +1,9 @@
 /Users/schurl/Library/
 /Library/
 .cache
+.cargo
+.gem
+.dropbox
 .config
 .local
 .z
