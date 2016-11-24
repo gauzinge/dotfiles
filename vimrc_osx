@@ -212,6 +212,7 @@ vnoremap ii <Esc>
 "temporary to re-train jk,kj 
 inoremap <esc> <nop>
 nnoremap <Leader>w :w<CR>
+nmap <Leader>w :w<CR>
 nnoremap <Leader>q :wq<CR>
 "nmap <Leader>w :w!<cr>
 vmap <Leader>y "+y
