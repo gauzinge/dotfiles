@@ -8,17 +8,14 @@ function! DoRemote(arg)
 endfunction
 
 "Looks
-Plug 'ryanoasis/vim-devicons'
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify'
+Plug 'ryanoasis/vim-devicons'
 "Colorschemes
 Plug 'morhetz/gruvbox'
-Plug 'trusktr/seti.vim'
 Plug 'roosta/srcery'
-Plug 'rakr/vim-one'
-Plug 'chriskempson/base16-vim'
 "To manaage swap files
 Plug 'gioele/vim-autoswap'
 "git
@@ -35,7 +32,7 @@ Plug 'jszakmeister/vim-togglecursor'
 "commenter
 Plug 'scrooloose/nerdcommenter'
 "autopairs!
-Plug 'jiangmiao/auto-pairs'
+Plug 'auto-pairs-gentle'
 "fuzzy search engine for files & methods
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 "searching and file browser
@@ -51,14 +48,13 @@ Plug 'wellle/targets.vim'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 "select closest text object with ENTER
-"Plug 'gcmt/wildfire.vim'
 "syntax checker
 Plug 'neomake/neomake'
 "to jump from src to header and vv with :A
 Plug 'vim-scripts/a.vim'
 "CPP & root
 Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'parnmatt/vim-root'
+"Plug 'parnmatt/vim-root'
 "autocompleteion
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'zchee/deoplete-clang'
@@ -75,7 +71,8 @@ Plug 'LaTeX-Box-Team/LaTeX-Box'
 "SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
 "yankstack
-Plug 'maxbrunsfeld/vim-yankstack'
+"Plug 'maxbrunsfeld/vim-yankstack'
+Plug 'svermeulen/vim-easyclip'
 "undotree
 Plug 'sjl/gundo.vim'
 call plug#end()
@@ -83,16 +80,13 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
-if !has('nvim')
-    set nocompatible
-endif
-set nocp
+set nocompatible
 set shell=/usr/local/bin/zsh
 syntax enable
 syntax on
 filetype plugin indent on
 ":set syntax+=.root
-":se syn+=.root
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,6 +107,7 @@ colorscheme srcery
 let g:srcery_italic=1
 let g:srcery_bold=1
 let g:airline_theme = 'badwolf'
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tmux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -120,10 +115,12 @@ let g:airline_theme = 'badwolf'
 if has('nvim')
     nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 endif
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:11
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -133,6 +130,9 @@ set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
+set laststatus=2
+set timeoutlen=200 ttimeoutlen=200
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,6 +149,7 @@ set autoread
 if !has('nvim')
     set ttymouse=xterm2
 endif
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tabs & Indentations
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -166,6 +167,7 @@ set splitbelow                  " Puts new split windows to the bottom of the cu
 set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -196,30 +198,81 @@ set ignorecase
 " No annoying sound on errors
 set noerrorbells
 set novisualbell
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Keymappings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" use either jk/kj or ii or ` as escape
+inoremap jk <Esc>
+inoremap kj <Esc>
+inoremap ii <Esc>
+vnoremap jk <Esc>
+vnoremap kj <Esc>
+vnoremap ii <Esc>
+"temporary to re-train jk,kj 
+inoremap <esc> <nop>
+nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :wq<CR>
+nmap <leader>w :w!<cr>
+nmap <leader>w :w!<cr>
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+nmap <leader>j :bnext<CR>
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+nmap <leader>k :bprevious<CR>
+" Close the current buffer and move to the previous one
+nmap <leader>bq :bp <BAR> bd #<CR>
+" Show all open buffers and their status
+"nmap <leader>bl :ls<CR>
+"nmap <silent> <A-Up> :wincmd k<CR>
+"nmap <silent> <A-Down> :wincmd j<CR>
+"nmap <silent> <A-Left> :wincmd h<CR>
+"nmap <silent> <A-Right> :wincmd l<CR>
+" Easier split navigation
+" Use ctrl-[hjkl] to select the active split!
+nmap <silent> <c-k> :wincmd k<CR>
+nmap <silent> <c-j> :wincmd j<CR>
+nmap <silent> <c-h> :wincmd h<CR>
+nmap <silent> <c-l> :wincmd l<CR>
+noremap j gj
+noremap k gk
+" Stupid shift key fixes
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang -nargs=* -complete=file Bd bd<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+nnoremap Y y$
+vnoremap . :normal .<CR>
+cmap w!! w !sudo tee % >/dev/null
+map zl zL
+map zh zH
+nnoremap <silent> <leader>q gwip
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 let g:ackprg = 'ag --nogroup --column --follow --hidden --ignore .git -g'
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Ag.vim
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>a :Ag
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Gundotree
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nnoremap <leader>u :GundoToggle<CR>
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> search and replace fix: use cs to replace first match, esc, n.n. to do the next ones
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-            \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let mapleader=" "       " leader is comma
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Smooth Scrolling
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -227,11 +280,29 @@ noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
 noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
 noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" *** PLUGIN SETTINGS ***
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Ag.vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>a :Ag
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" => Gundotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>u :GundoToggle<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Syntax Highlighting octol/enhanced cpp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 let g:cpp_class_scope_highlight = 1
 let g:cpp_experimental_template_highlight = 1
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Latex Box
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -242,6 +313,7 @@ let g:cpp_experimental_template_highlight = 1
 "let g:LatexBox_latexmk_preview_continuously = 0
 "nnoremap <Leader>ll :Latexmk<CR>
 "nnoremap <Leader>lt :LatexTOCToggle<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> FZF config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -251,7 +323,7 @@ nmap <Leader>o :Files<cr>
 map <Leader>f :Tags<cr>
 nmap <Leader>f :Tags<cr>
 
-let g:fzf_layout = {'down':'~10%'}
+let g:fzf_layout = {'down':'~15%'}
 " In Neovim, you can set up fzf window using a Vim command
 let g:fzf_layout = { 'window': 'enew' }
 let g:fzf_layout = { 'window': '-tabnew' }
@@ -317,42 +389,10 @@ inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.9.0/lib/libclang.dylib' 
 let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.9.0/include/clang/'
 
-"use <tab> for completion
-"function! TabWrap()
-    "if pumvisible()
-        "return "\<C-N>"
-    "elseif strpart( getline('.'), 0, col('.') - 1 ) =~ '^\s*$'
-        "return "\<tab>"
-    "elseif &omnifunc !~ ''
-        "return "\<C-X>\<C-O>"
-    "else
-        "return "\<C-N>"
-    "endif
-"endfunction
-
- "power tab
-"imap <silent><expr><tab> TabWrap()
-
- "Enter: complete&close popup if visible (so next Enter works); else: break undo
-"inoremap <silent><expr> <Cr> pumvisible() ?
-            "\ deoplete#mappings#close_popup() : "<C-g>u<Cr>"
-
- "Ctrl-Space: summon FULL (synced) autocompletion
-"inoremap <silent><expr> <C-Space> deoplete#mappings#manual_complete()
-
- "Escape: exit autocompletion, go to Normal mode
-"inoremap <silent><expr> <Esc> pumvisible() ? "<C-e><Esc>" : "<Esc>"
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Supertab
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:SuperTabDefaultCompletionType = "context"
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> NeoSnippet config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Plugin key-mappings.
-"imap <C-e>     <Plug>(neosnippet_expand_or_jump)
-"smap <C-e>     <Plug>(neosnippet_expand_or_jump)
-"xmap <C-e>     <Plug>(neosnippet_expand_target)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> neomake
@@ -362,6 +402,7 @@ let g:neomake_cpp_clang_maker = {
 \ 'exe' : 'clang'
 \ }
 autocmd! BufWritePost * Neomake
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Airline
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -373,77 +414,23 @@ let g:airline#extensions#hunks#enabled=1
 let g:airline#extensions#branch#enabled=1
 let g:airline_left_sep = "\uE0B4"
 let g:airline_right_sep = "\uE0B6"
-set laststatus=2
-set timeoutlen=200 ttimeoutlen=200
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Keymappings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" use either jk/kj or ii or ` as escape
-inoremap jk <Esc>
-inoremap kj <Esc>
-inoremap ii <Esc>
-inoremap ` <Esc>
-"temporary to re-train jk,kj 
-inoremap <esc> <nop>
-nnoremap <Leader>w :w<CR>
-nmap <leader>w :w!<cr>
-nmap <leader>w :w!<cr>
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-nnoremap <Leader>c :bd<CR>
-" To open a new empty buffer
-nmap <leader>T :enew<cr>
-" Move to the next buffer
-nmap <leader>l :bnext<CR>
-nmap <leader>j :bnext<CR>
-" Move to the previous buffer
-nmap <leader>h :bprevious<CR>
-nmap <leader>k :bprevious<CR>
-" Close the current buffer and move to the previous one
-nmap <leader>bq :bp <BAR> bd #<CR>
-" Show all open buffers and their status
-nmap <leader>bl :ls<CR>
-nmap <silent> <A-Up> :wincmd k<CR>
-nmap <silent> <A-Down> :wincmd j<CR>
-nmap <silent> <A-Left> :wincmd h<CR>
-nmap <silent> <A-Right> :wincmd l<CR>
-" Easier split navigation
-" Use ctrl-[hjkl] to select the active split!
-nmap <silent> <c-k> :wincmd k<CR>
-nmap <silent> <c-j> :wincmd j<CR>
-nmap <silent> <c-h> :wincmd h<CR>
-nmap <silent> <c-l> :wincmd l<CR>
-noremap j gj
-noremap k gk
-" Stupid shift key fixes
-command! -bang -nargs=* -complete=file E e<bang> <args>
-command! -bang -nargs=* -complete=file W w<bang> <args>
-command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Wa wa<bang>
-command! -bang WA wa<bang>
-command! -bang Q q<bang>
-command! -bang QA qa<bang>
-command! -bang Qa qa<bang>
-nnoremap Y y$
-vnoremap . :normal .<CR>
-cmap w!! w !sudo tee % >/dev/null
-map zl zL
-map zh zH
-nnoremap <silent> <leader>q gwip
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Yankstack config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
+"nmap <leader>p <Plug>yankstack_substitute_older_paste
+"nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Expand region config
+"=> Easyclip config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vmap v <Plug>(expand_region_expand)
+let g:EasyClipUseSubstituteDefaults = 1
+"m[motion] or mm to cut
+"s[motion] or ss to substitute
+"d[motion] or dd does not yank
+"c[motion] or cc does not yank
+"Ctrl+p and Ctrl+n cycles through next and previous yanks
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> ASTYLE Formatter
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -454,13 +441,13 @@ let g:formatdef_my_astyle_cpp = '"astyle --style=allman --mode=c --attach-namesp
 let g:formatters_cpp = ['my_astyle_cpp']
 let g:formatters_c = ['my_astyle_cpp']
 let g:formatters_cc = ['my_astyle_cpp']
-noremap <F3> :Autoformat<CR>
-"au BufWrite * :Autoformat
+"noremap <F3> :Autoformat<CR>
 au BufWrite *.{cc,cpp,cxx,h,hh,hxx,py} silent :Autoformat
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> EASYMOTION
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap s <Plug>(easymotion-s2)
+"nmap s <Plug>(easymotion-s2)
 nmap f <Plug>(easymotion-bd-f)
 nmap t <Plug>(easymotion-bd-t2)
 " Turn on case insensitive feature
@@ -470,16 +457,23 @@ let g:EasyMotion_use_upper = 1
 " JK motions: Line motions
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> autoswap plugin
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:autoswap_detect_tmux = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> autopairs plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:AutoPairsUseInsertedCount = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> INCSEARCH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Rainbow for Parentheses
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

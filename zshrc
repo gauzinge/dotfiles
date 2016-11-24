@@ -58,7 +58,7 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting)
+plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting fasd)
 
 export KEYTIMEOUT=1
 bindkey '^[[A' history-substring-search-up
@@ -173,6 +173,7 @@ alias umountcmsup='fusermount -u /Users/schurl/remote'
 
 alias tmux='tmux -2'
 alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
+alias v='f -e nvim' # quick opening files with vim
 
 zle -N zle-line-init
 zle -N zle-keymap-select
@@ -183,5 +184,6 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #ENHANCD
 source ~/.enhancd/enhancd/init.sh
 export ENHANCD_FILTER="/usr/local/bin/fzf:non-existing-filter"
+eval "$(fasd --init auto)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

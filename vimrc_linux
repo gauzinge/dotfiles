@@ -10,12 +10,10 @@ let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 set nocompatible
-
-set nocp
 set shell=/bin/bash
 syntax enable
 syntax on
-filetype on
+filetype plugin indent on
 ":set filetype+=.root
 ":se ft+=.root
 
@@ -35,30 +33,14 @@ set background=dark
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General Behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 scriptencoding utf-8
-set clipboard=unnamed
-
-" Always switch to the current file directory
-
+set cb=unnamedplus
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
-
-
-function! ResCur()
-    if line("'\"") <= line("$")
-        normal! g`"
-        return 1
-    endif
-endfunction
-
-augroup resCur
-    autocmd!
-    autocmd BufWinEnter * call ResCur()
-augroup END
-
+set laststatus=2
+set timeoutlen=200 ttimeoutlen=200
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -136,17 +118,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 set tm=500
-
-
-
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> search and replace fix: use cs to replace first match, esc, n.n. to do the next ones
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-vnoremap <silent> s //e<C-r>=&selection=='exclusive'?'+1':''<CR><CR>
-            \:<C-u>call histdel('search',-1)<Bar>let @/=histget('search',-1)<CR>gv
-omap s :normal vs<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
