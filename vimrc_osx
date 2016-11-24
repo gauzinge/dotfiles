@@ -213,8 +213,7 @@ vnoremap ii <Esc>
 inoremap <esc> <nop>
 nnoremap <Leader>w :w<CR>
 nnoremap <Leader>q :wq<CR>
-nmap <leader>w :w!<cr>
-nmap <leader>w :w!<cr>
+"nmap <Leader>w :w!<cr>
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
@@ -231,11 +230,11 @@ nmap <leader>k :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers and their status
 "nmap <leader>bl :ls<CR>
-"nmap <silent> <A-Up> :wincmd k<CR>
-"nmap <silent> <A-Down> :wincmd j<CR>
-"nmap <silent> <A-Left> :wincmd h<CR>
-"nmap <silent> <A-Right> :wincmd l<CR>
-" Easier split navigation
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
+ "Easier split navigation
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
@@ -259,7 +258,7 @@ vnoremap . :normal .<CR>
 cmap w!! w !sudo tee % >/dev/null
 map zl zL
 map zh zH
-nnoremap <silent> <leader>q gwip
+"nnoremap <silent> <leader>q gwip
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Searching

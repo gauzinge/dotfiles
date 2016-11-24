@@ -134,9 +134,7 @@ inoremap kj <Esc>
 inoremap ii <Esc>
 inoremap ` <Esc>
 nnoremap <Leader>w :w<CR>
-nmap <leader>w :w!<cr>
-
-nmap <leader>w :w!<cr>
+nmap <Leader>w :w!<cr>
 vmap <Leader>y "+y
 vmap <Leader>d "+d
 nmap <Leader>p "+p
@@ -193,5 +191,5 @@ cmap w!! w !sudo tee % >/dev/null
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
 map zl zL
 map zh zH
-nnoremap <silent> <leader>q gwip
+"nnoremap <silent> <leader>q gwip
 
