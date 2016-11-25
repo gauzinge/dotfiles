@@ -125,13 +125,13 @@ set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:11
 " => General Behavior
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 scriptencoding utf-8
-set cb=unnamedplus
+set clipboard=unnamedplus
 set hidden                          " Allow buffer switching without saving
 set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 set laststatus=2
-set timeoutlen=200 ttimeoutlen=200
+set timeoutlen=200 ttimeoutlen=50
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
@@ -200,6 +200,11 @@ set noerrorbells
 set novisualbell
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Leader
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let mapleader=" "       " leader is comma
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " use either jk/kj or ii or ` as escape
@@ -211,16 +216,17 @@ vnoremap kj <Esc>
 vnoremap ii <Esc>
 "temporary to re-train jk,kj 
 inoremap <esc> <nop>
-nnoremap <Leader>w :w<CR>
-nmap <Leader>w :w<CR>
-nnoremap <Leader>q :wq<CR>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>w :w!<CR>
 "nmap <Leader>w :w!<cr>
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
+"vmap <Leader>y "+y
+"vmap <Leader>d "+d
+"nmap <Leader>p "+p
+"nmap <Leader>P "+P
+"vmap <Leader>p "+p
+"vmap <Leader>P "+P
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
 nmap <leader>j :bnext<CR>
@@ -267,11 +273,6 @@ map zh zH
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
 let g:ackprg = 'ag --nogroup --column --follow --hidden --ignore .git -g'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Leader
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let mapleader=" "       " leader is comma
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Smooth Scrolling
