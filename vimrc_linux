@@ -117,12 +117,11 @@ set ignorecase
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=500
+set tm=50
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
 let mapleader=" "       " leader is comma
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -132,52 +131,52 @@ let mapleader=" "       " leader is comma
 inoremap jk <Esc>
 inoremap kj <Esc>
 inoremap ii <Esc>
-inoremap ` <Esc>
-nnoremap <Leader>w :w<CR>
-nmap <Leader>w :w!<cr>
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-nmap <Leader>p "+p
-nmap <Leader>P "+P
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-" To open a new empty buffer
-nmap <leader>T :enew<cr>
-
+vnoremap jk <Esc>
+vnoremap kj <Esc>
+vnoremap ii <Esc>
+cnoremap jk <Esc>
+cnoremap kj <Esc>
+"temporary to re-train jk,kj 
+inoremap <esc> <nop>
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>w :w!<CR>
+nnoremap <leader>w :w!<CR>
+"nmap <Leader>w :w!<cr>
+"vmap <Leader>y "+y
+"vmap <Leader>d "+d
+"nmap <Leader>p "+p
+"nmap <Leader>P "+P
+"vmap <Leader>p "+p
+"vmap <Leader>P "+P
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
 nmap <leader>j :bnext<CR>
-
 " Move to the previous buffer
 nmap <leader>h :bprevious<CR>
 nmap <leader>k :bprevious<CR>
-
 " Close the current buffer and move to the previous one
 nmap <leader>bq :bp <BAR> bd #<CR>
-
 " Show all open buffers and their status
-nmap <leader>bl :ls<CR>
-
+"nmap <leader>bl :ls<CR>
 nmap <silent> <A-Up> :wincmd k<CR>
 nmap <silent> <A-Down> :wincmd j<CR>
 nmap <silent> <A-Left> :wincmd h<CR>
 nmap <silent> <A-Right> :wincmd l<CR>
-
-" Easier split navigation
+ "Easier split navigation
 " Use ctrl-[hjkl] to select the active split!
 nmap <silent> <c-k> :wincmd k<CR>
 nmap <silent> <c-j> :wincmd j<CR>
 nmap <silent> <c-h> :wincmd h<CR>
 nmap <silent> <c-l> :wincmd l<CR>
-
 noremap j gj
 noremap k gk
-
 " Stupid shift key fixes
 command! -bang -nargs=* -complete=file E e<bang> <args>
 command! -bang -nargs=* -complete=file W w<bang> <args>
 command! -bang -nargs=* -complete=file Wq wq<bang> <args>
 command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang -nargs=* -complete=file Bd bd<bang> <args>
 command! -bang Wa wa<bang>
 command! -bang WA wa<bang>
 command! -bang Q q<bang>
@@ -186,10 +185,15 @@ command! -bang Qa qa<bang>
 nnoremap Y y$
 vnoremap . :normal .<CR>
 cmap w!! w !sudo tee % >/dev/null
+map zl zL
+map zh zH
 " Map <Leader>ff to display all lines with keyword under cursor
 " and ask which one to jump to
 nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-map zl zL
-map zh zH
 "nnoremap <silent> <leader>q gwip
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Searching
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set incsearch           " search as characters are entered
+set hlsearch            " highlight matches
