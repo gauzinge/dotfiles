@@ -103,6 +103,12 @@ Host cmsusr
     hostname cmsusr.cern.ch
     TCPKeepAlive yes
 
+Host trackerpro
+    user trackerpro
+    ProxyCommand none
+    hostname cmsusr.cern.ch
+    TCPKeepAlive yes
+
 #Host cmsusr.cern.ch
     #user trackerpro
     #hostname cmsusr.cern.ch
