@@ -58,9 +58,14 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting fasd)
+plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting fasd vi-mode)
 
+#vi mode
+bindkey -v
 export KEYTIMEOUT=1
+bindkey -M viins 'jk' vi-cmd-mode
+bindkey -M viins 'kj' vi-cmd-mode
+
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey "^R" history-incremental-search-backward
