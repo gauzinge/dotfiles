@@ -40,7 +40,7 @@ set iskeyword-=.                    " '.' is an end of word designator
 set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 set laststatus=2
-set timeoutlen=200 ttimeoutlen=200
+set timeoutlen=200 ttimeoutlen=50
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -117,7 +117,6 @@ set ignorecase
 set noerrorbells
 set novisualbell
 set t_vb=
-set tm=50
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Leader
