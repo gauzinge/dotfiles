@@ -134,6 +134,7 @@ normalssh()
     ssh $1
 }
 
+
 ###########################################################################
 # Aliases
 ###########################################################################
@@ -192,3 +193,25 @@ export ENHANCD_FILTER="/usr/local/bin/fzf:non-existing-filter"
 eval "$(fasd --init auto)"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+
+###########################################################################
+# Zgen plugin manager
+###########################################################################
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"
+
+# if the init scipt doesn't exist
+if ! zgen saved; then
+
+  # specify plugins here
+  zgen oh-my-zsh
+  zgen load uvaes/fzf-marks
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/sudo
+  zgen oh-my-zsh plugins/command-not-found
+  zgen load zsh-users/zsh-syntax-highlighting
+
+  # generate the init script from plugins above
+  zgen save
+fi

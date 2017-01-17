@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdcommenter'
 "autopairs!
 Plug 'auto-pairs-gentle'
 "fuzzy search engine for files & methods
+"Plug 'fntlnz/atags.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 "searching and file browser
 Plug 'rking/ag.vim'
@@ -318,32 +319,72 @@ let g:cpp_experimental_template_highlight = 1
 "nnoremap <Leader>lt :LatexTOCToggle<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Atag tag generation
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"let g:atags_build_commands_list = [
+    "\ 'ag --cpp -g "" | ctags -L - --fields=+l -f tags.tmp',
+    "\ 'awk "length($0) < 400" tags.tmp > tags',
+    "\ 'rm tags.tmp'
+    "\ ]
+"autocmd BufWritePost * call atags#generate()
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> FZF config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tags=tags
+"jump to tag
+function! s:tags_sink(line)
+  let parts = split(a:line, '\t\zs')
+  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  execute 'silent e' parts[1][:-2]
+  let [magic, &magic] = [&magic, 0]
+  execute excmd
+  let &magic = magic
+endfunction
+
+function! s:tags()
+  if empty(tagfiles())
+    echohl WarningMsg
+    echom 'Preparing tags'
+    echohl None
+    call system('ctags -R')
+  endif
+
+  call fzf#run({
+  \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+  \            '| grep -v -a ^!',
+  \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+  \ 'down':    '15%',
+  \ 'sink':    function('s:tags_sink')})
+endfunction
+
+command! Tags call s:tags()
+
 " Fuzzy-find with fzf
 map <Leader>o :Files<cr>
 nmap <Leader>o :Files<cr>
 map <Leader>f :Tags<cr>
 nmap <Leader>f :Tags<cr>
+map <Leader>b :BTags<cr>
+nmap <Leader>b :BTags<cr>
 
 let g:fzf_layout = {'down':'~15%'}
 " In Neovim, you can set up fzf window using a Vim command
-let g:fzf_layout = { 'window': 'enew' }
-let g:fzf_layout = { 'window': '-tabnew' }
+"let g:fzf_layout = { 'window': 'enew' }
+"let g:fzf_layout = { 'window': '-tabnew' }
 " Customize fzf colors to match your color scheme
-let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+"let g:fzf_colors =
+"\ { 'fg':      ['fg', 'Normal'],
+  "\ 'bg':      ['bg', 'Normal'],
+  "\ 'hl':      ['fg', 'Comment'],
+  "\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  "\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  "\ 'hl+':     ['fg', 'Statement'],
+  "\ 'info':    ['fg', 'PreProc'],
+  "\ 'prompt':  ['fg', 'Conditional'],
+  "\ 'pointer': ['fg', 'Exception'],
+  "\ 'marker':  ['fg', 'Keyword'],
+  "\ 'spinner': ['fg', 'Label'],
+  "\ 'header':  ['fg', 'Comment'] }
 " Complete from open tmux panes (from @junegunn)
 inoremap <expr> <C-x><C-t> fzf#complete( 'tmuxwords.rb -all-but-current --scroll 499 --min 5' )
 
@@ -353,12 +394,12 @@ xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
 " Insert mode completion
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-" Advanced customization using autoload functions
-inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+"imap <c-x><c-k> <plug>(fzf-complete-word)
+"imap <c-x><c-f> <plug>(fzf-complete-path)
+"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+"imap <c-x><c-l> <plug>(fzf-complete-line)
+"" Advanced customization using autoload functions
+"inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 function! s:fzf_statusline()
   " Override statusline as you like
   highlight fzf1 ctermfg=161 ctermbg=251
@@ -368,17 +409,6 @@ function! s:fzf_statusline()
 endfunction
 autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> YouCompleteMe Config
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"let g:ycm_confirm_extra_conf = 1
-"let g:ycm_collect_identifiers_from_tags_files = 1
-"let g:ycm_collect_identifiers_from_comments_and_strings = 1
-"let g:ycm_seed_identifiers_with_syntax = 1
-"let g:ycm_key_invoke_completion = '<C-Space>'
-"let g:ycm_complete_in_comments = 0
-"let g:ycm_complete_in_strings = 1
-"let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Deoplete (Neocomplete) config
@@ -386,11 +416,15 @@ autocmd! User FzfStatusLine call <SID>fzf_statusline()
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_ignore_case = 1
 let g:deoplete#enable_smart_case = 1
+let g:deoplete#sources = {}
+let g:deoplete#sources._ = ['buffer']
+let g:deoplete#sources.cpp = ['buffer', 'tag', 'clang']
 " deoplete tab-complete
 inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " Deoplete-clang
-let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.9.0/lib/libclang.dylib' 
-let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.9.0/include/clang/'
+let g:deoplete#sources#clang#libclang_path = '/usr/local/Cellar/llvm/3.9.1/lib/libclang.dylib' 
+let g:deoplete#sources#clang#clang_header = '/usr/local/Cellar/llvm/3.9.1/include/clang/'
+let deoplete#tag#cache_limit_size = 5000000
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Supertab
