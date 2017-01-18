@@ -104,7 +104,7 @@ brew cask install suspicious-package
 echo 'Installing apps!'
 brew cask install appcleaner
 brew cask install caffeine
-brew cask install dropbox
+#brew cask install dropbox
 brew cask install flux
 #brew cask install 1password
 brew cask install vlc

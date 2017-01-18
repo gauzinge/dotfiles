@@ -29,9 +29,9 @@ rm -rf ~/.sshrc.d
 ln -s ~/cernbox/dotfiles/sshrc.d ~/.sshrc.d
 
 echo 'taking care of documents and projects'
-ln -s ~/cernbox/Projects ~/Projects
-rm -rf Documents/
-ln -s ~/cernbox/Documents ~/Documents
+#ln -s ~/cernbox/Projects ~/Projects
+#rm -rf Documents/
+#ln -s ~/cernbox/Documents ~/Documents
 
 ln -s ~/cernbox/dotfiles/bookmarks ~/.bookmarks
 
