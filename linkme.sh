@@ -35,3 +35,4 @@ ln -s ~/cernbox/Documents ~/Documents
 
 ln -s ~/cernbox/dotfiles/bookmarks ~/.bookmarks
 
+ln -s ~/cernbox/dotfiles/ssh_config ~/.ssh/ssh_config
