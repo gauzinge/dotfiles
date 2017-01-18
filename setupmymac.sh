@@ -119,5 +119,8 @@ brew cask install spotify
 brew cask install whatsapp
 brew cask install iterm2
 brew cask install monolingual
+brew cask install basictex
+brew cask install cheatsheet
 
 echo 'Done, you still need to install spotify bluetooth headset listener,  bettersnaptool, cernbox, twitter?'
+echo 'Dont forget the patched powerline font DejaVuSansMono and the tmux-xterm256 color italic etc!'
