@@ -2,6 +2,7 @@
 # Prezto
 ###########################################################################
 # Source Prezto.
+#
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
@@ -9,7 +10,7 @@ fi
 ###########################################################################
 # ZSH syntax highlighting
 ###########################################################################
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ###########################################################################
 # FZF integration
@@ -33,24 +34,24 @@ if ! zgen saved; then
 
   # specify plugins here
   # prezto and modules
-  zgen prezto
-  zgen prezto environment
-  zgen prezto terminal
-  zgen prezto editor
-  zgen prezto history
-  zgen prezto directory
-  zgen prezto spectrum
-  zgen prezto utility
-  zgen prezto ssh
-  zgen prezto completion
-  zgen prezto autosuggestions
-  zgen prezto prompt
-  zgen prezto homebrew
-  zgen prezto osx
-  zgen prezto git
-  zgen prezto syntax-highlighting
-  zgen prezto history-substring-search
-  zgen prezto tmux
+  #zgen prezto
+  #zgen prezto environment
+  #zgen prezto terminal
+  #zgen prezto editor
+  #zgen prezto history
+  #zgen prezto directory
+  #zgen prezto spectrum
+  #zgen prezto utility
+  #zgen prezto ssh
+  #zgen prezto completion
+  #zgen prezto autosuggestions
+  #zgen prezto prompt
+  #zgen prezto homebrew
+  #zgen prezto osx
+  #zgen prezto git
+  #zgen prezto syntax-highlighting
+  #zgen prezto history-substring-search
+  #zgen prezto tmux
 
   #fzf bookmarks
   zgen load junegunn/fzf shell
