@@ -122,6 +122,12 @@ brew cask install monolingual
 brew cask install basictex
 brew cask install cheatsheet
 
+brew tap caskroom/fonts
+brew cask install font-droidsansmono-nerd-font
+brew cask install font-droidsansmono-nerd-font-mono
+brew cask install font-dejavusansmono-nerd-font
+brew cask install font-dejavusansmono-nerd-font-mono
+
 
 echo 'Done, you still need to install spotify bluetooth headset listener,  bettersnaptool, cernbox, twitter?'
 echo 'Dont forget the patched powerline font DejaVuSansMono and the tmux-xterm256 color italic etc!'
