@@ -128,6 +128,12 @@ brew cask install font-droidsansmono-nerd-font-mono
 brew cask install font-dejavusansmono-nerd-font
 brew cask install font-dejavusansmono-nerd-font-mono
 
+echo 'setting up vim-plug'
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
+echo 'setting up zgen'
+git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
 echo 'Done, you still need to install spotify bluetooth headset listener,  bettersnaptool, cernbox, twitter?'
 echo 'Dont forget the patched powerline font DejaVuSansMono and the tmux-xterm256 color italic etc!'
