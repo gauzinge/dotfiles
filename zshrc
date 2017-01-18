@@ -1,65 +1,52 @@
-# Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
-#export TERM=xterm-256color
-#export XTERM=xterm-256color
+###########################################################################
+# Prezto
+###########################################################################
+# Source Prezto.
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="agnoster"
+#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
+#ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+#plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting vi-mode)
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+###########################################################################
+# ZSH syntax highlighting
+###########################################################################
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-DISABLE_AUTO_UPDATE="true"
+###########################################################################
+# FZF integration
+###########################################################################
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+###########################################################################
+# Iterm2 Shell integration
+###########################################################################
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
 
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+###########################################################################
+# Zgen plugin manager
+###########################################################################
+# load zgen
+source "${HOME}/.zgen/zgen.zsh"
 
-# Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# if the init scipt doesn't exist
+if ! zgen saved; then
 
-# Uncomment the following line to display red dots whilst waiting for completion.
-COMPLETION_WAITING_DOTS="true"
+  # specify plugins here
+  zgen load uvaes/fzf-marks
+  #zgen pmodule <reponame> <branch>
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
- DISABLE_UNTRACKED_FILES_DIRTY="true"
+  # generate the init script from plugins above
+  zgen save
+fi
 
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
-
-export HISTSIZE=32768;
-export HISTFILESIZE=$HISTSIZE;
-export HISTCONTROL=ignoredups;
-export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting vi-mode)
-
+###########################################################################
+# Vi Mode
+###########################################################################
 #vi mode
 bindkey -v
 export KEYTIMEOUT=1
@@ -69,6 +56,15 @@ bindkey -M viins 'kj' vi-cmd-mode
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey "^R" history-incremental-search-backward
+
+###########################################################################
+# Environment
+###########################################################################
+
+export HISTSIZE=32768;
+export HISTFILESIZE=$HISTSIZE;
+export HISTCONTROL=ignoredups;
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 
 # User configuration
 export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:"
@@ -83,10 +79,6 @@ export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 # Tell grep to highlight matches
 export GREP_OPTIONS='--color=auto'
 
-###########################################################################
-# Environment
-###########################################################################
-
 # italic fonts
 export TERM=xterm-256color-italic
 # You may need to manually set your language environment
@@ -94,11 +86,7 @@ export LANG=en_US.UTF-8
 
 export ONEPASSWORD_KEYCHAIN=~/Dropbox/1Password/1Password.agilekeychain
 
-#ROOT
-pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
-fpath=(/usr/local/share/zsh-completions $fpath)
-
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
 
@@ -106,7 +94,7 @@ export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='nvim'
 else
-    export EDITOR='nvim'
+    export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -116,12 +104,21 @@ export ARCHFLAGS="-arch x86_64"
 #export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 ###########################################################################
+# ROOT
+###########################################################################
+
+#ROOT
+pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
+fpath=(/usr/local/share/zsh-completions $fpath)
+
+
+###########################################################################
 # Functions
 ###########################################################################
-open_dash()
-{
-    open dash://$1
-}
+#open_dash()
+#{
+    #open dash://$1
+#}
 myssh(){
     sshrc -XY $1
 }
@@ -138,12 +135,6 @@ normalssh()
 ###########################################################################
 # Aliases
 ###########################################################################
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-
-# Example aliases
 alias vim='nvim'
 alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 #alias la='ls -aG'
@@ -184,29 +175,3 @@ alias v='f -e nvim' # quick opening files with vim
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-
-###########################################################################
-# Zgen plugin manager
-###########################################################################
-# load zgen
-source "${HOME}/.zgen/zgen.zsh"
-
-# if the init scipt doesn't exist
-if ! zgen saved; then
-
-  # specify plugins here
-  zgen oh-my-zsh
-  zgen load uvaes/fzf-marks
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/sudo
-  zgen oh-my-zsh plugins/command-not-found
-  zgen load zsh-users/zsh-syntax-highlighting
-
-  # generate the init script from plugins above
-  zgen save
-fi
