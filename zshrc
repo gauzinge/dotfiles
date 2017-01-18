@@ -6,11 +6,6 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
-#ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
-#ZSH_HIGHLIGHT_PATTERNS=('rm -rf *' 'fg=white,bold,bg=red')
-
-#plugins=(zsh-autosuggestions git osx brew sudo history-substring-search zsh-syntax-highlighting vi-mode)
-
 ###########################################################################
 # ZSH syntax highlighting
 ###########################################################################
@@ -37,6 +32,28 @@ source "${HOME}/.zgen/zgen.zsh"
 if ! zgen saved; then
 
   # specify plugins here
+  # prezto and modules
+  zgen prezto
+  zgen prezto environment
+  zgen prezto terminal
+  zgen prezto editor
+  zgen prezto history
+  zgen prezto directory
+  zgen prezto spectrum
+  zgen prezto utility
+  zgen prezto ssh
+  zgen prezto completion
+  zgen prezto autosuggestions
+  zgen prezto prompt
+  zgen prezto homebrew
+  zgen prezto osx
+  zgen prezto git
+  zgen prezto syntax-highlighting
+  zgen prezto history-substring-search
+  zgen prezto tmux
+
+  #fzf bookmarks
+  zgen load junegunn/fzf shell
   zgen load uvaes/fzf-marks
   #zgen pmodule <reponame> <branch>
 
@@ -48,14 +65,23 @@ fi
 # Vi Mode
 ###########################################################################
 #vi mode
-bindkey -v
-export KEYTIMEOUT=1
-bindkey -M viins 'jk' vi-cmd-mode
-bindkey -M viins 'kj' vi-cmd-mode
+#bindkey -v
+#export KEYTIMEOUT=1
+#bindkey -M viins 'jk' vi-cmd-mode
+#bindkey -M viins 'kj' vi-cmd-mode
 
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey "^R" history-incremental-search-backward
+#bindkey '^[[A' history-substring-search-up
+#bindkey '^[[B' history-substring-search-down
+#bindkey "^R" history-incremental-search-backward
+
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
+zle -N zle-line-init
+zle -N zle-keymap-select
 
 ###########################################################################
 # Environment
@@ -85,8 +111,6 @@ export TERM=xterm-256color-italic
 export LANG=en_US.UTF-8
 
 export ONEPASSWORD_KEYCHAIN=~/Dropbox/1Password/1Password.agilekeychain
-
-#source $ZSH/oh-my-zsh.sh
 
 export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
 
@@ -170,7 +194,6 @@ alias umountcmsup='fusermount -u /Users/schurl/remote'
 
 alias tmux='tmux -2'
 alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
-alias v='f -e nvim' # quick opening files with vim
 
 zle -N zle-line-init
 zle -N zle-keymap-select
