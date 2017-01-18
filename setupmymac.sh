@@ -122,5 +122,33 @@ brew cask install monolingual
 brew cask install basictex
 brew cask install cheatsheet
 
+echo 'creating symlinks for dotfiles'
+rm ~/.zshrc
+ln -s ~/cernbox/dotfiles/zshrc ~/.zshrc
+rm ~/.vimrc
+ln -s ~/cernbox/dotfiles/vimrc_osx ~/.vimrc
+rm ~/.gitconfig
+ln -s ~/cernbox/dotfiles/gitconfig ~/.gitconfig
+rm ~/.bashrc
+ln -s ~/cernbox/dotfiles/bashrc ~/.bashrc
+rm ~/.astylerc
+ln -s ~/cernbox/dotfiles/astylerc ~/.astylerc
+rm ~/.agignore
+ln -s ~/cernbox/dotfiles/agignore ~/.agignore
+rm ~/.fzf.zsh
+ln -s ~/cernbox/dotfiles/fzf.zsh ~/.fzf.zsh
+rm ~/.iterm2_shell_integration.zsh
+ln -s ~/cernbox/dotfiles/iterm2_shell_integration.zsh ~/.iterm2_shell_integration.zsh
+rm ~/.sshrc 
+ln -s ~/cernbox/dotfiles/sshrc ~/.sshrc
+rm ~/.tmux.conf
+ln -s ~/cernbox/dotfiles/tmux.conf ~/.tmux.conf
+rm ~/.zpreztorc
+ln -s ~/cernbox/dotfiles/zpreztorc ~/.zpreztorc
+ln -s ~/cernbox/bin ~/bin
+mkdir ~/cernbox_shares
+echo 'source ~/.vimrc' > ~/.config/nvim/init.vim
+
+
 echo 'Done, you still need to install spotify bluetooth headset listener,  bettersnaptool, cernbox, twitter?'
 echo 'Dont forget the patched powerline font DejaVuSansMono and the tmux-xterm256 color italic etc!'
