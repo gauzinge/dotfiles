@@ -148,6 +148,8 @@ ln -s ~/cernbox/dotfiles/zpreztorc ~/.zpreztorc
 ln -s ~/cernbox/bin ~/bin
 mkdir ~/cernbox_shares
 echo 'source ~/.vimrc' > ~/.config/nvim/init.vim
+rm -rf ~/.sshrc.d
+ln -s ~/cernbox/dotfiles/sshrc.d ~/.sshrc.d
 
 
 echo 'Done, you still need to install spotify bluetooth headset listener,  bettersnaptool, cernbox, twitter?'
