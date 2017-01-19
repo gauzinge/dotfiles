@@ -492,6 +492,15 @@
 			<key>Text</key>
 			<string>vim **\t</string>
 		</dict>
+		<key>touchbar:60173743-403F-4450-A449-2A5750D5F653</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string>ctrl-r</string>
+			<key>Text</key>
+			<string>0x12</string>
+		</dict>
 		<key>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</key>
 		<dict>
 			<key>Action</key>
@@ -588,6 +597,7 @@
 			<string>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</string>
 			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
 			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>touchbar:60173743-403F-4450-A449-2A5750D5F653</string>
 			<string>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</string>
 			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
 			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
@@ -605,9 +615,9 @@
 		</array>
 	</dict>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>838 183 937 512 0 0 1920 1178 </string>
+	<string>838 183 796 473 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>988 383 850 746 0 0 1920 1178 </string>
+	<string>988 359 850 770 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1355,6 +1365,10 @@
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>088D0546-9035-4DC5-94E3-8FC4F8A1D3C8</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
 	<real>506470749.92477101</real>
 	<key>OpenArrangementAtStartup</key>
