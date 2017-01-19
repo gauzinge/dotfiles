@@ -218,7 +218,7 @@ vnoremap ii <Esc>
 cnoremap jk <Esc>
 cnoremap kj <Esc>
 "temporary to re-train jk,kj 
-inoremap <esc> <nop>
+"inoremap <esc> <nop>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :wq<CR>
 nnoremap <leader>w :w!<CR>
@@ -541,19 +541,13 @@ let g:rainbow_conf = {
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Highly experimental touch bar wizzardry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F1=Save\a"
-autocmd VimEnter * map <F1> :w<CR>
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F2=Quit\a"
-autocmd VimEnter * map <F2> :wq!<CR>
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F3=Search\a"
-autocmd VimEnter * map <F3> > /
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F4=Open\a"
-autocmd VimEnter * map <F4> <leader>o
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F5=Tag\a"
-autocmd VimEnter * map <F5> <leader>f
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F6=Tag\a"
-autocmd VimEnter * map <F6> <leader>u
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F7=Comment\a"
+"this is necessary for F1-Esc mapping
+nmap <F1> <Esc>
+imap <F1> <C-c>
+autocmd VimEnter * map <F1> <Esc>
+autocmd VimEnter * map <F2> :w<CR>
+autocmd VimEnter * map <F3> :wq!<CR>
+autocmd VimEnter * map <F4> > :bd<CR>
+autocmd VimEnter * map <F5> <leader>o
+autocmd VimEnter * map <F6> <leader>f
 autocmd VimEnter * map <F7> <leader>c<leader>
-"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F8=bd\a"
-autocmd VimEnter * map <F8> :bd<CR>
