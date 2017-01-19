@@ -52,11 +52,11 @@ brew install libvterm
 brew install llvm
 brew install lua
 brew install luajit
-brew install meld
+brew install homebrew/gui/meld
 brew install mpfr
 brew install msgpack
-brew install neovim
-brew install openssh
+brew install neovim/neovim/neovim
+brew install /homebrew/dupes/openssh
 brew install openssl
 brew install pango
 brew install pcre
