@@ -94,7 +94,7 @@ export HISTCONTROL=ignoredups;
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 
 # User configuration
-export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:"
+export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/schurl/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 
 #colorful terminal
@@ -162,18 +162,18 @@ normalssh()
 ###########################################################################
 alias vim='nvim'
 alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
-alias la='ls -aG'
-alias ls='ls -G'
-alias ll='ls -hl'
-alias ls='ls -Gh'
-#alias la='exa -a'
-#alias ls='exa'
-#alias lt='exa -T -L 3'
-#alias ll='exa --long --header --git'
+#alias la='ls -aG'
+#alias ls='ls -G'
+#alias ll='ls -hl'
+#alias ls='ls -Gh'
+alias la='exa -a'
+alias ls='exa'
+alias lt='exa -T -L 3'
+alias ll='exa --long --header --git'
 alias cd..='cd ..'
 alias root='root -l'
 alias cat='vimcat'
-alias dash=open_dash
+#alias dash=open_dash
 alias ssh=myssh
 alias tunnel=mytunnel
 alias normalssh=normalssh
