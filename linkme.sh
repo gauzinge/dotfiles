@@ -23,7 +23,7 @@ ln -s ~/cernbox/dotfiles/tmux.conf ~/.tmux.conf
 rm ~/.zpreztorc
 ln -s ~/cernbox/dotfiles/zpreztorc ~/.zpreztorc
 ln -s ~/cernbox/bin ~/bin
-mkdir ~/cernbox_shares
+#mkdir ~/cernbox_shares
 echo 'source ~/.vimrc' > ~/.config/nvim/init.vim
 rm -rf ~/.sshrc.d
 ln -s ~/cernbox/dotfiles/sshrc.d ~/.sshrc.d
@@ -35,4 +35,4 @@ echo 'taking care of documents and projects'
 
 ln -s ~/cernbox/dotfiles/bookmarks ~/.bookmarks
 
-ln -s ~/cernbox/dotfiles/ssh_config ~/.ssh/ssh_config
+ln -s ~/cernbox/dotfiles/ssh_config ~/.ssh/config

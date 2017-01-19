@@ -104,13 +104,13 @@ brew cask install suspicious-package
 echo 'Installing apps!'
 brew cask install appcleaner
 brew cask install caffeine
-#brew cask install dropbox
+brew cask install dropbox
 brew cask install flux
-#brew cask install 1password
+brew cask install 1password
 brew cask install vlc
 brew cask install cleanmymac
 brew cask install firefox
-#brew cask install fantastical
+brew cask install fantastical
 brew cask install mailmate
 brew cask install skype
 brew cask install slack
@@ -121,6 +121,7 @@ brew cask install iterm2
 brew cask install monolingual
 brew cask install basictex
 brew cask install cheatsheet
+brew cask install xquartz
 
 brew tap caskroom/fonts
 brew cask install font-droidsansmono-nerd-font
