@@ -1,4 +1,4 @@
-###########################################################################
+ ###########################################################################
 # Prezto
 ###########################################################################
 # Source Prezto.
@@ -108,6 +108,7 @@ export GREP_OPTIONS='--color=auto'
 
 # italic fonts
 export TERM=xterm-256color-italic
+
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
@@ -156,11 +157,30 @@ normalssh()
     ssh $1
 }
 
+runNvim() {
+  NAME=nvimdefault_$RANDOM
+  #echo -ne "\033]1337;PushKeyLabels\a"
+  #save exsisting labels
+  /Users/schurl/bin/it2setkeylabel.sh push $NAME
+  /Users/schurl/bin/it2setkeylabel.sh set F1 w
+  /Users/schurl/bin/it2setkeylabel.sh set F2 wq
+  /Users/schurl/bin/it2setkeylabel.sh set F3 search
+  /Users/schurl/bin/it2setkeylabel.sh set F4 open
+  /Users/schurl/bin/it2setkeylabel.sh set F5 tag
+  /Users/schurl/bin/it2setkeylabel.sh set F6 undotree
+  /Users/schurl/bin/it2setkeylabel.sh set F7 comment
+  /Users/schurl/bin/it2setkeylabel.sh set F8 bd
+  nvim "$@"
+  #Restore labels to previous state
+  #source echo -ne "\033]1337;PopKeyLabels\a"
+  /Users/schurl/bin/it2setkeylabel.sh pop $NAME
+}
 
 ###########################################################################
 # Aliases
 ###########################################################################
-alias vim='nvim'
+#alias vim='nvim'
+alias vim=runNvim
 alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 #alias la='ls -aG'
 #alias ls='ls -G'

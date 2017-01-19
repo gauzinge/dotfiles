@@ -12,6 +12,8 @@
 	<integer>1</integer>
 	<key>CheckTestRelease</key>
 	<true/>
+	<key>Control</key>
+	<integer>1</integer>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>gruvbox-dark</key>
@@ -360,6 +362,8 @@
 	<string>1FDB9506-9633-41B5-B620-635A3405E500</string>
 	<key>DisableFullscreenTransparency</key>
 	<true/>
+	<key>EnableDivisionView</key>
+	<false/>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000</key>
@@ -468,16 +472,68 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>GlobalTouchBarMap</key>
+	<dict>
+		<key>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</key>
+		<dict>
+			<key>Action</key>
+			<integer>38</integer>
+			<key>Label</key>
+			<string>git status</string>
+			<key>Text</key>
+			<string>git status\n</string>
+		</dict>
+		<key>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</key>
+		<dict>
+			<key>Action</key>
+			<integer>38</integer>
+			<key>Label</key>
+			<string>vim</string>
+			<key>Text</key>
+			<string>vim **\t</string>
+		</dict>
+		<key>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</key>
+		<dict>
+			<key>Action</key>
+			<integer>11</integer>
+			<key>Label</key>
+			<string>bookmarks</string>
+			<key>Text</key>
+			<string>0x7</string>
+		</dict>
+		<key>touchbar:AE329425-28A2-420C-A893-3F7932038DC5</key>
+		<dict>
+			<key>Action</key>
+			<integer>38</integer>
+			<key>Label</key>
+			<string>ls</string>
+			<key>Text</key>
+			<string>ll\n</string>
+		</dict>
+		<key>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</key>
+		<dict>
+			<key>Action</key>
+			<integer>25</integer>
+			<key>Label</key>
+			<string>pw</string>
+			<key>Text</key>
+			<string>Password Manager</string>
+		</dict>
+	</dict>
 	<key>HideActivityIndicator</key>
 	<true/>
 	<key>HideMenuBarInFullscreen</key>
 	<false/>
+	<key>HideTab</key>
+	<true/>
 	<key>Hotkey</key>
 	<true/>
 	<key>HotkeyChar</key>
 	<integer>32</integer>
 	<key>HotkeyCode</key>
 	<integer>49</integer>
+	<key>HotkeyMigratedFromSingleToMulti</key>
+	<true/>
 	<key>HotkeyModifiers</key>
 	<integer>524288</integer>
 	<key>LoadPrefsFromCustomFolder</key>
@@ -522,10 +578,36 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
+	<key>NSTouchBarConfig: regular</key>
+	<dict>
+		<key>CurrentItems</key>
+		<array>
+			<string>iTermTouchBarIdentifierFunctionKeys</string>
+			<string>touchbar:AE329425-28A2-420C-A893-3F7932038DC5</string>
+			<string>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</string>
+			<string>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</string>
+			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+		</array>
+		<key>DefaultItems</key>
+		<array>
+			<string>iTermTouchBarIdentifierManPage</string>
+			<string>iTermTouchBarIdentifierColorPreset</string>
+			<string>iTermTouchBarIdentifierFunctionKeys</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+			<string>iTermTouchBarIdentifierAddMark</string>
+			<string>iTermTouchBarIdentifierPreviousMark</string>
+			<string>iTermTouchBarIdentifierNextMark</string>
+		</array>
+	</dict>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>269 91 796 473 0 0 1920 1178 </string>
+	<string>838 183 937 512 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>678 11 1240 1167 0 0 1920 1178 </string>
+	<string>988 383 850 746 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -741,6 +823,8 @@
 				<key>Red Component</key>
 				<real>0.96744710206985474</real>
 			</dict>
+			<key>Application Keypad Allowed</key>
+			<true/>
 			<key>BM Growl</key>
 			<false/>
 			<key>Background Color</key>
@@ -798,6 +882,8 @@
 			<integer>140</integer>
 			<key>Command</key>
 			<string>/usr/local/bin/zsh -i</string>
+			<key>Cursor Boost</key>
+			<real>0.0</real>
 			<key>Cursor Color</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1171,6 +1257,8 @@
 				<key>Red Component</key>
 				<real>0.7928692102432251</real>
 			</dict>
+			<key>Minimum Contrast</key>
+			<real>0.0</real>
 			<key>Mouse Reporting</key>
 			<true/>
 			<key>Name</key>
@@ -1232,7 +1320,7 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm-256color</string>
+			<string>xterm-256color-italic</string>
 			<key>Transparency</key>
 			<real>0.059536797337278111</real>
 			<key>Unlimited Scrollback</key>
@@ -1310,12 +1398,14 @@
 	<string>/Users/schurl/cernbox/dotfiles</string>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
+	<key>RightCommand</key>
+	<integer>8</integer>
 	<key>SUEnableAutomaticChecks</key>
 	<true/>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/testing.xml?shard=99</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=99</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
@@ -1332,9 +1422,11 @@
 	<integer>1</integer>
 	<key>TabViewType</key>
 	<integer>1</integer>
+	<key>UseBorder</key>
+	<false/>
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.20170113-nightly</string>
 </dict>
 </plist>

@@ -537,3 +537,23 @@ let g:rainbow_conf = {
     \       'css': 0,
     \   }
     \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Highly experimental touch bar wizzardry
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F1=Save\a"
+autocmd VimEnter * map <F1> :w<CR>
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F2=Quit\a"
+autocmd VimEnter * map <F2> :wq!<CR>
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F3=Search\a"
+autocmd VimEnter * map <F3> > /
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F4=Open\a"
+autocmd VimEnter * map <F4> <leader>o
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F5=Tag\a"
+autocmd VimEnter * map <F5> <leader>f
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F6=Tag\a"
+autocmd VimEnter * map <F6> <leader>u
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F7=Comment\a"
+autocmd VimEnter * map <F7> <leader>c<leader>
+"autocmd VimEnter * silent !echo -ne "\033]1337;SetKeyLabel=F8=bd\a"
+autocmd VimEnter * map <F8> :bd<CR>
