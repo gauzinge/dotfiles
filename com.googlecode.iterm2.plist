@@ -587,6 +587,33 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
+	<key>NSTouchBarConfig: full screen</key>
+	<dict>
+		<key>CurrentItems</key>
+		<array>
+			<string>iTermTouchBarIdentifierFunctionKeys</string>
+			<string>touchbar:AE329425-28A2-420C-A893-3F7932038DC5</string>
+			<string>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</string>
+			<string>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>touchbar:60173743-403F-4450-A449-2A5750D5F653</string>
+			<string>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</string>
+			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+		</array>
+		<key>DefaultItems</key>
+		<array>
+			<string>iTermTouchBarIdentifierManPage</string>
+			<string>iTermTouchBarIdentifierColorPreset</string>
+			<string>iTermTouchBarIdentifierFunctionKeys</string>
+			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
+			<string>tab bar</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+			<string>iTermTouchBarIdentifierAddMark</string>
+			<string>iTermTouchBarIdentifierPreviousMark</string>
+			<string>iTermTouchBarIdentifierNextMark</string>
+		</array>
+	</dict>
 	<key>NSTouchBarConfig: regular</key>
 	<dict>
 		<key>CurrentItems</key>
@@ -596,11 +623,10 @@
 			<string>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</string>
 			<string>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</string>
 			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
-			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
-			<string>touchbar:60173743-403F-4450-A449-2A5750D5F653</string>
 			<string>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</string>
-			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
+			<string>touchbar:60173743-403F-4450-A449-2A5750D5F653</string>
 			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
+			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
 		</array>
 		<key>DefaultItems</key>
 		<array>
@@ -615,9 +641,9 @@
 		</array>
 	</dict>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>838 183 796 473 0 0 1920 1178 </string>
+	<string>681 392 937 512 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>988 359 850 770 0 0 1920 1178 </string>
+	<string>0 0 958 1178 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1330,7 +1356,7 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm-256color-italic</string>
+			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.059536797337278111</real>
 			<key>Unlimited Scrollback</key>
@@ -1357,20 +1383,14 @@
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
-	<key>NoSyncConfirmShellIntegrationCommand</key>
-	<true/>
-	<key>NoSyncConfirmShellIntegrationCommand_selection</key>
-	<integer>0</integer>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>088D0546-9035-4DC5-94E3-8FC4F8A1D3C8</string>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
-	<true/>
-	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
-	<integer>0</integer>
+	<string>03688515-990E-49AF-B9EC-51BC3974CBD0</string>
+	<key>NoSyncPermissionToShowTip</key>
+	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>506470749.92477101</real>
+	<real>506863604.65790302</real>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
@@ -1419,11 +1439,11 @@
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly.xml?shard=99</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=34</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-01-18T22:33:54Z</date>
+	<date>2040-08-05T09:21:51Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>ShowYellowMarkForJobStoppedBySignal</key>
@@ -1441,6 +1461,6 @@
 	<key>WordCharacters</key>
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
-	<string>3.0.20170113-nightly</string>
+	<string>3.0.20170120-nightly</string>
 </dict>
 </plist>

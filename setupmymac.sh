@@ -52,7 +52,6 @@ brew install libvterm
 brew install llvm
 brew install lua
 brew install luajit
-brew install homebrew/gui/meld
 brew install mpfr
 brew install msgpack
 brew install neovim/neovim/neovim
@@ -85,6 +84,7 @@ brew install unibilium
 brew install utf8proc
 brew install zsh
 brew install exa
+brew install doxygen
 #zsh-completions
 #zsh-syntax-highlighting
 
@@ -103,6 +103,7 @@ brew cask install suspicious-package
 #apps
 echo 'Installing apps!'
 brew cask install appcleaner
+brew cask install meld
 brew cask install caffeine
 brew cask install dropbox
 brew cask install flux
@@ -117,7 +118,7 @@ brew cask install slack
 brew cask install spotify
 #brew cask install sonos
 brew cask install whatsapp
-brew cask install iterm2
+#brew cask install iterm2
 brew cask install monolingual
 brew cask install basictex
 brew cask install cheatsheet
@@ -136,5 +137,7 @@ curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
 echo 'setting up zgen'
 git clone https://github.com/tarjoilija/zgen.git "${HOME}/.zgen"
 
+echo 'setting up tmux plugin manager'
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 echo 'Done, you still need to install spotify bluetooth headset listener,  bettersnaptool, cernbox, twitter?'
-echo 'Dont forget the patched powerline font DejaVuSansMono and the tmux-xterm256 color italic etc!'
