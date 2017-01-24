@@ -178,6 +178,7 @@ runNvim() {
 # Aliases
 ###########################################################################
 #alias vim='nvim'
+alias rm='rm'
 alias vim=runNvim
 alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 #alias la='ls -aG'
