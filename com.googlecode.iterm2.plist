@@ -641,9 +641,9 @@
 		</array>
 	</dict>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>681 392 937 512 0 0 1920 1178 </string>
+	<string>681 319 918 507 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 0 958 1178 0 0 1920 1178 </string>
+	<string>4 408 850 770 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1356,7 +1356,7 @@
 			<key>Tags</key>
 			<array/>
 			<key>Terminal Type</key>
-			<string>xterm-256color</string>
+			<string>xterm-256color-italic</string>
 			<key>Transparency</key>
 			<real>0.059536797337278111</real>
 			<key>Unlimited Scrollback</key>

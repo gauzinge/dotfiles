@@ -91,14 +91,14 @@ filetype plugin indent on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"set term=xterm-256color
 set background=dark
-if has('nvim')
-    let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1 " True gui colors in terminal
+if has("termguicolors")
     set termguicolors
-    set background=dark
 endif
-highlight Comment cterm=italic
+set background=dark
 
 "colorscheme gruvbox
 "let g:gruvbox_italic=1
@@ -110,12 +110,16 @@ let g:srcery_bold=1
 let g:airline_theme = 'badwolf'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Italics
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let &t_ZH="\e[3m"
+let &t_ZR="\e[23m"
+highlight Comment cterm=italic
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Tmux
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"nvim
-if has('nvim')
-    nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
-endif
+nnoremap <silent> <BS> :TmuxNavigateLeft<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fonts
