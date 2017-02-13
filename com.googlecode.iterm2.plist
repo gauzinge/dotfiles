@@ -641,9 +641,9 @@
 		</array>
 	</dict>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>681 319 918 507 0 0 1920 1178 </string>
+	<string>-1088 -172 796 473 -1920 -799 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 408 850 770 0 0 1920 1178 </string>
+	<string>-1916 -489 1246 854 -1920 -799 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -868,13 +868,13 @@
 				<key>Alpha Component</key>
 				<real>1</real>
 				<key>Blue Component</key>
-				<real>0.11759774386882782</real>
+				<real>0.10000000000000001</real>
 				<key>Color Space</key>
-				<string>Calibrated</string>
+				<string>sRGB</string>
 				<key>Green Component</key>
-				<real>0.11759573966264725</real>
+				<real>0.10000000000000001</real>
 				<key>Red Component</key>
-				<real>0.11759927868843079</real>
+				<real>0.10000000000000001</real>
 			</dict>
 			<key>Background Image Location</key>
 			<string></string>
@@ -1387,6 +1387,10 @@
 	<true/>
 	<key>NoSyncInstallationId</key>
 	<string>03688515-990E-49AF-B9EC-51BC3974CBD0</string>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
+	<true/>
+	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
+	<integer>0</integer>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
@@ -1462,5 +1466,9 @@
 	<string>/-+\~_.</string>
 	<key>iTerm Version</key>
 	<string>3.0.20170120-nightly</string>
+	<key>kCPKSelectionViewPreferredModeKey</key>
+	<integer>0</integer>
+	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
+	<false/>
 </dict>
 </plist>

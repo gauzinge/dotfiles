@@ -27,6 +27,7 @@ Plug 'luochen1990/rainbow'
 Plug 'Chiel92/vim-autoformat'
 "tmux
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
 "sane cursor in cmd line vim
 Plug 'jszakmeister/vim-togglecursor'
 "commenter

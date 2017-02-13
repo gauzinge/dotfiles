@@ -198,12 +198,12 @@ alias tunnel=mytunnel
 alias normalssh=normalssh
 
 #grc aliases
-alias ping='grc ping'
-alias traceroute='grc traceroute'
-alias gcc='grc gcc'
-alias make='grc make -j7'
-alias netstat='grc netstat'
-alias diff='grc diff'
+#alias ping='grc ping'
+#alias traceroute='grc traceroute'
+#alias gcc='grc gcc'
+#alias make='grc make -j7'
+#alias netstat='grc netstat'
+#alias diff='grc diff'
 
 
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'

@@ -40,11 +40,12 @@ echo '# logged in as '$(whoami)
 
 if [ $(whoami) = "gauzinge" ]; then
 	echo '# Using gcc 4.9.2 from /afs installation'
-	#echo '# Using gcc 4.8.1 from /afs installation'
-	source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh	
+    #echo '# Using gcc 4.8.1 from /afs installation'
+    #source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh	
     echo 'eosmount <dir> to mount cernbox directory '
     echo 'symbolic linke cernbox points to /eos/user/g/gauzinge/' 
     source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
+    export ROOTSYS=/usr/local/lib/root
 else
 	echo '# Using local gcc as no /afs access avaialble'
 fi
@@ -55,4 +56,8 @@ echo '* ********************************************************************'
 
 
  #source my sane vimrc on remote
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vim/.vimrc' | source \$MYVIMRC"
+#export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vim/.vimrc' | source \$MYVIMRC"
+export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+export VIM=$SSHHOME/.sshrc.d
+export VIMINIT=$SSHHOME/.sshrc.d/.vim
+alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'

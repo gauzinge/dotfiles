@@ -29,7 +29,7 @@ Host lxplus
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-Host cmsuptracker002 gauzinge ph2daqdev greg-ttl
+Host cmsuptracker009 cmsuptracker008 gauzinge ph2daqdev greg-ttl
     user gauzinge
     ProxyCommand none
     #GSSAPIClientIdentity gauzinge@CERN.CH
@@ -52,7 +52,7 @@ Host cmsuptracker002 gauzinge ph2daqdev greg-ttl
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-Host cmsuptracker008 cmsuptracker007
+Host cmsuptracker007
     user xtaldaq
     ProxyCommand none
     Protocol 2

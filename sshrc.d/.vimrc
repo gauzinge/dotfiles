@@ -6,6 +6,7 @@ let s:portable = expand('<sfile>:p:h')
 
 " add the directory to 'runtimepath'
 let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable)
+"so $SSHHOME/.sshrc.d/.vim/NERD_commenter.vim
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
@@ -196,3 +197,4 @@ nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+so $SSHHOME/.sshrc.d/.vim/NERD_commenter.vim
