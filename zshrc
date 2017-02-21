@@ -173,6 +173,10 @@ runNvim() {
   /Users/schurl/bin/it2setkeylabel.sh pop $NAME
 }
 
+git_commit() {
+    git commit -am "$1"
+}
+
 
 ###########################################################################
 # Aliases
@@ -204,6 +208,11 @@ alias normalssh=normalssh
 #alias make='grc make -j7'
 #alias netstat='grc netstat'
 #alias diff='grc diff'
+
+#git aliases
+alias gs='git status'
+alias gl='git log'
+alias gc=git_commit
 
 
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'

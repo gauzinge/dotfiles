@@ -90,6 +90,9 @@ syntax on
 filetype plugin indent on
 ":set syntax+=.root
 
+"so it doesnt go nuts on afs
+set nofsync
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Color Scheme
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
