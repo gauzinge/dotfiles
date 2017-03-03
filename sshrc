@@ -42,6 +42,7 @@ if [ $(whoami) = "gauzinge" ]; then
 	echo '# Using gcc 4.9.2 from /afs installation'
     #echo '# Using gcc 4.8.1 from /afs installation'
     source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh	
+    export PATH=/afs/cern.ch/sw/lcg/contrib/gdb/7.8/x86_64-slc6-gcc48-opt/bin:$PATH
     echo 'eosmount <dir> to mount cernbox directory '
     echo 'symbolic linke cernbox points to /eos/user/g/gauzinge/' 
     source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
