@@ -25,7 +25,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'luochen1990/rainbow'
 "autoformatting!
 Plug 'Chiel92/vim-autoformat'
-"tmux
+"run shell commands in tmux pane
+Plug 'benmills/vimux'
+"tmux sane pane navigation
 Plug 'christoomey/vim-tmux-navigator'
 "syntax highlighting for tmux.conf
 Plug 'tmux-plugins/vim-tmux'
@@ -59,7 +61,7 @@ Plug 'neomake/neomake'
 Plug 'vim-scripts/a.vim'
 "CPP & root
 Plug 'octol/vim-cpp-enhanced-highlight'
-"Plug 'parnmatt/vim-root'
+Plug 'parnmatt/vim-root'
 "autocompleteion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
@@ -91,7 +93,7 @@ set shell=/usr/local/bin/zsh
 syntax enable
 syntax on
 filetype plugin indent on
-":set syntax+=.root
+"set syn+=.root
 
 "so it doesnt go nuts on afs
 set nofsync
@@ -310,7 +312,8 @@ nnoremap <leader>u :GundoToggle<CR>
 " => Syntax Highlighting octol/enhanced cpp
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 let g:cpp_class_scope_highlight = 1
-let g:cpp_experimental_template_highlight = 1
+let g:cpp_member_variable_highlight = 1
+"let g:cpp_experimental_template_highlight = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Latex Box
@@ -441,7 +444,7 @@ let g:SuperTabDefaultCompletionType = "context"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""" turn on completion in comments
 let g:ycm_complete_in_comments=1
 "" load ycm conf by default
-let g:ycm_confirm_extra_conf=0
+let g:ycm_confirm_extra_conf=1
 "" turn on tag completion
 let g:ycm_collect_identifiers_from_tags_files=1
 "" only show completion as a list instead of a sub-window
@@ -455,8 +458,7 @@ let g:ycm_seed_identifiers_with_syntax=1
 "let g:ycm_key_list_select_completion=['<C-n>', '<Down>', '<tab>']
 "let g:ycm_key_list_previous_completion=['<C-p>', '<Up>']
 let g:ycm_autoclose_preview_window_after_completion = 1
-
-let g:ycm_global_ycm_extra_conf = ".config/nvim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
+let g:ycm_global_ycm_extra_conf = "/Users/schurl/.config/nvim/plugged/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> neomake
@@ -567,6 +569,20 @@ let g:rainbow_conf = {
     \   }
     \}
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Vimux
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:VimuxTmuxCommand = "tmux -2"
+function! VimuxRoot()
+  call VimuxSendKeys(".q Enter")
+  call VimuxRunCommand("clear; root -l " .bufname("%"))
+ endfunction
+
+let g:VimuxUseNearest = 1
+map <leader>r :call VimuxRoot()<CR>
+map <leader>x :call VimuxSendKeys(".q Enter")<CR>
+"map <Leader>vq :VimuxCloseRunner<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Highly experimental touch bar wizzardry
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -580,3 +596,4 @@ autocmd VimEnter * map <F4> > :bd<CR>
 autocmd VimEnter * map <F5> <leader>o
 autocmd VimEnter * map <F6> <leader>f
 autocmd VimEnter * map <F7> <leader>c<leader>
+
