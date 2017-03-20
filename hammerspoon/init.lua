@@ -97,6 +97,8 @@ hs.hotkey.bind(hyper, 'w', function () hs.application.launchOrFocus("WhatsApp") 
 hs.hotkey.bind(hyper, 'i', function () hs.application.launchOrFocus("iTerm") end)
 hs.hotkey.bind(hyper, 'r', function () hs.application.launchOrFocus("VimR") end)
 hs.hotkey.bind(hyper, 'f', function () hs.application.launchOrFocus("Finder") end)
+hs.hotkey.bind(hyper, 'n', function () hs.application.launchOrFocus("Notes") end)
+hs.hotkey.bind(hyper, 'y', function () hs.application.launchOrFocus("Skype") end)
 
 
 --- Tiling WM
