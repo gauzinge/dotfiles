@@ -668,9 +668,9 @@
 		</array>
 	</dict>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>1445 610 1018 447 0 0 2560 1418 </string>
+	<string>764 515 918 512 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 24 1916 1154 0 0 1920 1178 </string>
+	<string>551 487 1330 682 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1017,6 +1017,8 @@
 			<real>1</real>
 			<key>Idle Code</key>
 			<integer>0</integer>
+			<key>Initial Text</key>
+			<string>tmux attach -t init || tmux new -s init</string>
 			<key>Jobs to Ignore</key>
 			<array>
 				<string>rlogin</string>
