@@ -7,7 +7,7 @@ local TIMEOUT = 3
 local modal = hs.hotkey.modal.new('ctrl', 'space')
 
 function modal:entered()
-    modal.alertId = hs.alert.show("Prefix Mode", 9999)
+    modal.alertId = hs.alert.show("Prefix Mode Keybindings:\nd ... toggle console\nr ... reload config\nc ... caffeine\nl ... lock screen\n\nApps:\nf ... Finder\nn ... Notes\ni ... iTerm\ns ... Safari\ny ... Skype\nw ... WhatsApp\nm ... Mail\nv ... VimR", 9999)
     modal.timer = hs.timer.doAfter(TIMEOUT, function() modal:exit() end)
 end
 
