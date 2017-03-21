@@ -23,8 +23,13 @@ prefix.bind('', 'v', function () hs.application.launchOrFocus("VimR") end)
 prefix.bind('', 'f', function () hs.application.launchOrFocus("Finder") end)
 prefix.bind('', 'n', function () hs.application.launchOrFocus("Notes") end)
 prefix.bind('', 'y', function () hs.application.launchOrFocus("Skype") end)
--- quick jump to important applications
---hs.grid.setMargins({0, 0})
+
+--------------------------------------------------------------------
+-- application switcher better
+--------------------------------------------------------------------
+hs.hotkey.bind('alt', 'tab', function()
+    hs.hints.windowHints()
+end)
 
 --------------------------------------------------------------------
 -- capslock as control when pressed with other key, escape otherwise
