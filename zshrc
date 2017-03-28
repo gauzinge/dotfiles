@@ -56,6 +56,7 @@ if ! zgen saved; then
   #fzf bookmarks
   zgen load junegunn/fzf shell
   zgen load uvaes/fzf-marks
+  zgen load changyuheng/zsh-interactive-cd
   #zgen pmodule <reponame> <branch>
 
   # generate the init script from plugins above
@@ -150,6 +151,7 @@ myssh(){
 }
 mytunnel()
 {
+    echo 'Opening Tunnel to '$1' port 1031!'
     ssh -N -D 1031 $1
 }
 normalssh()
@@ -177,6 +179,16 @@ git_commit() {
     git commit -am "$1"
 }
 
+###########################################################################
+### LESS ###
+###########################################################################
+# Enable syntax-highlighting in less.
+# brew install source-highlight
+# First, add these two lines to ~/.bashrc
+export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
+alias less='less -m -N -g -i -J -R --underline-special --SILENT'
+alias more='less'
 
 ###########################################################################
 # Aliases
