@@ -120,7 +120,7 @@ export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
 if [[ -n $SSH_CONNECTION ]]; then
     export EDITOR='nvim'
 else
-    export EDITOR='vim'
+    export EDITOR='nvim'
 fi
 
 # Compilation flags
@@ -184,7 +184,7 @@ git_commit() {
 #alias vim='nvim'
 alias rm='rm'
 alias vim=runNvim
-alias cernconnect='kinit --afslog -f --renewable gauzinge@CERN.CH'
+alias connect='kinit --afslog -f --renewable gauzinge@CERN.CH'
 #alias la='ls -aG'
 #alias ls='ls -G'
 #alias ll='ls -hl'

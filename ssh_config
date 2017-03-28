@@ -119,6 +119,7 @@ Host trackerpro
 # These stanzas tell SSH how to connect to hosts hidden behind firewalls
 #
 Host *.cern.ch
+    user gauzinge
     ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
     TCPKeepAlive yes
 
