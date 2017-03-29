@@ -1,8 +1,14 @@
 local caffeine = require('caffeine')
 prefix = require('prefix')
 utils=require('utils')
-require('keymaps')
+--require('keymaps')
+hs.window.animationDuration = 0
 
+--------------------------------------------------------------------
+--- some utility keychords
+--------------------------------------------------------------------
+hyper = {"cmd", "alt"}
+hypershift = {"cmd", "alt", "shift"}
 --------------------------------------------------------------------
 --- some utility keychords
 --------------------------------------------------------------------
@@ -72,7 +78,20 @@ end
 other_tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, other_handler)
 other_tap:start()
 
+--------------------------------------------------------------------
+--- GRID and focus switching
+--------------------------------------------------------------------
 
+-- change focus
+hs.hotkey.bind(hyper, 'h', function() hs.window.focusedWindow():focusWindowWest() end)
+hs.hotkey.bind(hyper, 'l', function() hs.window.focusedWindow():focusWindowEast() end)
+hs.hotkey.bind(hyper, 'k', function() hs.window.focusedWindow():focusWindowNorth() end)
+hs.hotkey.bind(hyper, 'j', function() hs.window.focusedWindow():focusWindowSouth() end)
+
+hs.hotkey.bind(hyper, 'm', hs.grid.maximizeWindow)
+
+-- Window Hints
+hs.hotkey.bind(hyper, '.', hs.hints.windowHints)
 
 --------------------------------------------------------------------
 --- Tiling WM
@@ -80,17 +99,17 @@ other_tap:start()
 local tiling = require "hs.tiling"
 local hotkey = require "hs.hotkey"
 
-local mash = {"ctrl", "cmd"}
+--local mash = {"ctrl", "cmd"}
 
-hotkey.bind(mash, "c", function() tiling.cycleLayout() end)
-hotkey.bind(mash, "j", function() tiling.cycle(1) end)
-hotkey.bind(mash, "h", function() tiling.cycle(1) end)
-hotkey.bind(mash, "l", function() tiling.cycle(-1) end)
-hotkey.bind(mash, "k", function() tiling.cycle(-1) end)
-hotkey.bind(mash, "p", function() tiling.promote() end)
-hotkey.bind(mash, "f", function() tiling.goToLayout("fullscreen") end)
+hotkey.bind(hyper, "c", function() tiling.cycleLayout() end)
+--hotkey.bind(hyper, "j", function() tiling.cycle(1) end)
+--hotkey.bind(hyper, "h", function() tiling.cycle(1) end)
+--hotkey.bind(hyper, "l", function() tiling.cycle(-1) end)
+--hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
+hotkey.bind(hyper, "p", function() tiling.promote() end)
+--hotkey.bind(mash, "f", function() tiling.goToLayout("fullscreen") end)
 
--- If you want to set the layouts that are enabled
+ --If you want to set the layouts that are enabled
 tiling.set('layouts', {
   'fullscreen', 'gp-vertical'
 })
@@ -99,27 +118,27 @@ tiling.set('layouts', {
 --------------------------------------------------------------------
 -- WiFi
 --------------------------------------------------------------------
-
-local home = {["gbv-45948"] = TRUE, ["gbv-45948 5GHz"] = TRUE}
+local wifiWatcher = nil
+local homeSSID = "gbv-45948"
 local lastSSID = hs.wifi.currentNetwork()
 
 function ssidChangedCallback()
   newSSID = hs.wifi.currentNetwork()
 
-  if home[newSSID] and not home[lastSSID] then
+  if newSSID == homeSSID and lastSSID~=homeSSID then
     -- We just joined our home WiFi network
     hs.audiodevice.defaultOutputDevice():setVolume(50)
-    hs.notify.new({title="WIFI", informativeTest="Connected to home WIFI, audio on"}):send()
-  elseif not home[newSSID] and home[lastSSID] then
+    hs.notify.new({title="WIFI", informativeText="Connected to home WIFI, audio on"}):send()
+  elseif newSSID ~= homeSSID and lastSSID == homeSSID then
     -- We just departed our home WiFi network
     hs.audiodevice.defaultOutputDevice():setVolume(0)
-    hs.notify.new({title="WIFI", informativeTest="Connected to other WIFI, audio off"}):send()
+    hs.notify.new({title="WIFI", informativeText="Connected to other WIFI, audio off"}):send()
   end
 
   lastSSID = newSSID
 end
 
-local wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
+wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
 wifiWatcher:start()
 
 
@@ -171,3 +190,10 @@ local batteryWatcher = hs.battery.watcher.new(batteryWatchUnplugged):start();
 --end
 --caffeinateWatcher = hs.caffeinate.watcher.new(muteOnWake)
 --caffeinateWatcher:start()
+
+--------------------------------------------------------------------
+--- Experimenting with new tiling
+--------------------------------------------------------------------
+
+local position = require('position')
+
