@@ -1,14 +1,21 @@
+--------------------------------------------------------------------
+--- My awesome hammerspoon config!
+--------------------------------------------------------------------
+-- caffeine
 local caffeine = require('caffeine')
-prefix = require('prefix')
+-- something
 utils=require('utils')
---require('keymaps')
+-- for prefix
+prefix = require('prefix')
+-- hyper key
+hyper = {"cmd", "ctrl"}
 hs.window.animationDuration = 0
 
 --------------------------------------------------------------------
 --- some utility keychords
 --------------------------------------------------------------------
-hyper = {"cmd", "alt"}
-hypershift = {"cmd", "alt", "shift"}
+--hypershift = {"cmd", "alt", "shift"}
+--
 --------------------------------------------------------------------
 --- some utility keychords
 --------------------------------------------------------------------
@@ -20,21 +27,20 @@ prefix.bind('', 'l', hs.caffeinate.lockScreen)
 --------------------------------------------------------------------
 -- quick jump to important applications
 --------------------------------------------------------------------
-prefix.bind('', 'w', function () hs.application.launchOrFocus("WhatsApp") end)
-prefix.bind('', 'm', function () hs.application.launchOrFocus("MailMate") end)
-prefix.bind('', 's', function () hs.application.launchOrFocus("Safari") end)
-prefix.bind('', 'i', function () hs.application.launchOrFocus("iTerm") end)
-prefix.bind('', 'v', function () hs.application.launchOrFocus("VimR") end)
-prefix.bind('', 'f', function () hs.application.launchOrFocus("Finder") end)
-prefix.bind('', 'n', function () hs.application.launchOrFocus("Notes") end)
-prefix.bind('', 'y', function () hs.application.launchOrFocus("Skype") end)
+appbindings = {
+    {'w', 'WhatsApp'},
+    {'m', 'MailMate'},
+    {'s', 'Safari'},
+    {'i', 'iTerm'},
+    {'v', 'VimR'},
+    {'f', 'Finder'},
+    {'n', 'Notes'},
+    {'y', 'Skype'},
+}
 
---------------------------------------------------------------------
--- application switcher better
---------------------------------------------------------------------
-hs.hotkey.bind('alt', 'tab', function()
-    hs.hints.windowHints()
-end)
+for i, app in ipairs(appbindings) do
+    prefix.bind('',app[1], function() hs.application.launchOrFocus(app[2]) end)
+end
 
 --------------------------------------------------------------------
 -- capslock as control when pressed with other key, escape otherwise
@@ -79,41 +85,45 @@ other_tap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, other_handler)
 other_tap:start()
 
 --------------------------------------------------------------------
---- GRID and focus switching
---------------------------------------------------------------------
-
--- change focus
-hs.hotkey.bind(hyper, 'h', function() hs.window.focusedWindow():focusWindowWest() end)
-hs.hotkey.bind(hyper, 'l', function() hs.window.focusedWindow():focusWindowEast() end)
-hs.hotkey.bind(hyper, 'k', function() hs.window.focusedWindow():focusWindowNorth() end)
-hs.hotkey.bind(hyper, 'j', function() hs.window.focusedWindow():focusWindowSouth() end)
-
-hs.hotkey.bind(hyper, 'm', hs.grid.maximizeWindow)
-
--- Window Hints
-hs.hotkey.bind(hyper, '.', hs.hints.windowHints)
-
---------------------------------------------------------------------
---- Tiling WM
+--- Focus switching, tiling, window management
 --------------------------------------------------------------------
 local tiling = require "hs.tiling"
-local hotkey = require "hs.hotkey"
+-- change focus
+hs.hotkey.bind(hyper, 'h', function() hs.window.focusedWindow():focusWindowWest(nil, true, true) end)
+hs.hotkey.bind(hyper, 'l', function() hs.window.focusedWindow():focusWindowEast(nil, true, true) end)
+hs.hotkey.bind(hyper, 'k', function() hs.window.focusedWindow():focusWindowNorth(nil, true, true) end)
+hs.hotkey.bind(hyper, 'j', function() hs.window.focusedWindow():focusWindowSouth(nil, true, true) end)
+-- multi monitor
+hs.hotkey.bind(hyper, 'n', function() hs.window.moveOneScreenEast() end)
+hs.hotkey.bind(hyper, 'p', function() hs.window.moveOneScreenWest() end)
+-- maximize
+hs.hotkey.bind(hyper, 'm', hs.grid.maximizeWindow)
+-- Push the window into the exact center of the screen
+local function center(window)
+  frame = window:screen():frame()
+  frame.x = (frame.w / 2) - (frame.w / 4)
+  frame.y = (frame.h / 2) - (frame.h / 4)
+  frame.w = frame.w / 2
+  frame.h = frame.h / 2
+  window:setframe(frame)
+end
+-- make window float
+hs.hotkey.bind(hyper, "f", function() tiling.togglefloat(center) end)
+-- tile windows
+tiling.set('layouts', {'gp-vertical'})
+hs.hotkey.bind(hyper, "t", function() tiling.cycleLayout() end)
+-- promote currently focussed window
+hs.hotkey.bind(hyper, "space", function() tiling.promote() end)
+-- Window Hints
+hs.hotkey.bind(hyper, '.', hs.hints.windowHints)
+hs.hotkey.bind('alt', 'tab', function() hs.hints.windowHints() end)
 
---local mash = {"ctrl", "cmd"}
+-- Expose
+expose = hs.expose.new(nil,{showThumbnails=true}) -- default windowfilter, no thumbnails
+hs.hotkey.bind(hyper,'e','Expose',function()expose:toggleShow()end)
 
-hotkey.bind(hyper, "c", function() tiling.cycleLayout() end)
---hotkey.bind(hyper, "j", function() tiling.cycle(1) end)
---hotkey.bind(hyper, "h", function() tiling.cycle(1) end)
---hotkey.bind(hyper, "l", function() tiling.cycle(-1) end)
---hotkey.bind(hyper, "k", function() tiling.cycle(-1) end)
-hotkey.bind(hyper, "p", function() tiling.promote() end)
---hotkey.bind(mash, "f", function() tiling.goToLayout("fullscreen") end)
-
- --If you want to set the layouts that are enabled
-tiling.set('layouts', {
-  'fullscreen', 'gp-vertical'
-})
-
+-- move and resize windows with hyper + arrows
+local position = require('position')
 
 --------------------------------------------------------------------
 -- WiFi
@@ -140,7 +150,6 @@ end
 
 wifiWatcher = hs.wifi.watcher.new(ssidChangedCallback)
 wifiWatcher:start()
-
 
 --------------------------------------------------------------------
 -- Battery / Power
@@ -177,23 +186,3 @@ function batteryWatchUnplugged()
   end
 end
 local batteryWatcher = hs.battery.watcher.new(batteryWatchUnplugged):start();
-
---------------------------------------------------------------------
----mute on wakeup
---------------------------------------------------------------------
-
---function muteOnWake(eventType)
-  --if (eventType == hs.caffeinate.watcher.systemDidWake) then
-    --local output = hs.audiodevice.defaultOutputDevice()
-    --output:setMuted(true)
-  --end
---end
---caffeinateWatcher = hs.caffeinate.watcher.new(muteOnWake)
---caffeinateWatcher:start()
-
---------------------------------------------------------------------
---- Experimenting with new tiling
---------------------------------------------------------------------
-
-local position = require('position')
-
