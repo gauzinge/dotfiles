@@ -227,6 +227,8 @@ alias gl='git log'
 alias gc=git_commit
 
 alias kill='fkill'
+alias open="fo"
+alias edit="fe"
 
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
