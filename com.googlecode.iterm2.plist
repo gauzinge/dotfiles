@@ -616,46 +616,19 @@
 		<key>TB Is Shown</key>
 		<integer>1</integer>
 	</dict>
-	<key>NSTouchBarConfig: full screen</key>
-	<dict>
-		<key>CurrentItems</key>
-		<array>
-			<string>iTermTouchBarIdentifierFunctionKeys</string>
-			<string>touchbar:AE329425-28A2-420C-A893-3F7932038DC5</string>
-			<string>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</string>
-			<string>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</string>
-			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
-			<string>touchbar:60173743-403F-4450-A449-2A5750D5F653</string>
-			<string>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</string>
-			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
-			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
-		</array>
-		<key>DefaultItems</key>
-		<array>
-			<string>iTermTouchBarIdentifierManPage</string>
-			<string>iTermTouchBarIdentifierColorPreset</string>
-			<string>iTermTouchBarIdentifierFunctionKeys</string>
-			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
-			<string>tab bar</string>
-			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
-			<string>iTermTouchBarIdentifierAddMark</string>
-			<string>iTermTouchBarIdentifierPreviousMark</string>
-			<string>iTermTouchBarIdentifierNextMark</string>
-		</array>
-	</dict>
 	<key>NSTouchBarConfig: regular</key>
 	<dict>
 		<key>CurrentItems</key>
 		<array>
 			<string>iTermTouchBarIdentifierFunctionKeys</string>
 			<string>touchbar:AE329425-28A2-420C-A893-3F7932038DC5</string>
-			<string>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</string>
 			<string>touchbar:6E02C331-6D1E-4D09-BD8F-AFEDDEE3AE26</string>
+			<string>touchbar:0FFE00E0-A19E-4079-B0DA-2BD748B36D36</string>
 			<string>NSTouchBarItemIdentifierFlexibleSpace</string>
 			<string>touchbar:42A8343C-4263-4CBB-A469-891CC30CDCBC</string>
 			<string>touchbar:60173743-403F-4450-A449-2A5750D5F653</string>
-			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
 			<string>touchbar:E15FDFA8-22F8-4BC6-B51B-4C2912E8AA7F</string>
+			<string>NSTouchBarItemIdentifierOtherItemsProxy</string>
 		</array>
 		<key>DefaultItems</key>
 		<array>
@@ -669,12 +642,12 @@
 			<string>iTermTouchBarIdentifierNextMark</string>
 		</array>
 	</dict>
-	<key>NSWindow Frame SessionsPreferences</key>
-	<string>269 126 606 469 0 0 2560 1418 </string>
+	<key>NSWindow Frame SUUpdateAlert</key>
+	<string>972 769 620 392 0 0 2560 1418 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>764 481 918 512 0 0 1920 1178 </string>
+	<string>268 83 796 473 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>4 436 850 742 0 0 1920 1178 </string>
+	<string>4 408 850 742 0 0 1920 1178 </string>
 	<key>New Bookmarks</key>
 	<array>
 		<dict>
@@ -1419,10 +1392,14 @@ tmux attach -t init || tmux new -s init</string>
 	</array>
 	<key>NoSyncCommandHistoryHasEverBeenUsed</key>
 	<true/>
+	<key>NoSyncConfirmShellIntegrationCommand</key>
+	<true/>
+	<key>NoSyncConfirmShellIntegrationCommand_selection</key>
+	<integer>0</integer>
 	<key>NoSyncHaveWarnedAboutPasteConfirmationChange</key>
 	<true/>
 	<key>NoSyncInstallationId</key>
-	<string>03688515-990E-49AF-B9EC-51BC3974CBD0</string>
+	<string>0BD72197-76A5-45D6-A2B0-AAD708588E60</string>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -1430,13 +1407,17 @@ tmux attach -t init || tmux new -s init</string>
 	<key>NoSyncPermissionToShowTip</key>
 	<false/>
 	<key>NoSyncTimeOfFirstLaunchOfVersionWithTip</key>
-	<real>506863604.65790302</real>
+	<real>514193137.83444899</real>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenNoWindowsAtStartup</key>
 	<true/>
 	<key>OpenTmuxWindowsIn</key>
 	<integer>2</integer>
+	<key>PMPrintingExpandedStateForPrint2</key>
+	<false/>
+	<key>PasteTabToStringTabStopSize</key>
+	<integer>4</integer>
 	<key>PointerActions</key>
 	<dict>
 		<key>Button,1,1,,</key>
@@ -1472,6 +1453,8 @@ tmux attach -t init || tmux new -s init</string>
 	</dict>
 	<key>PrefsCustomFolder</key>
 	<string>/Users/schurl/cernbox/dotfiles</string>
+	<key>Print In Black And White</key>
+	<true/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<true/>
 	<key>RightCommand</key>
@@ -1481,13 +1464,15 @@ tmux attach -t init || tmux new -s init</string>
 	<key>SUFeedAlternateAppNameKey</key>
 	<string>iTerm</string>
 	<key>SUFeedURL</key>
-	<string>https://iterm2.com/appcasts/nightly.xml?shard=34</string>
+	<string>https://iterm2.com/appcasts/nightly.xml?shard=39</string>
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2040-08-05T09:21:51Z</date>
+	<date>2017-05-11T12:54:23Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
+	<key>SUSkippedVersion</key>
+	<string>3.1.20170510-nightly</string>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowNewOutputIndicator</key>
@@ -1502,6 +1487,10 @@ tmux attach -t init || tmux new -s init</string>
 	<real>0.17754907852564114</real>
 	<key>StretchTabsToFillBar</key>
 	<false/>
+	<key>SuppressShellIntegrationUpgradeAnnouncementForHost_schurl@georgmac.dyndns.cern.ch</key>
+	<true/>
+	<key>SuppressShellIntegrationUpgradeAnnouncementForHost_schurl@georgmac.home</key>
+	<true/>
 	<key>TabStyle</key>
 	<integer>1</integer>
 	<key>TabViewType</key>
@@ -1517,7 +1506,7 @@ tmux attach -t init || tmux new -s init</string>
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.0.20170120-nightly</string>
+	<string>3.1.20170506-nightly</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>

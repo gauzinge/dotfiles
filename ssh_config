@@ -109,12 +109,6 @@ Host trackerpro
     hostname cmsusr.cern.ch
     TCPKeepAlive yes
 
-#Host cmsusr.cern.ch
-    #user trackerpro
-    #hostname cmsusr.cern.ch
-    #ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch trackerpro@cmsusr.cern.ch
-    #DynamicForward 1031
-
 #
 # These stanzas tell SSH how to connect to hosts hidden behind firewalls
 #

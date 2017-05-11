@@ -151,8 +151,8 @@ myssh(){
 }
 mytunnel()
 {
-    echo 'Opening Tunnel to '$1' port 1031!'
-    ssh -N -D 1031 $1
+    echo 'Opening Tunnel to '$1' port 1032!'
+    ssh -N -D 1032 $1
 }
 normalssh()
 {
@@ -208,7 +208,7 @@ alias ll='exa --long --header --git'
 alias cd..='cd ..'
 alias root='root -l'
 alias cat='vimcat'
-#alias dash=open_dash
+#uncomment me
 alias ssh=myssh
 alias tunnel=mytunnel
 alias normalssh=normalssh
@@ -238,7 +238,8 @@ alias umountcmsup='fusermount -u /Users/schurl/remote'
 
 alias tmux='tmux -2'
 alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
-
+alias pipecern='tunnel lxplus'
+#alias pipecern='normalssh -f -N -D 1031 gauzinge@lxplus.cern.ch'
 zle -N zle-line-init
 zle -N zle-keymap-select
 
