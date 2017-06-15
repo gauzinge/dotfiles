@@ -119,9 +119,9 @@ export PATH=/opt/openafs/bin:/opt/openafs/sbin:$PATH
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='nvim'
+    export EDITOR='vim'
 else
-    export EDITOR='nvim'
+    export EDITOR='vim'
 fi
 
 # Compilation flags
@@ -147,16 +147,17 @@ fpath=(/usr/local/share/zsh-completions $fpath)
     #open dash://$1
 #}
 myssh(){
-    sshrc -XY $1
+    TERM=xterm sshrc -XY $1
 }
 mytunnel()
 {
     echo 'Opening Tunnel to '$1' port 1032!'
     ssh -N -D 1032 $1
 }
-normalssh()
+nssh()
+# normal ssh without sshRC
 {
-    ssh $1
+    TERM=xterm ssh -XY $1
 }
 
 runNvim() {
@@ -208,10 +209,11 @@ alias ll='exa --long --header --git'
 alias cd..='cd ..'
 alias root='root -l'
 alias cat='vimcat'
-#uncomment me
+
+#ssh handling
 alias ssh=myssh
 alias tunnel=mytunnel
-alias normalssh=normalssh
+alias nssh=nssh
 
 #grc aliases
 #alias ping='grc ping'
@@ -236,10 +238,13 @@ alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/remote'
 alias umountcmsup='fusermount -u /Users/schurl/remote'
 
+#open tmux in the correct mode
 alias tmux='tmux -2'
+
+#pipes for point 5 and other daq macines
 alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
 alias pipecern='tunnel lxplus'
-#alias pipecern='normalssh -f -N -D 1031 gauzinge@lxplus.cern.ch'
+
 zle -N zle-line-init
 zle -N zle-keymap-select
 

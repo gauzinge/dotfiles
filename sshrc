@@ -16,6 +16,7 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 stty sane
 export LC_ALL="C"
 export TERM='xterm-256color'
+#EOS for cernbox
 export EOS_MGM_URL=root://eosuser.cern.ch
 
 # User specific aliases and functions
@@ -25,13 +26,20 @@ alias root='root -l'
 alias ls='ls -G --color=auto'
 alias ll='ls -lG'
 alias la='ls -lGa'
+alias root6='source /afs/cern.ch/sw/lcg/app/releases/ROOT/6.04.02/x86_64-slc6-gcc49-opt/root/bin/thisroot.sh'
 #alias cernbox='cd /eos/user/g/gauzinge'
 
-
+#to nest sshRC sessions when going through tmux
 myssh(){
-    sshrc -XY $1
+    TERM=xterm sshrc -XY $1
 }
 alias ssh=myssh
+
+# normal ssh to stay sane at P5
+nssh(){
+    TERM=xterm ssh -XY $1
+}
+alias nssh=nssh
 
 echo '* ********************************************************************'
 echo '# ####################################################################'
@@ -49,6 +57,7 @@ if [ $(whoami) = "gauzinge" ]; then
     export ROOTSYS=/usr/local/lib/root
 else
 	echo '# Using local gcc as no /afs access avaialble'
+    echo '# Using standard SW installations for everything'
 fi
 
 echo '# reminder: vimrc and sshrc are sourced from my local machine (located in .sshrc.d/)'
