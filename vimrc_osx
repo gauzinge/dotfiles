@@ -38,7 +38,7 @@ Plug 'jszakmeister/vim-togglecursor'
 "commenter
 Plug 'scrooloose/nerdcommenter'
 "autopairs!
-Plug 'auto-pairs-gentle'
+Plug 'jiangmiao/auto-pairs'
 "fuzzy search engine for files & methods
 "Plug 'fntlnz/atags.vim'
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'

@@ -245,6 +245,9 @@ alias tmux='tmux -2'
 alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
 alias pipecern='tunnel lxplus'
 
+#tmp for brussels workshop
+alias daq41='ssh daq4.1@trackerdaq4.iihe.ac.be'
+
 zle -N zle-line-init
 zle -N zle-keymap-select
 
