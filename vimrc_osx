@@ -11,7 +11,6 @@ endfunction
 Plug 'powerline/fonts'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-startify'
 Plug 'ryanoasis/vim-devicons'
 "Colorschemes
 Plug 'morhetz/gruvbox'

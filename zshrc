@@ -22,7 +22,6 @@ fi
 ###########################################################################
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-
 ###########################################################################
 # Zgen plugin manager
 ###########################################################################
@@ -108,7 +107,8 @@ export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 export GREP_OPTIONS='--color=auto'
 
 # italic fonts
-export TERM=xterm-256color-italic
+#export TERM=xterm-256color-italic
+#export TERM=xterm-256color
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
