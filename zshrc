@@ -154,6 +154,11 @@ mytunnel()
     echo 'Opening Tunnel to '$1' port 1032!'
     ssh -N -D 1032 $1
 }
+myothertunnel()
+{
+    echo 'Opening Tunnel to '$1' port 1033!'
+    ssh -N -D 1033 $1
+}
 nssh()
 # normal ssh without sshRC
 {
@@ -213,6 +218,7 @@ alias cat='vimcat'
 #ssh handling
 alias ssh=myssh
 alias tunnel=mytunnel
+alias othertunnel=myothertunnel
 alias nssh=nssh
 
 #grc aliases
