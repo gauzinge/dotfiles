@@ -61,6 +61,10 @@ Plug 'vim-scripts/a.vim'
 "CPP & root
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'parnmatt/vim-root'
+"JavaScript
+Plug 'pangloss/vim-javascript'
+"CSS
+Plug 'hail2u/vim-css3-syntax'
 "autocompleteion
 "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 "Plug 'zchee/deoplete-clang'
@@ -74,7 +78,8 @@ Plug 'wellle/tmux-complete.vim'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
 "LATEX Support
-Plug 'LaTeX-Box-Team/LaTeX-Box'
+"Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'lervag/vimtex'
 "SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
 "yankplugin
@@ -82,6 +87,9 @@ Plug 'bfredl/nvim-miniyank'
 Plug 'svermeulen/vim-easyclip'
 "undotree
 Plug 'sjl/gundo.vim'
+" code folding
+Plug 'arecarn/vim-fold-cycle'
+Plug 'pseewald/vim-anyfold'
 call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -149,6 +157,7 @@ set iskeyword-=#                    " '#' is an end of word designator
 set iskeyword-=-                    " '-' is an end of word designator
 set laststatus=2
 set timeoutlen=200 ttimeoutlen=50
+:set inccommand=split
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups, Undo and Mouse
@@ -185,6 +194,31 @@ set matchpairs+=<:>             " Match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Code Folding
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let anyfold_activate=1
+set foldlevel=12
+let g:fold_cycle_default_mapping = 0 "disable default mappings
+nmap <Tab><Tab> <Plug>(fold-cycle-open)
+nmap <S-Tab><S-Tab> <Plug>(fold-cycle-close)
+"set foldmethod=syntax   
+"set foldnestmax=2
+"set nofoldenable
+"set foldlevel=2
+""nnoremap <leader>z zo
+"noremap <leader>z :call UnrolMe()<CR>
+
+"let $unrol=0
+"function UnrolMe()
+"if $unrol==0
+    ":exe "normal zR"
+    "let $unrol=1
+"else
+    ":exe "normal zM"
+    "let $unrol=0
+"endif
+"endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Appearance
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -586,16 +620,18 @@ map <leader>x :call VimuxSendKeys(".q Enter")<CR>
 "map <Leader>vq :VimuxCloseRunner<CR>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"=> Highly experimental touch bar wizzardry
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"this is necessary for F1-Esc mapping
-nmap <F1> <Esc>
-imap <F1> <C-c>
-autocmd VimEnter * map <F1> <Esc>
-autocmd VimEnter * map <F2> :w<CR>
-autocmd VimEnter * map <F3> :wq!<CR>
-autocmd VimEnter * map <F4> > :bd<CR>
-autocmd VimEnter * map <F5> <leader>o
-autocmd VimEnter * map <F6> <leader>f
-autocmd VimEnter * map <F7> <leader>c<leader>
+" netrw
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:netrw_liststyle=3
 
+" Lifted off from http://blog.g14n.info/2013/07/my-vim-configuration.html
+" when navigating a folder, hitting <v> opens a window at right side (default
+" is left side)
+"
+" Thank you!
+let g:netrw_altv = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"useful for syncing to cmsusr (cms nfs)
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map <leader>s :w<CR>:!rsync -avr --update ~/cernbox/workspace/brildaq gauzinge@cmsusr:~/brildaq/<CR> 

@@ -157,7 +157,7 @@ mytunnel()
 myothertunnel()
 {
     echo 'Opening Tunnel to '$1' port 1033!'
-    ssh -N -D 1033 $1
+    ssh -N -D 1032 $1
 }
 nssh()
 # normal ssh without sshRC
@@ -202,7 +202,9 @@ alias more='less'
 #alias vim='nvim'
 alias rm='rm'
 alias vim=runNvim
-alias kinit='kinit --afslog -f --renewable gauzinge@CERN.CH && aklog'
+#alias kinit='kinit --afslog -f --renewable gauzinge@CERN.CH && aklog'
+#alias kinitcmstkph2='kinit --afslog -f --renewable cmstkph2@CERN.CH && aklog'
+#alias kinitfnal='kinit --afslog -f --renewable gauzinge@FNAL.GOV && aklog'
 #alias la='ls -aG'
 #alias ls='ls -G'
 #alias ll='ls -hl'

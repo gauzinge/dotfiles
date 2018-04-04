@@ -22,6 +22,7 @@ export EOS_MGM_URL=root://eosuser.cern.ch
 # User specific aliases and functions
 alias work='cd /afs/cern.ch/work/g/gauzinge/public/'
 alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh'
+#alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh'
 alias root='root -l'
 alias ls='ls -G --color=auto'
 alias ll='ls -lG'
@@ -48,9 +49,13 @@ echo '# logged in as '$(whoami)
 
 if [ $(whoami) = "gauzinge" ]; then
 	echo '# Using gcc 4.9.2 from /afs installation'
-    #echo '# Using gcc 4.8.1 from /afs installation'
-    source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh	
+    #source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh	
+    source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-cc7/setup.sh	
     export PATH=/afs/cern.ch/sw/lcg/contrib/gdb/7.8/x86_64-slc6-gcc48-opt/bin:$PATH
+
+    #echo 'Using root6 from afs installation'
+    #source /afs/cern.ch/sw/lcg/app/releases/ROOT/6.05.02/x86_64-slc6-gcc49-opt/root/bin/thisroot.sh
+    #
     echo 'eosmount <dir> to mount cernbox directory '
     echo 'symbolic linke cernbox points to /eos/user/g/gauzinge/' 
     source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
