@@ -630,8 +630,3 @@ let g:netrw_liststyle=3
 "
 " Thank you!
 let g:netrw_altv = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"useful for syncing to cmsusr (cms nfs)
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <leader>s :w<CR>:!rsync -avr --update ~/cernbox/workspace/brildaq gauzinge@cmsusr:~/brildaq/<CR> 

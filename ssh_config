@@ -29,7 +29,7 @@ Host lxplus
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-Host cmsuptrackerdaq
+Host cmsuptrackerdaq brildev1
     user gauzinge
     ProxyCommand none
     #GSSAPIClientIdentity gauzinge@CERN.CH
@@ -115,6 +115,11 @@ Host trackerpro
 Host *.cern.ch
     user gauzinge
     ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
+    TCPKeepAlive yes
+
+Host *.cms
+    user gauzinge
+    ProxyCommand ssh -W %h:%p gauzinge@cmsusr
     TCPKeepAlive yes
 
 Host *.fnal.gov

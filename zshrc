@@ -142,10 +142,6 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 ###########################################################################
 # Functions
 ###########################################################################
-#open_dash()
-#{
-    #open dash://$1
-#}
 myssh(){
     TERM=xterm sshrc -XY $1
 }
@@ -159,26 +155,10 @@ myothertunnel()
     echo 'Opening Tunnel to '$1' port 1033!'
     ssh -N -D 1032 $1
 }
-nssh()
+mynssh()
 # normal ssh without sshRC
 {
     TERM=xterm ssh -XY $1
-}
-
-runNvim() {
-  NAME=nvimdefault_$RANDOM
-  #save exsisting labels
-  /Users/schurl/bin/it2setkeylabel.sh push $NAME
-  /Users/schurl/bin/it2setkeylabel.sh set F1 esc
-  /Users/schurl/bin/it2setkeylabel.sh set F2 w
-  /Users/schurl/bin/it2setkeylabel.sh set F3 wq
-  /Users/schurl/bin/it2setkeylabel.sh set F4 bd
-  /Users/schurl/bin/it2setkeylabel.sh set F5 open
-  /Users/schurl/bin/it2setkeylabel.sh set F6 tag
-  /Users/schurl/bin/it2setkeylabel.sh set F7 comment
-  nvim "$@"
-  #Restore labels to previous state
-  /Users/schurl/bin/it2setkeylabel.sh pop $NAME
 }
 
 git_commit() {
@@ -199,10 +179,9 @@ alias more='less'
 ###########################################################################
 # Aliases
 ###########################################################################
-#alias vim='nvim'
+alias vim='nvim'
 alias rm='rm'
-alias vim=runNvim
-#alias kinit='kinit --afslog -f --renewable gauzinge@CERN.CH && aklog'
+alias kinit='kinit --afslog -f --renewable gauzinge@CERN.CH && aklog'
 #alias kinitcmstkph2='kinit --afslog -f --renewable cmstkph2@CERN.CH && aklog'
 #alias kinitfnal='kinit --afslog -f --renewable gauzinge@FNAL.GOV && aklog'
 #alias la='ls -aG'
@@ -221,7 +200,7 @@ alias cat='vimcat'
 alias ssh=myssh
 alias tunnel=mytunnel
 alias othertunnel=myothertunnel
-alias nssh=nssh
+alias nssh=mynssh
 
 #grc aliases
 #alias ping='grc ping'
@@ -237,7 +216,6 @@ alias gl='git log'
 alias gc=git_commit
 
 alias kill='fkill'
-alias open="fo"
 alias edit="fe"
 
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
