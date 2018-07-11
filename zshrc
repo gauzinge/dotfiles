@@ -132,10 +132,6 @@ export ARCHFLAGS="-arch x86_64"
 # ssh
 export SSH_KEY_PATH="~/.ssh/id_rsa"
 
-# slack token
-export SLACK_TOKEN='xoxp-7587476087-306154327040-392012943556-d8d92643d7fcaf64fe4d345dd7ecb236'
-alias slack='node /Applications/terminal-slack/main.js'
-
 ###########################################################################
 # ROOT
 ###########################################################################
