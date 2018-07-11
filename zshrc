@@ -54,7 +54,7 @@ if ! zgen saved; then
 
   #fzf bookmarks
   zgen load junegunn/fzf shell
-  zgen load uvaes/fzf-marks
+  zgen load urbainvaes/fzf-marks
   zgen load changyuheng/zsh-interactive-cd
   #zgen pmodule <reponame> <branch>
 
@@ -94,8 +94,10 @@ export HISTCONTROL=ignoredups;
 export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 
 # User configuration
-export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/schurl/.cargo/bin:$PATH"
+export PATH="/Users/schurl/brilconda/bin:/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/schurl/.cargo/bin:/usr/local/bin:$PATH"
+#export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/schurl/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
+export PYTHONPATH="/usr/local/Cellar/root/6.12.06/lib/root/"
 
 #colorful terminal
 export LS_OPTIONS='--color=auto'
@@ -128,14 +130,19 @@ fi
 export ARCHFLAGS="-arch x86_64"
 
 # ssh
-#export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
+
+# slack token
+export SLACK_TOKEN='xoxp-7587476087-306154327040-392012943556-d8d92643d7fcaf64fe4d345dd7ecb236'
+alias slack='node /Applications/terminal-slack/main.js'
 
 ###########################################################################
 # ROOT
 ###########################################################################
 
 #ROOT
-pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
+pushd /usr/local >/dev/null; . bin/thisroot.sh; popd >/dev/null
+#pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 
@@ -158,7 +165,7 @@ myothertunnel()
 mynssh()
 # normal ssh without sshRC
 {
-    TERM=xterm ssh -XY $1
+    TERM=xterm ssh -iXY $1
 }
 
 git_commit() {

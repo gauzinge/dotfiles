@@ -102,13 +102,13 @@ Host cmsusr
     ProxyCommand none
     hostname cmsusr.cern.ch
     TCPKeepAlive yes
-
-Host trackerpro
-    user trackerpro
-    ProxyCommand none
-    hostname cmsusr.cern.ch
-    TCPKeepAlive yes
-
+    PubKeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
 #
 # These stanzas tell SSH how to connect to hosts hidden behind firewalls
 #
@@ -121,6 +121,13 @@ Host *.cms
     user gauzinge
     ProxyCommand ssh -W %h:%p gauzinge@cmsusr
     TCPKeepAlive yes
+    PubkeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
 
 Host *.fnal.gov
     GSSAPIAuthentication yes

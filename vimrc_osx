@@ -78,7 +78,6 @@ Plug 'wellle/tmux-complete.vim'
 "self explanatory
 Plug 'terryma/vim-smooth-scroll'
 "LATEX Support
-"Plug 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'lervag/vimtex'
 "SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
@@ -258,6 +257,8 @@ let mapleader=" "       " leader is comma
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"avoid having to use the shift key
+nnoremap ; :
 " use either jk/kj or ii or ` as escape
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -268,7 +269,6 @@ vnoremap ii <Esc>
 cnoremap jk <Esc>
 cnoremap kj <Esc>
 "temporary to re-train jk,kj 
-"inoremap <esc> <nop>
 nnoremap <leader>w :w<CR>
 nnoremap <leader>q :wq<CR>
 nnoremap <leader>w :w!<CR>
@@ -318,6 +318,7 @@ map zh zH
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
+nmap <silent> ,/ :nohlsearch<CR>
 let g:ackprg = 'ag --nogroup --column --follow --hidden --ignore .git -g'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -544,6 +545,7 @@ let g:formatdef_my_astyle_cpp = '"astyle --style=allman --mode=c --attach-namesp
 let g:formatters_cpp = ['my_astyle_cpp']
 let g:formatters_c = ['my_astyle_cpp']
 let g:formatters_cc = ['my_astyle_cpp']
+let g:formatters_python = ['autopep8']
 "noremap <F3> :Autoformat<CR>
 au BufWrite *.{cc,cpp,cxx,h,hh,hxx,py} silent :Autoformat
 
