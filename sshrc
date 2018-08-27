@@ -28,7 +28,7 @@ alias ls='ls -G --color=auto'
 alias ll='ls -lG'
 alias la='ls -lGa'
 alias root6='source /afs/cern.ch/sw/lcg/app/releases/ROOT/6.04.02/x86_64-slc6-gcc49-opt/root/bin/thisroot.sh'
-#alias cernbox='cd /eos/user/g/gauzinge'
+alias cernbox='cd /eos/user/g/gauzinge'
 
 #to nest sshRC sessions when going through tmux
 myssh(){
@@ -56,8 +56,8 @@ if [ $(whoami) = "gauzinge" ]; then
     #echo 'Using root6 from afs installation'
     #source /afs/cern.ch/sw/lcg/app/releases/ROOT/6.05.02/x86_64-slc6-gcc49-opt/root/bin/thisroot.sh
     #
-    echo 'eosmount <dir> to mount cernbox directory '
-    echo 'symbolic linke cernbox points to /eos/user/g/gauzinge/' 
+    echo '# eosmount <dir> to mount cernbox directory '
+    echo '# symbolic linke cernbox points to /eos/user/g/gauzinge/' 
     source /afs/cern.ch/project/eos/installation/user/etc/setup.sh
     export ROOTSYS=/usr/local/lib/root
 else

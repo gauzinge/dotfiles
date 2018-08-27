@@ -232,6 +232,7 @@ alias tmux='tmux -2'
 
 #pipes for point 5 and other daq macines
 alias pipecms='tunnel gauzinge@cmsusr.cern.ch'
+alias pipep5='tunnel gauzinge@cmsusr.cms'
 alias pipecern='tunnel lxplus'
 
 #tmp for brussels workshop
