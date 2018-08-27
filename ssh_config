@@ -76,36 +76,36 @@ Host cmsuptrackerdaq.cern.ch
     ForwardX11Timeout 576h
 
 Host cmsusr cmsusr.cern.ch
-    hostname cmsusr.cern.ch
-    #TCPKeepAlive yes
-    #PubKeyAuthentication yes
-    #ControlPersist 15
-    #ControlPath ~/.ssh/%h.%p.%r
-    #ControlMaster auto
-    # Work around a bug in OSX:
-    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
-    #ForwardX11Timeout 576h
     user gauzinge
+    hostname cmsusr.cern.ch
     ProxyCommand none
-    #GSSAPIClientIdentity gauzinge@CERN.CH
-    GSSAPIAuthentication yes
-    GSSAPIDelegateCredentials yes
-    #GSSAPIKeyExchange no
-    Protocol 2
-    ServerAliveInterval 60
-    ServerAliveCountMax 6
-    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
-    ForwardAgent yes
-    ForwardX11 yes
-    ForwardX11Trusted yes
-    PubkeyAuthentication yes
+    TCPKeepAlive yes
+    PubKeyAuthentication yes
     ControlPersist 15
     ControlPath ~/.ssh/%h.%p.%r
     ControlMaster auto
     # Work around a bug in OSX:
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
-    TCPKeepAlive yes
     ForwardX11Timeout 576h
+    #GSSAPIClientIdentity gauzinge@CERN.CH
+    #GSSAPIAuthentication yes
+    #GSSAPIDelegateCredentials yes
+    #GSSAPIKeyExchange no
+    #Protocol 2
+    #ServerAliveInterval 60
+    #ServerAliveCountMax 6
+    #PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    #ForwardAgent yes
+    #ForwardX11 yes
+    #ForwardX11Trusted yes
+    #PubkeyAuthentication yes
+    #ControlPersist 15
+    #ControlPath ~/.ssh/%h.%p.%r
+    #ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    #TCPKeepAlive yes
+    #ForwardX11Timeout 576h
 #
 # These stanzas tell SSH how to connect to hosts hidden behind firewalls
 #

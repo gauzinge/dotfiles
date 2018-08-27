@@ -1,12 +1,71 @@
-" set default 'runtimepath' (without ~/.vim folders)
-let &runtimepath = printf('%s/vimfiles,%s,%s/vimfiles/after', $VIM, $VIMRUNTIME, $VIM)
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => vim plug
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+call plug#begin('~/.vim/plugged')
 
-" what is the name of the directory containing this file?
-let s:portable = expand('<sfile>:p:h')
+function! DoRemote(arg)
+  UpdateRemotePlugins
+endfunction
 
-" add the directory to 'runtimepath'
-let &runtimepath = printf('%s,%s,%s/after', s:portable, &runtimepath, s:portable)
-"so $SSHHOME/.sshrc.d/.vim/NERD_commenter.vim
+"Looks
+Plug 'sheerun/vim-polyglot'
+Plug 'powerline/fonts'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'ryanoasis/vim-devicons'
+"Colorschemes
+Plug 'morhetz/gruvbox'
+Plug 'roosta/srcery'
+"To manaage swap files
+Plug 'gioele/vim-autoswap'
+"git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+"rainbow brackets
+Plug 'luochen1990/rainbow'
+"sane Tmux clipboard
+Plug 'roxma/vim-tmux-clipboard'
+"sane cursor in cmd line vim
+Plug 'jszakmeister/vim-togglecursor'
+"commenter
+Plug 'scrooloose/nerdcommenter'
+"autopairs!
+Plug 'jiangmiao/auto-pairs'
+"textobjects
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'kana/vim-textobj-user'
+Plug 'reedes/vim-textobj-quote'
+Plug 'kana/vim-textobj-indent'
+Plug 'wellle/targets.vim'
+"autocompletion
+Plug 'ervandew/supertab'
+"fuzzy file finding
+Plug 'kien/ctrlp.vim'
+"easymotion
+Plug 'easymotion/vim-easymotion'
+Plug 'haya14busa/incsearch.vim'
+"select closest text object with ENTER
+"to jump from src to header and vv with :A
+Plug 'vim-scripts/a.vim'
+"CPP & root
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'parnmatt/vim-root'
+"JavaScript
+Plug 'pangloss/vim-javascript'
+"CSS
+Plug 'hail2u/vim-css3-syntax'
+"self explanatory
+Plug 'terryma/vim-smooth-scroll'
+"SublimeText like multiple Cursors
+Plug 'terryma/vim-multiple-cursors'
+"yankplugin
+Plug 'bfredl/nvim-miniyank'
+Plug 'svermeulen/vim-easyclip'
+"undotree
+Plug 'sjl/gundo.vim'
+call plug#end()
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
@@ -24,6 +83,11 @@ filetype plugin indent on
 set t_Co=256
 set background=dark
 
+
+colorscheme srcery
+let g:srcery_italic=1
+let g:srcery_bold=1
+let g:airline_theme = 'badwolf'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Fonts
@@ -127,6 +191,8 @@ let mapleader=" "       " leader is comma
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Keymappings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"avoid having to use the shift key
+nnoremap ; :
 " use either jk/kj or ii or ` as escape
 inoremap jk <Esc>
 inoremap kj <Esc>
@@ -197,4 +263,142 @@ nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<C
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set incsearch           " search as characters are entered
 set hlsearch            " highlight matches
-so $SSHHOME/.sshrc.d/.vim/NERD_commenter.vim
+nmap <silent> ,/ :nohlsearch<CR>
+"so $SSHHOME/.sshrc.d/.vim/NERD_commenter.vim
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Smooth Scrolling
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll*2, 0, 4)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll*2, 0, 4)<CR>
+
+" => Gundotree
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>u :GundoToggle<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Syntax Highlighting octol/enhanced cpp
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
+let g:cpp_class_scope_highlight = 1
+let g:cpp_member_variable_highlight = 1
+"let g:cpp_experimental_template_highlight = 1
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Airline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts=1
+let g:airline_skip_empty_sections = 1
+let g:airline#extensions#hunks#enabled=1
+let g:airline#extensions#branch#enabled=1
+let g:airline_left_sep = "\uE0B4"
+let g:airline_right_sep = "\uE0B6"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Miniyank config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map p <Plug>(miniyank-autoput)
+map P <Plug>(miniyank-autoPut)
+map <leader>n <Plug>(miniyank-cycle)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Easyclip config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:EasyClipUseSubstituteDefaults = 1
+"m[motion] or mm to cut
+"s[motion] or ss to substitute
+"d[motion] or dd does not yank
+"c[motion] or cc does not yank
+"Ctrl+p and Ctrl+n cycles through next and previous yanks
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> EASYMOTION
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"nmap s <Plug>(easymotion-s2)
+nmap f <Plug>(easymotion-bd-f)
+nmap t <Plug>(easymotion-bd-t2)
+" Turn on case insensitive feature
+let g:EasyMotion_smartcase = 1
+let g:EasyMotion_use_smartsign_us = 1 " US layout
+let g:EasyMotion_use_upper = 1
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> autoswap plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:autoswap_detect_tmux = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> autopairs plugin
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:AutoPairsUseInsertedCount = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> INCSEARCH
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+map /  <Plug>(incsearch-forward)
+map ?  <Plug>(incsearch-backward)
+map g/ <Plug>(incsearch-stay)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Supertab
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:SuperTabDefaultCompletionType = "<c-n>"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ctrl-P
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:ctrlp_map = '<Leader>o'
+let g:ctrlp_working_path_mode = 'ra'
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
+
+"let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links' }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> Rainbow for Parentheses
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+:let g:rainbow_active = 1 "0 if you want to enable it later via :RainbowToggle
+let g:rainbow_conf = {
+    \   'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+    \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+    \   'operators': '_,_',
+    \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+    \   'separately': {
+    \       '*': {},
+    \       'tex': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+    \       },
+    \       'lisp': {
+    \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+    \       },
+    \       'vim': {
+    \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+    \       },
+    \       'html': {
+    \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+    \       },
+    \       'css': 0,
+    \   }
+    \}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" netrw
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:netrw_liststyle=3
+
+" Lifted off from http://blog.g14n.info/2013/07/my-vim-configuration.html
+" when navigating a folder, hitting <v> opens a window at right side (default
+" is left side)
+"
+" Thank you!
+let g:netrw_altv = 1
