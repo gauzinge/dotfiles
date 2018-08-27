@@ -29,7 +29,7 @@ Host lxplus* lxplus*.cern.ch
     TCPKeepAlive yes
     ForwardX11Timeout 576h
 
-Host cmsuptrackerdaq
+Host cmsuptrackerdaq brillab186
     user gauzinge
     ProxyCommand none
     #GSSAPIClientIdentity gauzinge@CERN.CH
@@ -52,7 +52,7 @@ Host cmsuptrackerdaq
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-Host cmsuptrackerdaq.cern.ch
+Host cmsuptrackerdaq.cern.ch brillab186.cern.ch
     user gauzinge
     ProxyCommand ssh gauzinge@lxplus.cern.ch /usr/bin/nc %h %p 2> /dev/null
     #GSSAPIClientIdentity gauzinge@CERN.CH
@@ -75,10 +75,10 @@ Host cmsuptrackerdaq.cern.ch
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-Host cmsusr cmsusr.cern.ch
+Host cmsusr
     user gauzinge
-    hostname cmsusr.cern.ch
     ProxyCommand none
+    hostname cmsusr.cern.ch
     TCPKeepAlive yes
     PubKeyAuthentication yes
     ControlPersist 15
@@ -87,32 +87,17 @@ Host cmsusr cmsusr.cern.ch
     # Work around a bug in OSX:
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
-    #GSSAPIClientIdentity gauzinge@CERN.CH
-    #GSSAPIAuthentication yes
-    #GSSAPIDelegateCredentials yes
-    #GSSAPIKeyExchange no
-    #Protocol 2
-    #ServerAliveInterval 60
-    #ServerAliveCountMax 6
-    #PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
-    #ForwardAgent yes
-    #ForwardX11 yes
-    #ForwardX11Trusted yes
-    #PubkeyAuthentication yes
-    #ControlPersist 15
-    #ControlPath ~/.ssh/%h.%p.%r
-    #ControlMaster auto
-    # Work around a bug in OSX:
-    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
-    #TCPKeepAlive yes
-    #ForwardX11Timeout 576h
 #
 # These stanzas tell SSH how to connect to hosts hidden behind firewalls
 #
+#Host *.cern.ch
+    #user gauzinge
+    #ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
+    #TCPKeepAlive yes
+
 Host *.cms
     user gauzinge
-    #ProxyCommand ssh -W %h:%p gauzinge@cmsusr.cern.ch
-    ProxyCommand ssh gauzinge@cmsusr.cern.ch /usr/bin/nc %h %p 2> /dev/null
+    ProxyCommand ssh -W %h:%p gauzinge@cmsusr.cern.ch
     TCPKeepAlive yes
     PubkeyAuthentication yes
     ControlPersist 15
@@ -122,64 +107,8 @@ Host *.cms
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-#Host *.cern.ch
-    #user gauzinge
-    ##ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
-    #ProxyCommand ssh gauzinge@lxplus.cern.ch /usr/bin/nc %h %p 2> /dev/null
-    #TCPKeepAlive yes
-    #PubkeyAuthentication yes
-    #ControlPersist 15
-    #ControlPath ~/.ssh/%h.%p.%r
-    #ControlMaster auto
-    ## Work around a bug in OSX:
-    ## http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
-    #ForwardX11Timeout 576h
-
 Host *.fnal.gov
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials yes
     TCPKeepAlive yes
     
-
-#
-# Set up authentication
-#
-# Configure port forwarding. You can use any SOCKS-enabled application as if
-#   it were running on the remote host. (Good for seeing CERN-only pages)
-#
-# To use, SSH to one of the following alias and configure your application to
-#   use the ports as a SOCKS5 proxy
-#
-# Use a fake host alias so we still match the domain filecards
-#Host forwarding.cern.ch
-    #Hostname lxplus.cern.ch
-    #DynamicForward 1080
-
-
-#
-# Defaults
-#
-#Host *cern.ch
-    ##GSSAPIClientIdentity gauzinge@CERN.CH
-    #Protocol 2
-    #ServerAliveInterval 60
-    #ServerAliveCountMax 6
-    #GSSAPIDelegateCredentials yes
-    ##GSSAPITrustDNS yes
-    #PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
-    #ForwardAgent yes
-    #ForwardX11 yes
-    #ForwardX11Trusted yes
-    #PubkeyAuthentication yes
-    #GSSAPIAuthentication yes
-    #ControlPersist 15
-    ##ControlPath ~/.ssh/link-%r@%h.%p
-    #ControlPath ~/.ssh/%h.%p.%r
-    #ControlMaster auto
-    ##ForwardAgent no
-    ##ForwardX11 no
-    ##ForwardX11Trusted no
-
-    ## Work around a bug in OSX:
-    ## http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
-    #ForwardX11Timeout 576h
