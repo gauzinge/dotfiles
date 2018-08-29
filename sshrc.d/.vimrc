@@ -6,7 +6,11 @@ call plug#begin('~/.vim/plugged')
 function! DoRemote(arg)
   UpdateRemotePlugins
 endfunction
-
+"code formatting
+Plug 'Chiel92/vim-autoformat'
+"fzf since ctrl-p sucks
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
 "Looks
 Plug 'sheerun/vim-polyglot'
 Plug 'powerline/fonts'
@@ -41,7 +45,7 @@ Plug 'wellle/targets.vim'
 "autocompletion
 Plug 'ervandew/supertab'
 "fuzzy file finding
-Plug 'kien/ctrlp.vim'
+"Plug 'kien/ctrlp.vim'
 "easymotion
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
@@ -66,7 +70,7 @@ Plug 'svermeulen/vim-easyclip'
 Plug 'sjl/gundo.vim'
 call plug#end()
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""''""
 set nocompatible
@@ -402,3 +406,92 @@ let g:netrw_liststyle=3
 "
 " Thank you!
 let g:netrw_altv = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" code formatting
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+au BufWrite * :Autoformat
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"=> FZF config
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tags=tags
+"jump to tag
+function! s:tags_sink(line)
+  let parts = split(a:line, '\t\zs')
+  let excmd = matchstr(parts[2:], '^.*\ze;"\t')
+  execute 'silent e' parts[1][:-2]
+  let [magic, &magic] = [&magic, 0]
+  execute excmd
+  let &magic = magic
+endfunction
+
+function! s:tags()
+  if empty(tagfiles())
+    echohl WarningMsg
+    echom 'Preparing tags'
+    echohl None
+    call system('ctags -R')
+  endif
+
+  call fzf#run({
+  \ 'source':  'cat '.join(map(tagfiles(), 'fnamemodify(v:val, ":S")')).
+  \            '| grep -v -a ^!',
+  \ 'options': '+m -d "\t" --with-nth 1,4.. -n 1 --tiebreak=index',
+  \ 'down':    '15%',
+  \ 'sink':    function('s:tags_sink')})
+endfunction
+
+command! Tags call s:tags()
+
+" Fuzzy-find with fzf
+map <Leader>o :Files<cr>
+nmap <Leader>o :Files<cr>
+map <Leader>f :Tags<cr>
+nmap <Leader>f :Tags<cr>
+map <Leader>b :BTags<cr>
+nmap <Leader>b :BTags<cr>
+
+let g:fzf_layout = {'down':'~15%'}
+" In Neovim, you can set up fzf window using a Vim command
+"let g:fzf_layout = { 'window': 'enew' }
+"let g:fzf_layout = { 'window': '-tabnew' }
+" Customize fzf colors to match your color scheme
+"let g:fzf_colors =
+"\ { 'fg':      ['fg', 'Normal'],
+  "\ 'bg':      ['bg', 'Normal'],
+  "\ 'hl':      ['fg', 'Comment'],
+  "\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  "\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  "\ 'hl+':     ['fg', 'Statement'],
+  "\ 'info':    ['fg', 'PreProc'],
+  "\ 'prompt':  ['fg', 'Conditional'],
+  "\ 'pointer': ['fg', 'Exception'],
+  "\ 'marker':  ['fg', 'Keyword'],
+  "\ 'spinner': ['fg', 'Label'],
+  "\ 'header':  ['fg', 'Comment'] }
+" Complete from open tmux panes (from @junegunn)
+inoremap <expr> <C-x><C-t> fzf#complete( 'tmuxwords.rb -all-but-current --scroll 499 --min 5' )
+
+" Mapping selecting mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+" Insert mode completion
+"imap <c-x><c-k> <plug>(fzf-complete-word)
+"imap <c-x><c-f> <plug>(fzf-complete-path)
+"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+"imap <c-x><c-l> <plug>(fzf-complete-line)
+"" Advanced customization using autoload functions
+"inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
+function! s:fzf_statusline()
+  " Override statusline as you like
+  highlight fzf1 ctermfg=161 ctermbg=251
+  highlight fzf2 ctermfg=23 ctermbg=251
+  highlight fzf3 ctermfg=237 ctermbg=251
+  setlocal statusline=%#fzf1#\ >\ %#fzf2#fz%#fzf3#f
+endfunction
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
+
+
