@@ -75,7 +75,7 @@ Host cmsuptrackerdaq.cern.ch brillab186.cern.ch
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
 
-Host cmsusr cmsusr.cern.ch
+Host cmsusr
     user gauzinge
     ProxyCommand none
     hostname cmsusr.cern.ch
@@ -87,24 +87,37 @@ Host cmsusr cmsusr.cern.ch
     # Work around a bug in OSX:
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     ForwardX11Timeout 576h
-#
-# These stanzas tell SSH how to connect to hosts hidden behind firewalls
-#
-#Host *.home
+#Host cmsusr cmsusr.cern.ch
     #user gauzinge
-    #ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
+    #ProxyCommand none
+    #hostname cmsusr.cern.ch
     #TCPKeepAlive yes
-    #PubkeyAuthentication yes
+    #PubKeyAuthentication yes
     #ControlPersist 15
     #ControlPath ~/.ssh/%h.%p.%r
     #ControlMaster auto
     ## Work around a bug in OSX:
     ## http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     #ForwardX11Timeout 576h
+#
+# These stanzas tell SSH how to connect to hosts hidden behind firewalls
+#
 
 Host *.cms
     user gauzinge
     ProxyCommand ssh -W %h:%p gauzinge@cmsusr.cern.ch
+    TCPKeepAlive yes
+    PubkeyAuthentication yes
+    ControlPersist 15
+    ControlPath ~/.ssh/%h.%p.%r
+    ControlMaster auto
+    # Work around a bug in OSX:
+    # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    ForwardX11Timeout 576h
+
+Host *.cern.ch
+    user gauzinge
+    ProxyCommand ssh -W %h:%p gauzinge@lxplus.cern.ch
     TCPKeepAlive yes
     PubkeyAuthentication yes
     ControlPersist 15
