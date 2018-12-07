@@ -64,7 +64,7 @@ Plug 'terryma/vim-smooth-scroll'
 "SublimeText like multiple Cursors
 Plug 'terryma/vim-multiple-cursors'
 "yankplugin
-Plug 'bfredl/nvim-miniyank'
+"Plug 'bfredl/nvim-miniyank'
 Plug 'svermeulen/vim-easyclip'
 "undotree
 Plug 'sjl/gundo.vim'
@@ -150,6 +150,17 @@ set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 set invlist
 set showcmd             " show command in bottom bar
 set cursorline          " highlight current line
+set cursorline
+autocmd InsertEnter * highlight CursorLine guibg=#000050 guifg=fg
+autocmd InsertLeave * highlight CursorLine guibg=#004000 guifg=fg
+hi clear CursorLine
+augroup CLClear
+    autocmd! ColorScheme * hi clear CursorLine
+augroup END
+hi CursorLineNR cterm=bold
+augroup CLNRSet
+    autocmd! ColorScheme * hi CursorLineNR cterm=bold
+augroup END
 set lazyredraw          " redraw only when we need to.
 set showmatch           " highlight matching [{()}]
 
@@ -157,7 +168,6 @@ set scrolloff=3
 set showmode
 set showcmd
 set hidden
-set cursorline
 set ttyfast
 set ruler
 set laststatus=2
@@ -332,9 +342,9 @@ let g:airline_symbols.linenr = '⭡'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Miniyank config
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map p <Plug>(miniyank-autoput)
-map P <Plug>(miniyank-autoPut)
-map <leader>n <Plug>(miniyank-cycle)
+"map p <Plug>(miniyank-autoput)
+"map P <Plug>(miniyank-autoPut)
+"map <leader>n <Plug>(miniyank-cycle)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> Easyclip config
@@ -438,7 +448,8 @@ let g:netrw_altv = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " code formatting
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-au BufWrite * :Autoformat
+"au BufWrite * :Autoformat
+au BufWrite *.{cc,cpp,cxx,h,hh,hxx} silent :Autoformat
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "=> FZF config
