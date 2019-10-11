@@ -1,15 +1,16 @@
 # .bashrc
 # If not running interactively, don't do anyting
-[ -z "$PS1" ] && return
+#[ -z "$PS1" ] && return
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-        . /etc/bashrc
-fi
+#if [ -f /etc/bashrc ]; then
+        #. /etc/bashrc
+#fi
+
 #Colorful Terminal
-export LS_OPTIONS='--color=auto'
-export CLICOLOR='Yes'
-export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
+#export LS_OPTIONS='--color=auto'
+#export CLI_COLOR='Yes'
+#export LS_COLORS='Bxgxfxfxcxdxdxhbadbxbx'
 export EDITOR='vim'
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 #For my personal sanity
@@ -20,15 +21,15 @@ export TERM='xterm-256color'
 export EOS_MGM_URL=root://eosuser.cern.ch
 
 # User specific aliases and functions
-alias work='cd /afs/cern.ch/work/g/gauzinge/public/'
 alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh'
 #alias gccv='source /afs/cern.ch/sw/lcg/releases/gcc/4.9.2/x86_64-slc6/setup.sh'
 alias root='root -l'
-alias ls='ls -G --color=auto'
-alias ll='ls -lG'
-alias la='ls -lGa'
+#alias ls='ls -G --color=auto'
+#alias ll='ls -lG'
+#alias la='ls -lGa'
 alias root6='source /afs/cern.ch/sw/lcg/app/releases/ROOT/6.04.02/x86_64-slc6-gcc49-opt/root/bin/thisroot.sh'
 alias cernbox='cd /eos/user/g/gauzinge'
+alias work='cd /afs/cern.ch/work/g/gauzinge/public/'
 
 #to nest sshRC sessions when going through tmux
 myssh(){
@@ -71,5 +72,6 @@ echo '* ********************************************************************'
 
 
  #source my sane vimrc on remote
-export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
-alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'
+#export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
+#alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'
+zsh

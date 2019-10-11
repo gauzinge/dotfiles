@@ -68,6 +68,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'svermeulen/vim-easyclip'
 "undotree
 Plug 'sjl/gundo.vim'
+"tmux navigation
+Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

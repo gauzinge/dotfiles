@@ -141,6 +141,14 @@ pushd /usr/local >/dev/null; . bin/thisroot.sh; popd >/dev/null
 #pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
 fpath=(/usr/local/share/zsh-completions $fpath)
 
+###########################################################################
+# DOCKER
+###########################################################################
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.64.2:2376"
+export DOCKER_CERT_PATH="/Users/schurl/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+#eval $(docker-machine env default)
 
 ###########################################################################
 # Functions
