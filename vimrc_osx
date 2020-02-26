@@ -196,7 +196,8 @@ set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Code Folding
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let anyfold_activate=1
+"let anyfold_activate=1
+autocmd Filetype * AnyFoldActivate
 set foldlevel=12
 let g:fold_cycle_default_mapping = 0 "disable default mappings
 nmap <Tab><Tab> <Plug>(fold-cycle-open)

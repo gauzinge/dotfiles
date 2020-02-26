@@ -39,7 +39,7 @@ export GREP_OPTIONS='--color=auto'
 #sets up the prompt color (currently a green similar to linux terminal)
 export PS1='\[\033[01;32m\]\u@pothead\[\033[00m\]:\[\033[01;36m\]\w\[\033[00m\]\$ '
 #enables color for iTerm
-export TERM=xterm-color
+export TERM=xterm-256color
 #sets up proper alias commands when called
 
 

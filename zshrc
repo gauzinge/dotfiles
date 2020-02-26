@@ -95,6 +95,7 @@ export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
 
 # User configuration
 export PATH="/Users/schurl/brilconda/bin:/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/schurl/.cargo/bin:/usr/local/bin:$PATH"
+export PATH="/usr/local/anaconda3/bin:$PATH"
 #export PATH="/usr/local/bin:/Users/schurl/bin:/Users/schurl/root/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/Library/TeX/texbin:/Users/schurl/.cargo/bin:$PATH"
 export MANPATH="/usr/local/man:$MANPATH"
 export PYTHONPATH="/usr/local/Cellar/root/6.12.06/lib/root/"
@@ -109,8 +110,7 @@ export LSCOLORS='Bxgxfxfxcxdxdxhbadbxbx'
 export GREP_OPTIONS='--color=auto'
 
 # italic fonts
-#export TERM=xterm-256color-italic
-#export TERM=xterm-256color
+export TERM=xterm-256color
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -137,7 +137,7 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 ###########################################################################
 
 #ROOT
-pushd /usr/local >/dev/null; . bin/thisroot.sh; popd >/dev/null
+#pushd /usr/local >/dev/null; . bin/thisroot.sh; popd >/dev/null
 #pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
 fpath=(/usr/local/share/zsh-completions $fpath)
 
@@ -231,9 +231,6 @@ alias edit="fe"
 
 alias afs='cd /afs/cern.ch/user/g/gauzinge/'
 
-#mounts via sshfs
-alias mountcmstracker004='sshfs xtaldaq@cmstracker004.cern.ch:/home/xtaldaq/GetGlobalCoordinatesTests/CMSSW_3_9_5/src/XtalAnalysis /Users/schurl/remote'
-alias umountcmsup='fusermount -u /Users/schurl/remote'
 
 #open tmux in the correct mode
 alias tmux='tmux -2'
@@ -246,3 +243,21 @@ alias pipecern='tunnel lxplus'
 zle -N zle-line-init
 zle -N zle-keymap-select
 
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/usr/local/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/usr/local/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+#customise agnoster theme
+export AGNOSTER_PROMPT_SEGMENTS[2]=$whoami
