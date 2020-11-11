@@ -147,14 +147,6 @@ export SSH_KEY_PATH="~/.ssh/id_rsa"
 #pushd $(brew --prefix root6) >/dev/null; . libexec/thisroot.sh; popd >/dev/null
 fpath=(/usr/local/share/zsh-completions $fpath)
 
-###########################################################################
-# DOCKER
-###########################################################################
-export DOCKER_TLS_VERIFY="1"
-export DOCKER_HOST="tcp://192.168.64.2:2376"
-export DOCKER_CERT_PATH="/Users/schurl/.docker/machine/machines/default"
-export DOCKER_MACHINE_NAME="default"
-#eval $(docker-machine env default)
 
 ###########################################################################
 # Functions
@@ -165,11 +157,6 @@ myssh(){
 mytunnel()
 {
     echo 'Opening Tunnel to '$1' port 1032!'
-    ssh -N -D 1032 $1
-}
-myothertunnel()
-{
-    echo 'Opening Tunnel to '$1' port 1033!'
     ssh -N -D 1032 $1
 }
 mynssh()
@@ -270,3 +257,7 @@ export AGNOSTER_PROMPT_SEGMENTS[2]=$whoami
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+#DOCKER
+eval $(docker-machine env default) 
+alias dockerboot='docker-machine start && docker-machine env && eval $(docker-machine env default)'

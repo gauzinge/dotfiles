@@ -5,22 +5,25 @@
 #
 # Configure bastion (or gateway) hosts. These special hosts are globally
 #     visible and can be used to access hosts behind firewalls
-Host lxplus* lxplus*.cern.ch
-    user gauzinge
-    hostname lxplus.cern.ch
-    ProxyCommand none
-    #GSSAPIClientIdentity gauzinge@CERN.CH
-    GSSAPIAuthentication yes
-    GSSAPIDelegateCredentials yes
-    #GSSAPIKeyExchange no
+# The block below defines "lxplus" and "cern" as something like "network aliases" and the indented lines below it are applied anytime a "network" command such as "$ ssh lxplus" or "$ scp cern:/path/to/source/file /path/to/destination/file" is run.
+# https://twiki.cern.ch/twiki/bin/view/Main/Kerberos
+# https://uscms.org/uscms_at_work/physics/computing/getstarted/uaf.shtml#prerequisiteSSHConfig
+# http://information-technology.web.cern.ch/services/fe/mac-support/howto/configure-ssh-password-less-login-lxplus-or-other-linux-boxen
+Host lxplus
+    User                        gauzinge
+    Hostname                    lxplus.cern.ch
+    GSSAPIAuthentication        yes
+    GSSAPIDelegateCredentials   yes
+    #GSSAPITrustDNS              yes
+    StrictHostKeyChecking       no
+    UserKnownHostsFile          /dev/null
+    PubkeyAuthentication        no
+    ForwardAgent yes
+    ForwardX11                  yes
+    ForwardX11Trusted           yes
     Protocol 2
     ServerAliveInterval 60
     ServerAliveCountMax 6
-    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
-    ForwardAgent yes
-    ForwardX11 yes
-    ForwardX11Trusted yes
-    PubkeyAuthentication yes
     ControlPersist 15
     ControlPath ~/.ssh/%h.%p.%r
     ControlMaster auto
@@ -28,37 +31,83 @@ Host lxplus* lxplus*.cern.ch
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
     TCPKeepAlive yes
     ForwardX11Timeout 576h
+    
+# The blocks below define a "network alias" for cmsusr. When a command such as "$ ssh cmsusr" is run, a single 1s-duration ping attempt is sent to cmsusr.cern.ch. If cmsusr is not reachable (for example, when outside the CERN network), the command will tunnel through lxplus.
+# In OpenSSH version 7.2 and earlier, passing through one or more gateways is more complex and requires use of stdio forwarding or, prior to 5.4, use of the netcat(1) utility.
+# https://en.wikibooks.org/wiki/OpenSSH/Cookbook/Proxies_and_Jump_Hosts#Conditional_Use_of_Jump_Hosts
+# https://mike.place/2017/ssh-match/
+# https://security.web.cern.ch/security/recommendations/en/ssh_tunneling.shtml
+Match host cmsusr !exec "ping -c1 -W1 cmsusr.cern.ch &>/dev/null"
+    ProxyJump                   lxplus
+Host cmsusr
+    User                        gauzinge
+    Hostname                    cmsusr.cern.ch
+    ForwardX11                  yes
+    ForwardX11Trusted           yes
+
+# The blocks below check for connectivity to cmsusr in the same way as above but then establish a port-forwarding tunnel to cmsusr. The command "$ ssh cmstunnel" then becomes equivalent to this one "$ ssh -t username@lxplus.cern.ch -L 10880:localhost:8089 "ssh -D 8089 username@cmsusr.cern.ch" ".
+# Note that a browser still needs to be configured to access port 10880 as instructed at the top of this page.
+# https://nerderati.com/2011/03/17/simplify-your-life-with-an-ssh-config-file/
+# http://rubenlaguna.com/post/2014-06-10-ssh-port-forwarding-through-multiple-hops-slash-dot-ssh-slash-config-slash/
+Match host cmstunnel !exec "ping -c1 -W1 cmsusr.cern.ch &>/dev/null"
+    ProxyJump                   lxplus
+Host cmstunnel
+    User                        gauzinge
+    Hostname                    cmsusr.cern.ch
+    DynamicForward              10880
+
+#Host lxplus* lxplus*.cern.ch
+    #user gauzinge
+    #hostname lxplus.cern.ch
+    #ProxyCommand none
+    ##GSSAPIClientIdentity gauzinge@CERN.CH
+    #GSSAPIAuthentication yes
+    #GSSAPIDelegateCredentials yes
+    ##GSSAPIKeyExchange no
+    #Protocol 2
+    #ServerAliveInterval 60
+    #ServerAliveCountMax 6
+    #PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
+    #ForwardAgent yes
+    #ForwardX11 yes
+    #ForwardX11Trusted yes
+    #PubkeyAuthentication yes
+    #ControlPersist 15
+    #ControlPath ~/.ssh/%h.%p.%r
+    #ControlMaster auto
+    ## Work around a bug in OSX:
+    ## http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    #TCPKeepAlive yes
+    #ForwardX11Timeout 576h
 
 Host cmsuptrackerdaq brillab186
     user gauzinge
     ProxyCommand none
-    #GSSAPIClientIdentity gauzinge@CERN.CH
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials yes
-    #GSSAPIKeyExchange no
+    StrictHostKeyChecking       no
+    UserKnownHostsFile          /dev/null
+    PubkeyAuthentication        no
+    ForwardAgent yes
+    ForwardX11                  yes
+    ForwardX11Trusted           yes
     Protocol 2
     ServerAliveInterval 60
     ServerAliveCountMax 6
-    PreferredAuthentications gssapi-with-mic,gssapi,publickey,keyboard-interactive,password
-    ForwardAgent yes
-    ForwardX11 yes
-    ForwardX11Trusted yes
-    PubkeyAuthentication yes
     ControlPersist 15
     ControlPath ~/.ssh/%h.%p.%r
     ControlMaster auto
-    TCPKeepAlive yes
     # Work around a bug in OSX:
     # http://b.kl3in.com/2012/01/x11-display-forwarding-fails-after-some-time/
+    TCPKeepAlive yes
     ForwardX11Timeout 576h
+    
 
 Host cmsuptrackerdaq.cern.ch brillab186.cern.ch
     user gauzinge
     ProxyCommand ssh gauzinge@lxplus.cern.ch /usr/bin/nc %h %p 2> /dev/null
-    #GSSAPIClientIdentity gauzinge@CERN.CH
     GSSAPIAuthentication yes
     GSSAPIDelegateCredentials yes
-    #GSSAPIKeyExchange no
     Protocol 2
     ServerAliveInterval 60
     ServerAliveCountMax 6

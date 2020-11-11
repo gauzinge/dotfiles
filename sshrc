@@ -74,4 +74,4 @@ echo '* ********************************************************************'
  #source my sane vimrc on remote
 #export VIMINIT="let \$MYVIMRC='$SSHHOME/.sshrc.d/.vimrc' | source \$MYVIMRC"
 #alias vim='vim -u $SSHHOME/.sshrc.d/.vimrc'
-zsh
+#zsh
