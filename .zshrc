@@ -93,6 +93,7 @@ alias cd..='cd ..'
 
 #better cat
 alias cat='bat'
+alias less='bat'
 
 #better cd using zoxide
 alias cd='z'
