@@ -41,10 +41,10 @@ return {
     {
         "terryma/vim-multiple-cursors",
     },
-    {
-        "smoka7/hop.nvim",
-        version = "*",
-    },
+    -- {
+    --     "smoka7/hop.nvim",
+    --     version = "*",
+    -- },
     {
         "akinsho/bufferline.nvim",
         version = "*",
