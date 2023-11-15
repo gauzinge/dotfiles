@@ -16,13 +16,13 @@ vim.keymap.set("v", "ii", "<Esc>")
 
 --save with leader w
 --quit with leader q
-vim.keymap.set("n", "<leader>w", "<cmd>w!<cr><esc>", { desc = "Write File" })
+vim.keymap.set("n", "<leader>w", "<cmd>w!<cr>", { desc = "Write File" })
 
 --buffer navigation
-vim.keymap.set("n", "<leader>h", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<leader>k", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<leader>j", "<cmd>bnext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>l", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- vim.keymap.set("n", "<leader>h", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+-- vim.keymap.set("n", "<leader>k", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
+-- vim.keymap.set("n", "<leader>j", "<cmd>bnext<cr>", { desc = "Next buffer" })
+-- vim.keymap.set("n", "<leader>l", "<cmd>bnext<cr>", { desc = "Next buffer" })
 
 --Tmux pane navigation
 vim.keymap.set("n", "<C-h>", ":TmuxNavigateLeft<CR>", { silent = true })
