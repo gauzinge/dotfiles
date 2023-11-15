@@ -22,7 +22,7 @@ return {
     },
     {
         "karb94/neoscroll.nvim",
-        enabled = false,
+        enabled = true,
         event = "WinScrolled",
         config = function()
             require("neoscroll").setup({
