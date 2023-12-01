@@ -16,7 +16,6 @@ brew "gnu-sed"
 brew "graphviz"
 brew "jq"
 brew "lazygit"
-brew "mas"
 brew "neovim"
 brew "node"
 brew "powerlevel10k"
@@ -36,16 +35,12 @@ brew "felixkratz/formulae/sketchybar"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 cask "alacritty"
+cask "alt-tab"
 cask "appcleaner"
 cask "caffeine"
+cask "drawio"
 cask "font-hack-nerd-font"
 cask "monolingual"
 cask "spotify"
 cask "vlc"
 cask "whatsapp"
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft OneNote", id: 784801555
-mas "Microsoft Outlook", id: 985367838
-mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Word", id: 462054704
-mas "OneDrive", id: 823766827
