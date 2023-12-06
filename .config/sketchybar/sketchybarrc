@@ -33,7 +33,7 @@ bar=(
   padding_left=10
   y_offset=0
   margin=10
-  topmost=true
+  topmost=false
   # topmost=window
 )
 
