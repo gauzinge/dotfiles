@@ -1,16 +1,23 @@
 #!/bin/bash
 
+# update() {
+#   source "$CONFIG_DIR/colors.sh"
+#   COLOR=$BACKGROUND_2
+#   if [ "$SELECTED" = "true" ]; then
+#     COLOR=$GREY
+#   fi
+#   sketchybar --set $NAME icon.highlight=$SELECTED \
+#                          label.highlight=$SELECTED \
+#                          background.border_color=$COLOR
+# }
 update() {
-  source "$CONFIG_DIR/colors.sh"
-  COLOR=$BACKGROUND_2
+  WIDTH="dynamic"
   if [ "$SELECTED" = "true" ]; then
-    COLOR=$GREY
+    WIDTH="0"
   fi
-  sketchybar --set $NAME icon.highlight=$SELECTED \
-                         label.highlight=$SELECTED \
-                         background.border_color=$COLOR
-}
 
+  sketchybar --animate tanh 20 --set $NAME icon.highlight=$SELECTED label.width=$WIDTH
+}
 mouse_clicked() {
   if [ "$BUTTON" = "right" ]; then
     yabai -m space --destroy $SID

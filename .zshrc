@@ -120,4 +120,6 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 # source /usr/local/opt/powerlevel10k/share/powerlevel10k/powerlevel10k.zsh-theme
-source /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
+# source opt/homebrew/Cellar/powerlevel10k/1.19.0/share/powerlevel10k/powerlevel10k.zsh-theme
+source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+# /usr/local/share/powerlevel10k/powerlevel10k.zsh-theme
