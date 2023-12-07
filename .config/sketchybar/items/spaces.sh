@@ -20,8 +20,8 @@ do
     padding_right=2
     label.padding_right=20
     icon.highlight_color=$RED
-    # label.color=$GREY
-    # label.highlight_color=$WHITE
+    label.color=$GREY
+    label.highlight_color=$WHITE
     label.font="sketchybar-app-font:Regular:16.0"
     label.background.height=20
     label.background.drawing=on
@@ -40,7 +40,8 @@ spaces=(
   background.color=$BACKGROUND_1
   background.border_color=$BACKGROUND_2
   background.border_width=2
-  background.drawing=on
+  background.drawing=off
+  # background.drawing=on
 )
 
 separator=(
