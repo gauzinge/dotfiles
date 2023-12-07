@@ -32,10 +32,10 @@ brew "zoxide"
 brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
+brew "felixkratz/formulae/borders"
 brew "felixkratz/formulae/sketchybar"
 brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
-cask "alacritty"
 cask "alt-tab"
 cask "appcleaner"
 cask "caffeine"
@@ -45,9 +45,15 @@ cask "logi-options-plus"
 cask "microsoft-auto-update"
 cask "microsoft-teams"
 cask "monolingual"
+cask "sf-symbols"
 cask "spotify"
 cask "tunnelblick"
 cask "vlc"
 cask "whatsapp"
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Microsoft OneNote", id: 784801555
 mas "Microsoft Outlook", id: 985367838
 mas "Microsoft Remote Desktop", id: 1295203466
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
