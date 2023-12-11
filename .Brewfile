@@ -38,7 +38,6 @@ brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 cask "alt-tab"
 cask "appcleaner"
-cask "caffeine"
 cask "drawio"
 cask "font-hack-nerd-font"
 cask "logi-options-plus"
@@ -50,6 +49,7 @@ cask "spotify"
 cask "tunnelblick"
 cask "vlc"
 cask "whatsapp"
+mas "Amphetamine", id: 937984704
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
 mas "Microsoft OneNote", id: 784801555
